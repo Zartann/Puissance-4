@@ -42,28 +42,28 @@ public interface PlateauCourant {
 	public void playAdverse(byte i);
 	
 	/**
-	 * Dernier coup joué
-	 * Inutile d'utiliser plus qu'un byte pour stocker la colonne
-	 * -1 signifie qu'il n'y a pas de dernier coup à annuler.
-	 */
-	public byte last = -1;
-	
-	/**
 	 * Annule le dernier coup joué
 	 */
 	public void undoLast();
 	
 	/**
 	 * 
-	 * @return Instantané du plateau sous format d'un entier.
+	 * @return Instantané du plateau pour le joueur courant sous format d'un entier.
 	 */
-	public long statusConvert();
+	public long playerStateConvert();
 	
 	/**
 	 * 
-	 * @param i Etat du plateau
-	 * @return Plateau correspondant à l'entier i
+	 * @return Instantané du plateau pour l'adversaire sous format d'un entier.
 	 */
-	public PlateauCourant importFromLong(long i); //Pas certain qu'elle serve
+	public long adversaryStateConvert();
+	
+	/**
+	 * 
+	 * @param player
+	 * @param adversary
+	 * @return Plateau correspondant aux entiers player et adversary
+	 */
+	public PlateauCourant importFromLong(long player, long adversary); //Pas certain qu'elle serve
 	
 }

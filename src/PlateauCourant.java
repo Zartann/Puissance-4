@@ -44,9 +44,16 @@ public interface PlateauCourant {
 	public void undoLast();
 	
 	/**
-	 * Renvoie un instantané du plateau sous format d'un entier.
-	 * @return
+	 * 
+	 * @return Instantané du plateau sous format d'un entier.
 	 */
 	public long statusConvert();
+	
+	/**
+	 * 
+	 * @param i Etat du plateau
+	 * @return Plateau correspondant à l'entier i
+	 */
+	public PlateauCourant importFromLong(long i); //Pas certain qu'elle serve
 	
 }

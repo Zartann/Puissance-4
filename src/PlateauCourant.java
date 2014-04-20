@@ -21,13 +21,13 @@ public interface PlateauCourant {
 	
 	/**
 	 * Joueur courant joue en colonne i
-	 * @param i
+	 * @param i entre 0 et 5
 	 */
 	public void playCurrent(byte i);
 	
 	/**
 	 * Joueur adverse joue en colonne i
-	 * @param i
+	 * @param i entre 0 et 5
 	 */
 	public void playAdverse(byte i);
 	
@@ -42,5 +42,11 @@ public interface PlateauCourant {
 	 * Annule le dernier coup joué
 	 */
 	public void undoLast();
+	
+	/**
+	 * Renvoie un instantané du plateau sous format d'un entier.
+	 * @return
+	 */
+	public long statusConvert();
 	
 }

@@ -70,20 +70,42 @@ public class CurrentBoard implements PlateauCourant {
 
 	@Override
 	public void playCurrent(byte i) {
-		// TODO Auto-generated method stub
 
+		if(heights[i] >= maxHeight)
+			throw new IllegalMoveException("Colonne n°" + i);
+		
+		board[i][heights[i]] = Box.PLAYER;
+		
+		heights[i]++;
+		last = i;
+		
 	}
 
 	@Override
 	public void playAdverse(byte i) {
-		// TODO Auto-generated method stub
-
+		
+		if(heights[i] >= maxHeight)
+			throw new IllegalMoveException("Colonne n°" + i);
+		
+		board[i][heights[i]] = Box.ADVERSARY;
+		
+		heights[i]++;
+		last = i;
 	}
 
+	public byte last = -1;
+	
 	@Override
 	public void undoLast() {
-		// TODO Auto-generated method stub
 
+		if(last == -1)
+			throw new IllegalMoveException("No last Move");
+		
+		board[last][heights[last]] = Box.VOID;
+		
+		heights[last]--;
+		last = -1;
+		
 	}
 
 	@Override

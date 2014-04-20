@@ -7,10 +7,12 @@ public class CurrentBoard implements PlateauCourant {
 	 */
 	public Box[][] board;
 	
+	public int maxWidth, maxHeight;
+	
 	/**
 	 * Contient le nombre de jetons de chaque colonne
 	 */
-	public int[] heigths;
+	public int[] heights;
 	
 	/**
 	 * Crée un nouveau tableau initialisé à null de taille width*height
@@ -26,7 +28,10 @@ public class CurrentBoard implements PlateauCourant {
 			}
 		}
 		
-		heigths = new int[width];
+		maxWidth = width;
+		maxHeight = height;
+		
+		heights = new int[width];
 	}
 
 	@Override
@@ -54,8 +59,13 @@ public class CurrentBoard implements PlateauCourant {
 
 	@Override
 	public boolean[] validShots() {
-		// TODO Auto-generated method stub
-		return null;
+
+		boolean[] shots = new boolean[maxWidth];
+		
+		for(int i = 0; i < maxWidth; i++)
+			shots[i] = (heights[i] < maxHeight);
+		
+		return shots;
 	}
 
 	@Override

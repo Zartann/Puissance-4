@@ -9,12 +9,18 @@ public class CurrentBoard implements PlateauCourant {
 	public Boolean[][] board;
 	
 	/**
+	 * Contient le nombre de jetons de chaque colonne
+	 */
+	public int[] heigths;
+	
+	/**
 	 * Crée un nouveau tableau initialisé à null de taille width*height
 	 * @param width
 	 * @param height
 	 */
 	CurrentBoard(int width, int height){
 		board = new Boolean[height][width];
+		heigths = new int[width];
 	}
 
 	@Override

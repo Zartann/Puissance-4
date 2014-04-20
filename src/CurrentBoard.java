@@ -4,9 +4,8 @@ public class CurrentBoard implements PlateauCourant {
 	/**
 	 * Plateau contenant l'état actuel du jeu.
 	 * Pour le moment, on choisit de le stocker dans une matrice.
-	 * Si une case est inoccupée, elle est à null.
 	 */
-	public Boolean[][] board;
+	public Box[][] board;
 	
 	/**
 	 * Contient le nombre de jetons de chaque colonne
@@ -19,14 +18,32 @@ public class CurrentBoard implements PlateauCourant {
 	 * @param height
 	 */
 	CurrentBoard(int width, int height){
-		board = new Boolean[height][width];
+		board = new Box[height][width];
+		
+		for(Box[] line : board){
+			for(Box box : line){
+				box = Box.VOID;
+			}
+		}
+		
 		heigths = new int[width];
 	}
 
 	@Override
 	public boolean checkValid() {
-		// TODO Auto-generated method stub
-		return false;
+		int countPlayer = 0, countAdv = 0;
+		
+		for(Box[] line : board){
+			for(Box box : line){
+				if(box.isPlayer())
+					countPlayer++;
+				else if(box.isAdv())
+					countAdv++;
+			}
+		}
+		
+		int diff = countPlayer - countAdv;
+		return (diff <= 1 && diff >= -1);
 	}
 
 	@Override

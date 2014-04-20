@@ -5,10 +5,20 @@
  *
  */
 public interface PlateauCourant {
+	
+	/**
+	 * Vérifie que le plateau soit valide (i.e. contienne bien un nombre cohérent de pions par joueur).
+	 * @return true si ok, false sinon
+	 */
+	public boolean checkValid();
 
 	/**
 	 * 
 	 * @return Résultat du plateau courant -> True si victoire, false si défaite, null si draw ou indéterminé
+	 */
+	/*
+	 * TODO : Pas nécessairement très efficace dans un premier temps. A améliorer par la suite.
+	 * Doit pouvoir être faisable en temps linéaire en le nombre de cases au plus.
 	 */
 	public Boolean result();
 	

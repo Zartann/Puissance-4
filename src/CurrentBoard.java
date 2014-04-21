@@ -87,14 +87,14 @@ public class CurrentBoard implements PlateauCourant {
 			//Ici, on parcourt de bas en haut
 			for(line = maxHeight - 1; line >= 0; line--){
 
-				if(board[line][column] == Box.PLAYER){
+				if(board[line][column].isPlayer()){
 					consPlayer++;
 					consAdv = 0;
 
 					if(consPlayer == 4)
 						playerWins = true;
 				}
-				else if(board[line][column] == Box.ADVERSARY){
+				else if(board[line][column].isAdv()){
 					consAdv++;
 					consPlayer = 0;
 
@@ -119,14 +119,14 @@ public class CurrentBoard implements PlateauCourant {
 
 			for(column = 0; column < maxWidth; column++){
 
-				if(board[line][column] == Box.PLAYER){
+				if(board[line][column].isPlayer()){
 					consPlayer++;
 					consAdv = 0;
 
 					if(consPlayer == 4)
 						playerWins = true;
 				}
-				else if(board[line][column] == Box.ADVERSARY){
+				else if(board[line][column].isAdv()){
 					consAdv++;
 					consPlayer = 0;
 
@@ -162,14 +162,14 @@ public class CurrentBoard implements PlateauCourant {
 
 			while(line < maxHeight - 1 && column < maxWidth - 1){
 
-				if(board[line][column] == Box.PLAYER){
+				if(board[line][column].isPlayer()){
 					consPlayer++;
 					consAdv = 0;
 
 					if(consPlayer == 4)
 						playerWins = true;
 				}
-				else if(board[line][column] == Box.ADVERSARY){
+				else if(board[line][column].isAdv()){
 					consAdv++;
 					consPlayer = 0;
 
@@ -208,14 +208,14 @@ public class CurrentBoard implements PlateauCourant {
 
 			while(line < maxHeight - 1 && column >= 0){
 
-				if(board[line][column] == Box.PLAYER){
+				if(board[line][column].isPlayer()){
 					consPlayer++;
 					consAdv = 0;
 
 					if(consPlayer == 4)
 						playerWins = true;
 				}
-				else if(board[line][column] == Box.ADVERSARY){
+				else if(board[line][column].isAdv()){
 					consAdv++;
 					consPlayer = 0;
 

@@ -18,11 +18,11 @@ public class CurrentBoard implements PlateauCourant {
 	public int[] heights;
 
 	/**
-	 * Crée un nouveau tableau initialisé à null de taille width*height
+	 * Crée un nouveau plateau initialisé à null de taille width*height
 	 * @param width
 	 * @param height
 	 */
-	CurrentBoard(int width, int height){
+	public CurrentBoard(int width, int height){
 		board = new Box[height][width];
 
 		for(Box[] line : board){
@@ -35,6 +35,27 @@ public class CurrentBoard implements PlateauCourant {
 		maxHeight = height;
 
 		heights = new int[width];
+	}
+	
+	/**
+	 * Crée un nouveau tableau plateau correspondant au plateau envoyé
+	 * @param width
+	 * @param height
+	 */
+	public CurrentBoard(Box[][] boardd){
+		board = boardd;
+
+		maxWidth = board[0].length;
+		maxHeight = board.length;
+
+		heights = new int[maxWidth];
+		
+		for(int column = 0; column < maxWidth; column++)
+			for(int line = maxHeight - 1; line >= 0; line--) //Parcours de bas en haut
+				if(board[line][column].isVoid())
+					heights[column] = line - 1;
+		
+		
 	}
 
 	@Override

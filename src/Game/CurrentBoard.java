@@ -57,8 +57,8 @@ public class CurrentBoard implements PlateauCourant {
 		
 		for(int column = 0; column < maxWidth; column++)
 			for(int line = maxHeight - 1; line >= 0; line--) //Parcours de bas en haut
-				if(board[line][column].isVoid())
-					heights[column] = line - 1;
+				if(!board[line][column].isVoid())
+					heights[column]++;
 		
 		
 	}
@@ -290,6 +290,10 @@ public class CurrentBoard implements PlateauCourant {
 		if(heights[i] >= maxHeight)
 			throw new IllegalMoveException("Colonne n°" + i);
 
+		if(!board[i][heights[i]].isVoid())
+			throw new IllegalMoveException("Impossible de jouer dans une case occupée : Colonne n°" + i
+					+ "\n" + toString());
+		
 		board[i][heights[i]] = Box.PLAYER;
 
 		heights[i]++;
@@ -302,6 +306,10 @@ public class CurrentBoard implements PlateauCourant {
 
 		if(heights[i] >= maxHeight)
 			throw new IllegalMoveException("Colonne n°" + i);
+		
+		if(!board[i][heights[i]].isVoid())
+			throw new IllegalMoveException("Impossible de jouer dans une case occupée : Colonne n°" + i
+					+ "\n" + toString());
 
 		board[i][heights[i]] = Box.ADVERSARY;
 

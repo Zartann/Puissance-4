@@ -2,19 +2,19 @@ package Search;
 
 public enum StateValue {
 	LOSS, DRAW, WIN;
-	
+
 	public boolean isLoss(){
 		return (this == LOSS);
 	}
-	
+
 	public boolean isDraw(){
 		return (this == DRAW);
 	}
-	
+
 	public boolean isWin(){
 		return (this == WIN);
 	}
-	
+
 	/**
 	 * 
 	 * @param s
@@ -23,16 +23,16 @@ public enum StateValue {
 	public StateValue max(StateValue s){
 		if(this == LOSS)
 			return s;
-		
+
 		if(this == WIN)
 			return this;
-		
+
 		if(s == LOSS)
 			return this;
-		
+
 		return s;
 	}
-	
+
 	/**
 	 * 
 	 * @param s
@@ -41,13 +41,23 @@ public enum StateValue {
 	public StateValue min(StateValue s){
 		if(this == LOSS)
 			return this;
-		
+
 		if(this == WIN)
 			return s;
-		
+
 		if(s == WIN)
 			return this;
-		
+
 		return s;
+	}
+
+	public String toString(){
+		if(this == LOSS)
+			return "LOSS";
+
+		if(this == DRAW)
+			return "DRAW";
+
+		return "WIN";
 	}
 }

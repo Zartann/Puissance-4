@@ -7,7 +7,7 @@ import Game.PlateauCourant;
 public class Minimax {
 
 	//Au début, on va à la profondeur maximale.
-	public StateValue miniMax(PlateauCourant state, boolean isMax){
+	public static StateValue miniMax(PlateauCourant state, boolean isMax){
 		
 		List<Integer> shots = state.validShots();
 		

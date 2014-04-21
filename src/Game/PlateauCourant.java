@@ -1,3 +1,4 @@
+package Game;
 /*
  * On définit une interface pour les plateaux afin de définir les fonctions dont on va avoir besoin.
  * Ceci nous permet de ne pas être complètement dépendant du type de stockage des plateaux.

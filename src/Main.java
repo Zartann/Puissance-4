@@ -66,7 +66,7 @@ public class Main {
 	public static void main(String[] args) {
 		try {
 			
-			String path = "resources/boards/empty-4x5.cfg";
+			String path = "resources/boards/empty-4x4.cfg";
 			PlateauCourant board = importFromFile(path);
 			
 			System.out.println(board);

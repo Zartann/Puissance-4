@@ -4,6 +4,7 @@ public class CurrentBoard implements PlateauCourant {
 	/**
 	 * Plateau contenant l'état actuel du jeu.
 	 * Pour le moment, on choisit de le stocker dans une matrice.
+	 * La dernière ligne, d'indice maxHeight - 1, contient la ligne inférieure du plateau
 	 */
 	public Box[][] board;
 
@@ -73,25 +74,30 @@ public class CurrentBoard implements PlateauCourant {
 		 */
 		int consPlayer = 0, consAdv = 0;
 
+		//Numéros de la ligne et de la colonne qu'on étudie actuellement
+		int line, column;
+
 		//Vérifications sur les colonnes
-		for(int i = 0; i < maxWidth; i++){
+		for(column = 0; column < maxWidth; column++){
 
 			consPlayer = 0;
 			consAdv = 0;
 
-			for(int j = 0; j < maxHeight; j++){
+			//La ligne du bas est celle qui a pour indice maxHeight - 1 !!!
+			//Ici, on parcourt de bas en haut
+			for(line = maxHeight - 1; line >= 0; line--){
 
-				if(board[j][i] == Box.PLAYER){
+				if(board[line][column] == Box.PLAYER){
 					consPlayer++;
 					consAdv = 0;
-					
+
 					if(consPlayer == 4)
 						playerWins = true;
 				}
-				else if(board[j][i] == Box.ADVERSARY){
+				else if(board[line][column] == Box.ADVERSARY){
 					consAdv++;
 					consPlayer = 0;
-					
+
 					if(consAdv == 4)
 						advWins = true;
 				}
@@ -106,24 +112,24 @@ public class CurrentBoard implements PlateauCourant {
 
 
 		//Vérifications sur les lignes
-		for(int i = 0; i < maxHeight; i++){
+		for(line = maxHeight - 1; line >= 0; line--){
 
 			consPlayer = 0;
 			consAdv = 0;
 
-			for(int j = 0; j < maxWidth; j++){
+			for(column = 0; column < maxWidth; column++){
 
-				if(board[i][j] == Box.PLAYER){
+				if(board[line][column] == Box.PLAYER){
 					consPlayer++;
 					consAdv = 0;
-					
+
 					if(consPlayer == 4)
 						playerWins = true;
 				}
-				else if(board[i][j] == Box.ADVERSARY){
+				else if(board[line][column] == Box.ADVERSARY){
 					consAdv++;
 					consPlayer = 0;
-					
+
 					if(consAdv == 4)
 						advWins = true;
 				}
@@ -133,10 +139,99 @@ public class CurrentBoard implements PlateauCourant {
 				}
 			}
 		}
-		
-		
-		//TODO : Vérification sur les diagonales et les anti-diagonales
-		
+
+
+		//Vérification sur les diagonales
+		//diag = column - line + maxHeight - 1
+		//Diagonale en bas à gauche -> n°0, en haut à droite -> n°maxWidth + maxHeight - 2
+		//Les 3 premières ne servent à rien, les trois dernière non plus.
+		for(int diag = 3; diag < maxHeight + maxWidth - 4; diag++){
+
+			consPlayer = 0;
+			consAdv = 0;
+
+			//On parcourt la diagonale en allant de haut en bas (de gauche à droite).
+			if(diag < maxHeight){
+				line = maxHeight - 1 - diag;
+				column = 0;
+			}
+			else{
+				line = 0;
+				column = diag - maxHeight + 1;
+			}
+
+			while(line < maxHeight - 1 && column < maxWidth - 1){
+
+				if(board[line][column] == Box.PLAYER){
+					consPlayer++;
+					consAdv = 0;
+
+					if(consPlayer == 4)
+						playerWins = true;
+				}
+				else if(board[line][column] == Box.ADVERSARY){
+					consAdv++;
+					consPlayer = 0;
+
+					if(consAdv == 4)
+						advWins = true;
+				}
+				else{
+					consPlayer = 0;
+					consAdv = 0;
+				}
+
+				line++;
+				column++;
+			}
+		}
+
+
+		//Vérification sur les antidiagonales
+		//antidiag = column + line
+		//Antidiagonale en haut à gauche -> n°0, en bas à droite -> n°maxWidth + maxHeight - 2
+		//Les 3 premières ne servent à rien, les trois dernière non plus.
+		for(int adiag = 3; adiag < maxHeight + maxWidth - 4; adiag++){
+
+			consPlayer = 0;
+			consAdv = 0;
+
+			//On parcourt l'antidiagonale en allant de haut en bas (de droite à gauche).
+			if(adiag < maxWidth){
+				line = 0;
+				column = adiag;
+			}
+			else{
+				line = adiag - maxWidth + 1;
+				column = 0;
+			}
+
+			while(line < maxHeight - 1 && column >= 0){
+
+				if(board[line][column] == Box.PLAYER){
+					consPlayer++;
+					consAdv = 0;
+
+					if(consPlayer == 4)
+						playerWins = true;
+				}
+				else if(board[line][column] == Box.ADVERSARY){
+					consAdv++;
+					consPlayer = 0;
+
+					if(consAdv == 4)
+						advWins = true;
+				}
+				else{
+					consPlayer = 0;
+					consAdv = 0;
+				}
+
+				line++;
+				column--;
+			}
+		}
+
 		//DRAW si et seulement si aucun ne gagne ou les deux gagnent
 		//ATTENTION : On passe par la victoire d'un des deux avant un DRAW où les deux gagnent ! Ne pas arriver là !
 		if(playerWins && !advWins)

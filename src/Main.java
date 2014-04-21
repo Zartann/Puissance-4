@@ -9,6 +9,12 @@ import Game.PlateauCourant;
 
 public class Main {
 
+	/**
+	 * 
+	 * @param path
+	 * @return Plateau défini dans le fichier indiqué par path
+	 * @throws FileNotFoundException
+	 */
 	public static PlateauCourant importFromFile(String path) throws FileNotFoundException{
 		File example = new File(path);
 

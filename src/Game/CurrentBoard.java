@@ -1,5 +1,10 @@
 package Game;
 
+import java.util.ArrayList;
+import java.util.Stack;
+
+import Search.StateValue;
+
 
 public class CurrentBoard implements PlateauCourant {
 
@@ -88,7 +93,7 @@ public class CurrentBoard implements PlateauCourant {
 	 * Les diagonales sont données par i-j = cste
 	 * Les antidiagonales sont données par i+j = cste
 	 */
-	public Boolean result() {
+	public StateValue result() {
 
 		boolean playerWins = false, advWins = false;
 
@@ -258,28 +263,29 @@ public class CurrentBoard implements PlateauCourant {
 		//DRAW si et seulement si aucun ne gagne
 		//Erreur si les deux gagnent
 		if(playerWins && !advWins)
-			return true;
+			return StateValue.WIN;
 		else if(advWins && !playerWins)
-			return false;
+			return StateValue.LOSS;
 		else if(playerWins && advWins)
 			throw new IllegalMoveException("Deux gagnants :\n" + toString());
 		else
-			return null;
+			return StateValue.DRAW;
 	}
 
 	@Override
-	public boolean[] validShots() {
+	public ArrayList<Integer> validShots() {
 
-		boolean[] shots = new boolean[maxWidth];
+		ArrayList<Integer> shots = new ArrayList<Integer>();
 
 		for(int i = 0; i < maxWidth; i++)
-			shots[i] = (heights[i] < maxHeight);
+			if(heights[i] < maxHeight)
+				shots.add(i);
 
 		return shots;
 	}
 
 	@Override
-	public void playCurrent(byte i) {
+	public void playCurrent(int i) {
 
 		if(heights[i] >= maxHeight)
 			throw new IllegalMoveException("Colonne n°" + i);
@@ -287,12 +293,12 @@ public class CurrentBoard implements PlateauCourant {
 		board[i][heights[i]] = Box.PLAYER;
 
 		heights[i]++;
-		last = i;
+		lasts.push(i);
 
 	}
 
 	@Override
-	public void playAdverse(byte i) {
+	public void playAdverse(int i) {
 
 		if(heights[i] >= maxHeight)
 			throw new IllegalMoveException("Colonne n°" + i);
@@ -300,21 +306,21 @@ public class CurrentBoard implements PlateauCourant {
 		board[i][heights[i]] = Box.ADVERSARY;
 
 		heights[i]++;
-		last = i;
+		lasts.push(i);
 	}
 
-	public byte last = -1;
+	public Stack<Integer> lasts = new Stack<Integer>();
 
 	@Override
 	public void undoLast() {
 
-		if(last == -1)
+		if(lasts.isEmpty())
 			throw new IllegalMoveException("No last Move");
 
-		board[last][heights[last]] = Box.VOID;
+		int lastColumn = lasts.pop();
+		board[lastColumn][heights[lastColumn]] = Box.VOID;
 
-		heights[last]--;
-		last = -1;
+		heights[lastColumn]--;
 
 	}
 

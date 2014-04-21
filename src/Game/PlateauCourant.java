@@ -1,4 +1,9 @@
 package Game;
+
+import java.util.List;
+
+import Search.StateValue;
+
 /*
  * On définit une interface pour les plateaux afin de définir les fonctions dont on va avoir besoin.
  * Ceci nous permet de ne pas être complètement dépendant du type de stockage des plateaux.
@@ -21,26 +26,25 @@ public interface PlateauCourant {
 	 * TODO : Pas nécessairement très efficace dans un premier temps. A améliorer par la suite.
 	 * Doit pouvoir être faisable en temps linéaire en le nombre de cases au plus.
 	 */
-	public Boolean result();
+	public StateValue result();
 	
 	/**
 	 * 
 	 * @return Tableau de six cases indiquant si le joueur peut jouer à la colonne i
 	 */
-	//TODO : Peut-être à modifier en liste des colonnes (liste de byte).
-	public boolean[] validShots();
+	public List<Integer> validShots();
 	
 	/**
 	 * Joueur courant joue en colonne i
 	 * @param i entre 0 et 5
 	 */
-	public void playCurrent(byte i);
+	public void playCurrent(int i);
 	
 	/**
 	 * Joueur adverse joue en colonne i
 	 * @param i entre 0 et 5
 	 */
-	public void playAdverse(byte i);
+	public void playAdverse(int i);
 	
 	/**
 	 * Annule le dernier coup joué

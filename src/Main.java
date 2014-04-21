@@ -58,7 +58,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		try {
-			importFromFile("resources/boards/damned.cfg").print();
+			System.out.println(importFromFile("resources/boards/ended.cfg"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}

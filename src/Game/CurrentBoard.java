@@ -290,11 +290,11 @@ public class CurrentBoard implements PlateauCourant {
 		if(heights[i] >= maxHeight)
 			throw new IllegalMoveException("Colonne n°" + i);
 
-		if(!board[i][heights[i]].isVoid())
+		if(!board[maxHeight - 1 - heights[i]][i].isVoid())
 			throw new IllegalMoveException("Impossible de jouer dans une case occupée : Colonne n°" + i
 					+ "\n" + toString());
 		
-		board[i][heights[i]] = Box.PLAYER;
+		board[maxHeight - 1 - heights[i]][i] = Box.PLAYER;
 
 		heights[i]++;
 		lasts.push(i);
@@ -307,11 +307,11 @@ public class CurrentBoard implements PlateauCourant {
 		if(heights[i] >= maxHeight)
 			throw new IllegalMoveException("Colonne n°" + i);
 		
-		if(!board[i][heights[i]].isVoid())
+		if(!board[maxHeight - 1 - heights[i]][i].isVoid())
 			throw new IllegalMoveException("Impossible de jouer dans une case occupée : Colonne n°" + i
 					+ "\n" + toString());
 
-		board[i][heights[i]] = Box.ADVERSARY;
+		board[maxHeight - 1 - heights[i]][i] = Box.ADVERSARY;
 
 		heights[i]++;
 		lasts.push(i);
@@ -326,7 +326,7 @@ public class CurrentBoard implements PlateauCourant {
 			throw new IllegalMoveException("No last Move");
 
 		int lastColumn = lasts.pop();
-		board[lastColumn][heights[lastColumn]] = Box.VOID;
+		board[maxHeight - 1 - heights[lastColumn] + 1][lastColumn] = Box.VOID;
 
 		heights[lastColumn]--;
 

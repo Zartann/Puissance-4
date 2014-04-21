@@ -66,11 +66,12 @@ public class Main {
 	public static void main(String[] args) {
 		try {
 			
-			String path = "resources/boards/ended.cfg";
+			String path = "resources/boards/empty-4x5.cfg";
 			PlateauCourant board = importFromFile(path);
 			
 			System.out.println(board);
-			
+			//board.playCurrent(0);
+			//System.out.println(board);
 			System.out.println(Minimax.miniMax(board, true));
 			
 		} catch (FileNotFoundException e) {

@@ -13,6 +13,10 @@ public class Minimax {
 		
 		StateValue value = state.result();
 		
+		System.out.println();
+		System.out.println(state);
+		System.out.println(value);
+		
 		if(shots.isEmpty() || !value.isDraw())
 			return value;
 		

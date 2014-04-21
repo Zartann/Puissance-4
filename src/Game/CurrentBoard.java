@@ -255,12 +255,14 @@ public class CurrentBoard implements PlateauCourant {
 			}
 		}
 
-		//DRAW si et seulement si aucun ne gagne ou les deux gagnent
-		//ATTENTION : On passe par la victoire d'un des deux avant un DRAW où les deux gagnent ! Ne pas arriver là !
+		//DRAW si et seulement si aucun ne gagne
+		//Erreur si les deux gagnent
 		if(playerWins && !advWins)
 			return true;
 		else if(advWins && !playerWins)
 			return false;
+		else if(playerWins && advWins)
+			throw new IllegalMoveException("Deux gagnants :\n" + toString());
 		else
 			return null;
 	}

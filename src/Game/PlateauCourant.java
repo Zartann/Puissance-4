@@ -67,4 +67,9 @@ public interface PlateauCourant {
 	 */
 	public PlateauCourant importFromLong(long player, long adversary); //Pas certain qu'elle serve
 	
+	/**
+	 * Ecrit sur la console l'état actuel du jeu.
+	 */
+	public void print();
+	
 }

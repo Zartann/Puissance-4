@@ -312,5 +312,22 @@ public class CurrentBoard implements PlateauCourant {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public void print(){
+		for(Box[] line : board){
+			for(Box box : line){
+
+				if(box.isPlayer())
+					System.out.print("0");
+				else if(box.isAdv())
+					System.out.print("@");
+				else
+					System.out.print(".");
+				
+			}
+			System.out.println("");
+		}
+	}
 
 }

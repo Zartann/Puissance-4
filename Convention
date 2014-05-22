@@ -12,7 +12,7 @@ Utilisation et placement des classes :
 Conventions d'écriture du code :
 
 	- Dans le nom d'une classe ou d'une interface, chaque mot commence par une majuscule (ex : CurrentBoard)
-	- Un objet, champ, variable commence par une minuscule puis chaque autre mot par une majuscule
+	- Un objet, champ, variable, fonction commence par une minuscule puis chaque autre mot par une majuscule
 		(ex : maxWidth).
 	- Les noms de variable et de classe doivent être explicites !
 		Pas de Button6 ! Plutôt butDuBoutonButton !

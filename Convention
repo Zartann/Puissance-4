@@ -1,0 +1,39 @@
+Ce fichier contient toutes les conventions que l'on s'efforcera de respecter.
+On rajoutera tout ce qui aura sa place ici au fur et à mesure que l'on y pensera.
+
+Utilisation et placement des classes :
+
+	- Tout ce qui est dépendant du jeu doit se mettre dans le package Game.
+	- Tout ce qui peut se généraliser (typiquement les algos de recherche) sont à mettre dans le package Search.
+	- La classe Test sert à faire tous les tests qu'on peut avoir envie de faire.
+	- L'entrée se fait par la classe Main qui lit le fichier.
+	- Ne pas modifier une classe que l'on n'a pas écrite si on ne comprend pas à 100% tout son fonctionnement !!
+
+Conventions d'écriture du code :
+
+	- Dans le nom d'une classe ou d'une interface, chaque mot commence par une majuscule (ex : CurrentBoard)
+	- Un objet, champ, variable commence par une minuscule puis chaque autre mot par une majuscule
+		(ex : maxWidth).
+	- Les noms de variable et de classe doivent être explicites !
+		Pas de Button6 ! Plutôt butDuBoutonButton !
+	- Respecter l'indentation (avant de commiter). 
+		Au cas où, CTRL + A pour sélectionner tout le fichier, puis CTRL + I pour tout indenter correctement.
+	- Mettre des commentaires DIRECTEMENT !!!
+	- Mettre de la Javadoc en début de chaque méthode et éventuellement de chaque champ si pas explicite.
+		Pour cela, commencer par /** puis appuyer sur Entrée (Eclipse fait le reste).
+	
+Utilisation de Git :
+
+	- Faire des commits atomiques !!!
+		Ne pas passer deux heures à taper du code, puis ensuite faire un commit. C'est inutilisable.
+		Autant que possible, écrire une méthode, faire un commit.
+		Débuter une classe, un commit. Modifier un peu une classe, un commit.
+	- S'assurer au moins que cela compile avant de commiter. Sinon, le commit ne sert pas vraiment non plus.
+	- Faire attention aux différents fichier que l'on commite et ne pas commiter des choses que l'on ne voudrait pas.
+		Exemple : Si le .classpath apparraissait comme par magie, ne pas le commiter ! (Et regarder pourquoi le .gitignore ne marche plus)
+	- Avoir des noms de commit explicites : 
+		Création de la méthode xxx dans la classe yyy.
+		Modification de la classe aaa.
+		PAS : Modifs...
+	- Utiliser des branches pour faire de grosses modifications. Ne pas risquer de planter tout le code.
+		

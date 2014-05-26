@@ -320,6 +320,7 @@ public class CurrentBoard implements PlateauCourant {
 	/**
 	 * Indique si true que c'est au joueur de jouer, sinon à l'adversaire.
 	 * Pour le moment, on suppose que le joueur commence toujours
+	 * Ne pas utiliser avec playCurrent ou playAdverse !!!
 	 */
 	//TODO : Implémenter une méthode à l'initialisation pour savoir à qui c'est le tour
 	boolean whosNext = true;

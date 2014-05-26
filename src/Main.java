@@ -53,8 +53,10 @@ public class Main {
 					board[line][column] = Box.ADVERSARY;
 				else if(nextBox.equals("0"))
 					board[line][column] = Box.PLAYER;
-				else
+				else{
+					scan.close();
 					throw new RuntimeException("Le caractère n'a pas été reconnu.");
+				}
 
 			}
 

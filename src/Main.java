@@ -5,8 +5,10 @@ import java.util.Scanner;
 import Game.Box;
 import Game.CurrentBoard;
 import Game.PlateauCourant;
+import Search.AlphaBeta;
 import Search.MiniMaxElague;
 import Search.NegaMaxElague;
+import Search.StateValue;
 
 
 public class Main {
@@ -67,13 +69,13 @@ public class Main {
 	public static void main(String[] args) {
 		try {
 			
-			String path = "resources/boards/win1.cfg";
+			String path = "resources/boards/play-18.cfg";
 			PlateauCourant board = importFromFile(path);
 			
 			System.out.println(board);
 			//board.playCurrent(0);
 			//System.out.println(board);
-			int cas = 1;
+			int cas = 2;
 
 			switch(cas){
 			case 0 :
@@ -83,6 +85,9 @@ public class Main {
 			case 1 :
 				System.out.println(NegaMaxElague.negaMax(board));
 				break;
+				
+			case 2 :
+				System.out.println(AlphaBeta.alphaBeta(board, StateValue.LOSS, StateValue.WIN));
 				
 			}
 			

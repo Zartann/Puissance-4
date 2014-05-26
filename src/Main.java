@@ -7,6 +7,7 @@ import Game.CurrentBoard;
 import Game.IntBoard;
 import Game.PlateauCourant;
 import Search.AlphaBeta;
+import Search.AlphaBetaHash;
 import Search.MiniMaxElague;
 import Search.NegaMaxElague;
 import Search.StateValue;
@@ -84,7 +85,7 @@ public class Main {
 		
 			System.out.println(board);
 			
-			int cas = 2;
+			int cas = 3;
 	
 			switch(cas){
 			case 0 :
@@ -98,6 +99,10 @@ public class Main {
 			case 2 :
 				System.out.println(AlphaBeta.alphaBeta(board, StateValue.LOSS, StateValue.WIN));
 				break;
+				
+			case 3 :
+				//pronfondeurMax = 10
+				System.out.println (new AlphaBetaHash (10).alphaBetaHache(board, StateValue.LOSS, StateValue.WIN, 0));
 				
 			}
 			

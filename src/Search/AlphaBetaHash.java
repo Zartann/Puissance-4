@@ -12,6 +12,15 @@ public class AlphaBetaHash {
 	
 	int profondeurMax;
 	
+	
+	
+	public AlphaBetaHash(int profondeurMax) {
+		super();
+		this.profondeurMax = profondeurMax;
+	}
+
+
+
 	//Au début, on va à la profondeur maximale.
 			public StateValue alphaBetaHache(PlateauCourant state, StateValue alpha, StateValue beta, int profondeur){
 

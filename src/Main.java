@@ -60,23 +60,26 @@ public class Main {
 
 		}
 		
+		scan.close();
+		
 		return new CurrentBoard(board);
 	}
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
+	public static void ask(){
+		Scanner asker = new Scanner(System.in);
+		
+		String path = asker.nextLine();
+		
+		path = "resources/boards/" + path;
+		
+		PlateauCourant board;
 		try {
-			
-			String path = "resources/boards/play-18.cfg";
-			PlateauCourant board = importFromFile(path);
-			
+			board = importFromFile(path);
+		
 			System.out.println(board);
-			//board.playCurrent(0);
-			//System.out.println(board);
+			
 			int cas = 2;
-
+	
 			switch(cas){
 			case 0 :
 				System.out.println(MiniMaxElague.miniMax(board, true));
@@ -88,12 +91,24 @@ public class Main {
 				
 			case 2 :
 				System.out.println(AlphaBeta.alphaBeta(board, StateValue.LOSS, StateValue.WIN));
+				break;
 				
 			}
 			
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+
+			System.out.println("Le fichier est introuvable !");
 		}
+		
+		asker.close();
+	}
+	
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		
+		ask();
 
 	}
 

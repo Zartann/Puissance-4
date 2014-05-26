@@ -5,7 +5,7 @@ import java.util.Scanner;
 import Game.Box;
 import Game.CurrentBoard;
 import Game.PlateauCourant;
-import Search.Minimax;
+import Search.MiniMaxElague;
 
 
 public class Main {
@@ -72,7 +72,7 @@ public class Main {
 			System.out.println(board);
 			//board.playCurrent(0);
 			//System.out.println(board);
-			System.out.println(Minimax.miniMax(board, true));
+			System.out.println(MiniMaxElague.miniMax(board, true));
 			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

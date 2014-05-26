@@ -4,7 +4,7 @@ import java.util.List;
 
 import Game.PlateauCourant;
 
-public class Minimax {
+public class MiniMaxElague {
 
 	//Au début, on va à la profondeur maximale.
 	public static StateValue miniMax(PlateauCourant state, boolean isMax){
@@ -12,10 +12,6 @@ public class Minimax {
 		List<Integer> shots = state.validShots();
 		
 		StateValue value = state.result();
-		
-		/*System.out.println();
-		System.out.println(state);
-		System.out.println(value);*/
 		
 		if(shots.isEmpty() || !value.isDraw())
 			return value;

@@ -50,6 +50,16 @@ public enum StateValue {
 
 		return s;
 	}
+	
+	public StateValue opposite(){
+		if(this == LOSS)
+			return WIN;
+		
+		if(this == WIN)
+			return LOSS;
+		
+		return DRAW;
+	}
 
 	public String toString(){
 		if(this == LOSS)

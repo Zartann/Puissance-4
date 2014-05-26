@@ -35,9 +35,7 @@ public class AlphaBeta {
 				
 				state.undoLast();
 
-				if(beta.isLoss() || 
-						(beta.isDraw() && !score.isLoss()) ||
-						(beta.isWin() && score.isWin()) )
+				if(score.betterOrEquals(beta))
 					break;
 				
 			}

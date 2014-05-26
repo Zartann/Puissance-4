@@ -14,6 +14,31 @@ public enum StateValue {
 	public boolean isWin(){
 		return (this == WIN);
 	}
+	
+	/**
+	 * Indique si la valeur est supérieure ou égale à s
+	 * @param s
+	 * @return boolean
+	 */
+	public boolean betterOrEquals(StateValue s){
+
+		//Beaucoup plus rapide qu'avec ne serait-ce qu'un seul if !!!
+		return (s == LOSS || 
+				s == DRAW && this != LOSS ||
+				s == WIN && this == WIN);
+	}
+	
+	/**
+	 * Indique si la valeur est inférieure ou égale à s
+	 * @param s
+	 * @return boolean
+	 */
+	public boolean lessOrEquals(StateValue s){
+		
+		return (this == LOSS || 
+				this == DRAW && s != LOSS ||
+				this == WIN && s == WIN);
+	}
 
 	/**
 	 * 
@@ -21,13 +46,7 @@ public enum StateValue {
 	 * @return Etat maximal entre this et s
 	 */
 	public StateValue max(StateValue s){
-		if(this == LOSS)
-			return s;
-
-		if(this == WIN)
-			return this;
-
-		if(s == LOSS)
+		if(this.betterOrEquals(s))
 			return this;
 
 		return s;
@@ -39,13 +58,7 @@ public enum StateValue {
 	 * @return Etat minimal entre this et s
 	 */
 	public StateValue min(StateValue s){
-		if(this == LOSS)
-			return this;
-
-		if(this == WIN)
-			return s;
-
-		if(s == WIN)
+		if(this.lessOrEquals(s))
 			return this;
 
 		return s;

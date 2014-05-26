@@ -12,7 +12,8 @@ public class MiniMaxElague {
 		List<Integer> shots = state.validShots();
 		
 		StateValue value = state.result();
-		
+
+		//On s'arrête si aucun coup n'est possible ou si l'issue est décidée
 		if(shots.isEmpty() || !value.isDraw())
 			return value;
 		

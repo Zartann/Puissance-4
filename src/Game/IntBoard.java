@@ -135,7 +135,8 @@ public class IntBoard implements PlateauCourant {
 		if(heights[i] >= maxHeight)
 			throw new IllegalMoveException("Colonne n°" + i);
 
-		int box = 1 << (7*i + heights[i]);
+		long box = 1;
+		box <<= (7*i + heights[i]);
 
 		if((playerBoard & box) == 1 || (adversaryBoard & box) == 1)
 			throw new IllegalMoveException("Impossible de jouer dans une case occupée : Colonne n°" + i
@@ -154,7 +155,8 @@ public class IntBoard implements PlateauCourant {
 		if(heights[i] >= maxHeight)
 			throw new IllegalMoveException("Colonne n°" + i);
 
-		int box = 1 << (7*i + heights[i]);
+		long box = 1;
+		box <<= (7*i + heights[i]);
 
 		if((playerBoard & box) == 1 || (adversaryBoard & box) == 1)
 			throw new IllegalMoveException("Impossible de jouer dans une case occupée : Colonne n°" + i
@@ -186,7 +188,8 @@ public class IntBoard implements PlateauCourant {
 		if(heights[i] >= maxHeight)
 			throw new IllegalMoveException("Colonne n°" + i);
 
-		int box = 1 << (7*i + heights[i]);
+		long box = 1;
+		box <<= (7*i + heights[i]);
 
 		if((playerBoard & box) == 1 || (adversaryBoard & box) == 1)
 			throw new IllegalMoveException("Impossible de jouer dans une case occupée : Colonne n°" + i
@@ -212,7 +215,8 @@ public class IntBoard implements PlateauCourant {
 			throw new IllegalMoveException("No last Move");
 
 		int lastColumn = lasts.pop();
-		int box = 1 << (7*lastColumn + heights[lastColumn] - 1);
+		long box = 1;
+		box <<= (7*lastColumn + heights[lastColumn] - 1);
 
 		if((playerBoard & box) == 0 && (adversaryBoard & box) == 0)
 			throw new IllegalMoveException("Case non occupée : Colonne n°" + lastColumn
@@ -257,7 +261,7 @@ public class IntBoard implements PlateauCourant {
 		Box[][] board = new Box[maxHeight][maxWidth];
 
 		for(int column = 0; column < maxWidth; column++){
-			for(int line = maxHeight - 1; line >= 0; line--){ //Parcours de bas en haut, de gauche à droite
+			for(int line = maxHeight-1; line >= 0; line--){ //Parcours de bas en haut, de gauche à droite
 
 				if((player & 1) == 1)
 					board[line][column] = Box.PLAYER;
@@ -270,12 +274,12 @@ public class IntBoard implements PlateauCourant {
 
 				//On décale d'un bit vers la droite
 				player >>= 1;
-		adv >>= 1;
+				adv >>= 1;
 			}
 
 			//On décale encore d'un bit à droite à chaque colonne pour gérer la ligne vide en haut.
 			player >>= 1;
-		adv >>= 1;
+			adv >>= 1;
 		}
 
 		//Ensuite on affiche

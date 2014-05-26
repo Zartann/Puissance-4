@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import Game.Box;
 import Game.CurrentBoard;
+import Game.IntBoard;
 import Game.PlateauCourant;
 import Search.AlphaBeta;
 import Search.MiniMaxElague;
@@ -64,7 +65,7 @@ public class Main {
 		
 		scan.close();
 		
-		return new CurrentBoard(board);
+		return new IntBoard(board);
 	}
 
 	/**
@@ -114,7 +115,36 @@ public class Main {
 	public static void main(String[] args) {
 		
 		ask();
+		/*String path ="resources/boards/Test.cfg";
+		
+		PlateauCourant board;
+		try {
+			board = importFromFile(path);
+		
+			System.out.println(board);
+			
+			int cas = 2;
+	
+			switch(cas){
+			case 0 :
+				System.out.println(MiniMaxElague.miniMax(board, true));
+				break;
+				
+			case 1 :
+				System.out.println(NegaMaxElague.negaMax(board));
+				break;
+				
+			case 2 :
+				System.out.println(AlphaBeta.alphaBeta(board, StateValue.LOSS, StateValue.WIN));
+				break;
+				
+			}
+			
+		} catch (FileNotFoundException e) {
 
+			System.out.println("Le fichier est introuvable !");
+		}
+		*/
 	}
 
 }

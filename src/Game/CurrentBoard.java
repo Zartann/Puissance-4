@@ -316,6 +316,35 @@ public class CurrentBoard implements PlateauCourant {
 		heights[i]++;
 		lasts.push(i);
 	}
+	
+	/**
+	 * Indique si true que c'est au joueur de jouer, sinon à l'adversaire.
+	 * Pour le moment, on suppose que le joueur commence toujours
+	 */
+	//TODO : Implémenter une méthode à l'initialisation pour savoir à qui c'est le tour
+	boolean whosNext = true;
+	
+	@Override
+	public boolean playerIsNext(){
+		return whosNext;
+	}
+	
+	@Override
+	public void playNext(int i){
+
+		if(heights[i] >= maxHeight)
+			throw new IllegalMoveException("Colonne n°" + i);
+		
+		if(!board[maxHeight - 1 - heights[i]][i].isVoid())
+			throw new IllegalMoveException("Impossible de jouer dans une case occupée : Colonne n°" + i
+					+ "\n" + toString());
+
+		board[maxHeight - 1 - heights[i]][i] = whosNext ? Box.PLAYER : Box.ADVERSARY;
+
+		heights[i]++;
+		lasts.push(i);
+		whosNext = !whosNext;
+	}
 
 	public Stack<Integer> lasts = new Stack<Integer>();
 
@@ -329,6 +358,7 @@ public class CurrentBoard implements PlateauCourant {
 		board[maxHeight - 1 - heights[lastColumn] + 1][lastColumn] = Box.VOID;
 
 		heights[lastColumn]--;
+		whosNext = !whosNext;
 
 	}
 

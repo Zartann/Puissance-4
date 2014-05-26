@@ -47,6 +47,18 @@ public interface PlateauCourant {
 	public void playAdverse(int i);
 	
 	/**
+	 * @return boolean indiquant si le joueur joue le coup suivant
+	 */
+	public boolean playerIsNext();
+	
+	/**
+	 * Fait jouer le prochain coup en colonne i
+	 * Nécessite de savoir à qui est-ce le tour
+	 * @param i entre 0 et 5
+	 */
+	public void playNext(int i);
+	
+	/**
 	 * Annule le dernier coup joué
 	 */
 	public void undoLast();

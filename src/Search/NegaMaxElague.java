@@ -12,6 +12,10 @@ public class NegaMaxElague {
 		List<Integer> shots = state.validShots();
 
 		StateValue value = state.result();
+		
+		//Si c'est au tour de l'adversaire, on inverse le résultat calculé
+		if(!state.playerIsNext())
+			value = value.opposite();
 
 		//On s'arrête si aucun coup n'est possible ou si l'issue est décidée
 		if(shots.isEmpty() || !value.isDraw())
@@ -21,7 +25,7 @@ public class NegaMaxElague {
 		value = StateValue.LOSS;
 
 		for(int shot : shots){
-			state.playCurrent(shot);
+			state.playNext(shot);
 			
 			//On récupère l'opposé du coup suivant et on garde le max avec la valeur courante.
 			value = value.max(negaMax(state).opposite());

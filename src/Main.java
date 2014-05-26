@@ -6,6 +6,7 @@ import Game.Box;
 import Game.CurrentBoard;
 import Game.PlateauCourant;
 import Search.MiniMaxElague;
+import Search.NegaMaxElague;
 
 
 public class Main {
@@ -66,13 +67,24 @@ public class Main {
 	public static void main(String[] args) {
 		try {
 			
-			String path = "resources/boards/empty-4x4.cfg";
+			String path = "resources/boards/win1.cfg";
 			PlateauCourant board = importFromFile(path);
 			
 			System.out.println(board);
 			//board.playCurrent(0);
 			//System.out.println(board);
-			System.out.println(MiniMaxElague.miniMax(board, true));
+			int cas = 1;
+
+			switch(cas){
+			case 0 :
+				System.out.println(MiniMaxElague.miniMax(board, true));
+				break;
+				
+			case 1 :
+				System.out.println(NegaMaxElague.negaMax(board));
+				break;
+				
+			}
 			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

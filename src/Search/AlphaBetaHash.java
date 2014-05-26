@@ -38,6 +38,14 @@ public class AlphaBetaHash {
 				}
 				
 				else {}
+				
+				//On cherche si l'état courant a déjà été résolu ou non
+				if ((tableHachage.containsKey(state.hachage())) && tableHachage.get(state.hachage ()).IsFixed()){
+					if (!state.playerIsNext()) return tableHachage.get(state.hachage ()).alpha.opposite();
+					else return tableHachage.get(state.hachage ()).alpha;
+				}
+				
+				//Sinon on procède comme alpha-beta
 					StateValue value = state.result();
 					
 					//On s'arrête si aucun coup n'est possible ou si l'issue est décidée
@@ -54,17 +62,25 @@ public class AlphaBetaHash {
 						value = StateValue.LOSS;
 
 						StateValue score;
+						
+						//Si l'état courant a déjà une entrée on change les bornes alpha-beta
+						StateValue newAlpha=alpha;
+						StateValue newBeta = beta;
+						if (tableHachage.containsKey(state.hachage())){
+							newAlpha = tableHachage.get(state.hachage()).alpha;
+							newBeta = tableHachage.get(state.hachage()).beta;
+						}
 						for(int shot : shots){
 							state.playNext(shot);
 							
 							//On récupère l'opposé du coup suivant et on garde le max avec la valeur courante.
-							score = alphaBetaHache(state, beta.opposite(), alpha.opposite(), profondeur+1).opposite();
+							score = alphaBetaHache(state, newBeta.opposite(), newAlpha.opposite(), profondeur+1).opposite();
 							value = value.max(score);
-							alpha = alpha.max(score);
+							newAlpha = newAlpha.max(score);
 							
 							state.undoLast();
 
-							if(score.betterOrEquals(beta))
+							if(score.betterOrEquals(newBeta))
 								break;
 							
 						}

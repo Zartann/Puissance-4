@@ -88,4 +88,9 @@ public interface PlateauCourant {
 	 */
 	public String toString();
 	
+	/**
+	 * Renvoie le code de hachage de l'état considéré
+	 * 
+	 */
+	public Position hachage ();
 }

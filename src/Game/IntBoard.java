@@ -299,4 +299,10 @@ public class IntBoard implements PlateauCourant {
 
 		return result;
 	}
+
+	@Override
+	public Position hachage() {
+		// TODO Auto-generated method stub
+		return new Position (playerBoard, adversaryBoard);
+	}
 }

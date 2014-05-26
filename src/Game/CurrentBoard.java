@@ -402,4 +402,10 @@ public class CurrentBoard implements PlateauCourant {
 		return result;
 	}
 
+	@Override
+	public Position hachage() {
+		// TODO Auto-generated method stub
+		return new Position (0,0);
+	}
+
 }

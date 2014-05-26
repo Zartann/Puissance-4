@@ -65,6 +65,9 @@ public class Main {
 		return new CurrentBoard(board);
 	}
 
+	/**
+	 * Demande le nom du fichier à analyser qui doit se trouver dans resources/boards/
+	 */
 	public static void ask(){
 		Scanner asker = new Scanner(System.in);
 		

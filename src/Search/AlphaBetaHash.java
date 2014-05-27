@@ -28,12 +28,16 @@ public class AlphaBetaHash {
 
 		//On cherche si on a déjà rencontré l'état courant auparavant
 		if (tableHachage.containsKey (state.hachage())){
+			
 			StateBornedValue ancienneBorne = tableHachage.get(state.hachage());
 			StateBornedValue borneCourante = new StateBornedValue (alpha, beta);
+			
 			//Si c'est au tour de l'adversaire on inverse la borne courante
 			if (!state.playerIsNext()) borneCourante = new StateBornedValue (beta.opposite(), alpha.opposite());
+			
 			//On calcule l'intersection des deux intervalles trouvés
 			StateBornedValue nouvelleBorne = ancienneBorne.Intersection(borneCourante);
+			
 			tableHachage.put(state.hachage(), nouvelleBorne);
 		}
 
@@ -41,8 +45,11 @@ public class AlphaBetaHash {
 
 		//On cherche si l'état courant a déjà été résolu ou non
 		if ((tableHachage.containsKey(state.hachage())) && tableHachage.get(state.hachage ()).IsFixed()){
-			if (!state.playerIsNext()) return tableHachage.get(state.hachage ()).alpha.opposite();
-			else return tableHachage.get(state.hachage ()).alpha;
+			
+			if (!state.playerIsNext()) 
+				return tableHachage.get(state.hachage ()).alpha.opposite();
+			else 
+				return tableHachage.get(state.hachage ()).alpha;
 		}
 
 		//Sinon on procède comme alpha-beta
@@ -50,12 +57,16 @@ public class AlphaBetaHash {
 
 		//On s'arrête si aucun coup n'est possible ou si l'issue est décidée
 		if(shots.isEmpty() ||!value.isDraw()) {
-			if (profondeur <= profondeurMax) tableHachage.put(state.hachage(), new StateBornedValue (value, value));
+			if (profondeur <= profondeurMax) 
+				tableHachage.put(state.hachage(), new StateBornedValue (value, value));
+			
 			//Si c'est au tour de l'adversaire, on inverse le résultat calculé
 			if(!state.playerIsNext())
 				value = value.opposite();
+			
 			return value;
 		}
+		
 		else {
 
 			//On initialise l'état à LOSS
@@ -64,12 +75,14 @@ public class AlphaBetaHash {
 			StateValue score;
 
 			//Si l'état courant a déjà une entrée on change les bornes alpha-beta
-			StateValue newAlpha=alpha;
+			StateValue newAlpha = alpha;
 			StateValue newBeta = beta;
+			
 			if (tableHachage.containsKey(state.hachage())){
 				newAlpha = tableHachage.get(state.hachage()).alpha;
 				newBeta = tableHachage.get(state.hachage()).beta;
 			}
+			
 			for(int shot : shots){
 				state.playNext(shot);
 
@@ -84,7 +97,8 @@ public class AlphaBetaHash {
 					break;
 
 			}
-			if (profondeur<= profondeurMax) tableHachage.put(state.hachage(), new StateBornedValue (value, value));
+			if (profondeur <= profondeurMax) 
+				tableHachage.put(state.hachage(), new StateBornedValue (value, value));
 
 			return value;
 		}

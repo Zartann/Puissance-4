@@ -85,6 +85,8 @@ public class Main {
 		
 			System.out.println(board);
 			
+			long debutTime = System.currentTimeMillis();
+			
 			int cas = 3;
 	
 			switch(cas){
@@ -105,6 +107,11 @@ public class Main {
 				System.out.println (new AlphaBetaHash (10).alphaBetaHache(board, StateValue.LOSS, StateValue.WIN, 0));
 				
 			}
+			
+			long endTime = System.currentTimeMillis();
+			double time = ((double) (endTime - debutTime))/1000;
+			
+			System.out.println("Le résultat a été trouvé en " + time + " secondes.");
 			
 		} catch (FileNotFoundException e) {
 

@@ -13,12 +13,10 @@ public class AlphaBetaHash {
 	int profondeurMax;
 
 
-
 	public AlphaBetaHash(int profondeurMax) {
 		super();
 		this.profondeurMax = profondeurMax;
 	}
-
 
 
 	//Au début, on va à la profondeur maximale.
@@ -105,15 +103,7 @@ public class AlphaBetaHash {
 		}
 
 	}
+	
+	
 
 }
-
-
-
-
-
-
-
-
-
-

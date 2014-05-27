@@ -146,6 +146,7 @@ public class IntBoard implements PlateauCourant {
 
 		heights[i]++;
 		lasts.push(i);
+		whosNext = false;
 
 	}
 
@@ -166,6 +167,7 @@ public class IntBoard implements PlateauCourant {
 
 		heights[i]++;
 		lasts.push(i);
+		whosNext = true;
 
 	}
 

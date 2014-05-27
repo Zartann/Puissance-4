@@ -103,6 +103,72 @@ public class AlphaBetaHash {
 
 	}
 	
+	final HashMap<Position, StateValueWithBound> hashTable = new HashMap<Position, StateValueWithBound>();
 	
+	public StateValue alphaBetaHache2(PlateauCourant state, StateValue alpha, StateValue beta, int profondeur){
+		
+		Position pos = state.hachage();
+		
+		StateValueWithBound boundValue = hashTable.get(pos);
+		StateValue newAlpha = alpha, newBeta = beta;
+		
+		if(boundValue != null){
+			if(boundValue.isLowerBound())
+				newAlpha = newAlpha.max(boundValue.value);
+			
+			else if(boundValue.isUpperBound())
+				newBeta = newBeta.min(boundValue.value);
+			
+			else{
+				newAlpha = boundValue.value;
+				newBeta = boundValue.value;
+			}
+			
+			if(newAlpha.betterOrEquals(newBeta))
+				return boundValue.value;
+		}
+		
+		List<Integer> shots = state.validShots();
+
+		StateValue value = state.result();
+		
+		//Si c'est au tour de l'adversaire, on inverse le résultat calculé
+		if(!state.playerIsNext())
+			value = value.opposite();
+
+		//On s'arrête si aucun coup n'est possible ou si l'issue est décidée
+		if(shots.isEmpty() || !value.isDraw()){
+			//L'évaluation est accurate
+			if(profondeur <= profondeurMax)
+				hashTable.put(pos, new StateValueWithBound(value, 0));
+			
+			return value;
+		}
+		
+		//On initialise l'état à LOSS
+		value = StateValue.LOSS;
+
+		StateValue score;
+		for(int shot : shots){
+			state.playNext(shot);
+			
+			//On récupère l'opposé du coup suivant et on garde le max avec la valeur courante.
+			score = alphaBetaHache2(state, beta.opposite(), alpha.opposite(), profondeur+1).opposite();
+			value = value.max(score);
+			alpha = alpha.max(score);
+			
+			state.undoLast();
+
+			if(score.betterOrEquals(beta))
+				break;
+			
+		}
+
+		if(profondeur <= profondeurMax)
+			hashTable.put(pos, new StateValueWithBound(value, newAlpha, newBeta));
+			
+		return value;
+		
+	}
 
 }

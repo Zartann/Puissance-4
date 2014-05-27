@@ -19,7 +19,6 @@ public class AlphaBetaHash {
 	}
 
 
-	//Au début, on va à la profondeur maximale.
 	public StateValue alphaBetaHache(PlateauCourant state, StateValue alpha, StateValue beta, int profondeur){
 
 		List<Integer> shots = state.validShots();

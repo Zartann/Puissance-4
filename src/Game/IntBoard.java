@@ -91,14 +91,14 @@ public class IntBoard implements PlateauCourant {
 		columnPlayer = (playerBoard & (playerBoard >> 1) & (playerBoard >> 2) & (playerBoard >> 3)) != 0;
 		columnAdv = (adversaryBoard & (adversaryBoard >> 1) & (adversaryBoard >> 2) & (adversaryBoard >> 3)) != 0;
 
-		linePlayer = (playerBoard & (playerBoard >> 7) & (playerBoard >> 14) & (playerBoard >> 21)) != 0;
-		lineAdv = (adversaryBoard & (adversaryBoard >> 7) & (adversaryBoard >> 14) & (adversaryBoard >> 21)) != 0;
+		linePlayer = (playerBoard & (playerBoard >> maxHeight+1) & (playerBoard >> 2*maxHeight+2) & (playerBoard >> 3*maxHeight+3)) != 0;
+		lineAdv = (adversaryBoard & (adversaryBoard >> maxHeight+1) & (adversaryBoard >> 2*maxHeight+2) & (adversaryBoard >> 3*maxHeight+3)) != 0;
 
-		diagPlayer = (playerBoard & (playerBoard >> 6) & (playerBoard >> 12) & (playerBoard >> 18)) != 0;
-		diagAdv = (adversaryBoard & (adversaryBoard >> 6) & (adversaryBoard >> 12) & (adversaryBoard >> 18)) != 0;
+		diagPlayer = (playerBoard & (playerBoard >> maxHeight) & (playerBoard >> 2*maxHeight) & (playerBoard >> 3*maxHeight)) != 0;
+		diagAdv = (adversaryBoard & (adversaryBoard >> maxHeight) & (adversaryBoard >> 2*maxHeight) & (adversaryBoard >> 3*maxHeight)) != 0;
 
-		antidiagPlayer = (playerBoard & (playerBoard >> 8) & (playerBoard >> 16) & (playerBoard >> 24)) != 0;
-		antidiagAdv = (adversaryBoard & (adversaryBoard >> 8) & (adversaryBoard >> 16) & (adversaryBoard >> 24)) != 0;
+		antidiagPlayer = (playerBoard & (playerBoard >> maxHeight+2) & (playerBoard >> 2*maxHeight+4) & (playerBoard >> 3*maxHeight+6)) != 0;
+		antidiagAdv = (adversaryBoard & (adversaryBoard >> maxHeight+2) & (adversaryBoard >> 2*maxHeight+4) & (adversaryBoard >> 3*maxHeight+6)) != 0;
 
 		boolean playerWins = columnPlayer || linePlayer || diagPlayer || antidiagPlayer;
 		boolean advWins = columnAdv || lineAdv || diagAdv || antidiagAdv;
@@ -136,7 +136,7 @@ public class IntBoard implements PlateauCourant {
 			throw new IllegalMoveException("Colonne n°" + i);
 
 		long box = 1;
-		box <<= (7*i + heights[i]);
+		box <<= ((maxHeight+1)*i + heights[i]);
 
 		if((playerBoard & box) == 1 || (adversaryBoard & box) == 1)
 			throw new IllegalMoveException("Impossible de jouer dans une case occupée : Colonne n°" + i
@@ -156,7 +156,7 @@ public class IntBoard implements PlateauCourant {
 			throw new IllegalMoveException("Colonne n°" + i);
 
 		long box = 1;
-		box <<= (7*i + heights[i]);
+		box <<= ((maxHeight+1)*i + heights[i]);
 
 		if((playerBoard & box) == 1 || (adversaryBoard & box) == 1)
 			throw new IllegalMoveException("Impossible de jouer dans une case occupée : Colonne n°" + i
@@ -189,7 +189,7 @@ public class IntBoard implements PlateauCourant {
 			throw new IllegalMoveException("Colonne n°" + i);
 
 		long box = 1;
-		box <<= (7*i + heights[i]);
+		box <<= ((maxHeight+1)*i + heights[i]);
 
 		if((playerBoard & box) == 1 || (adversaryBoard & box) == 1)
 			throw new IllegalMoveException("Impossible de jouer dans une case occupée : Colonne n°" + i
@@ -216,7 +216,7 @@ public class IntBoard implements PlateauCourant {
 
 		int lastColumn = lasts.pop();
 		long box = 1;
-		box <<= (7*lastColumn + heights[lastColumn] - 1);
+		box <<= ((maxHeight+1)*lastColumn + heights[lastColumn] - 1);
 
 		if((playerBoard & box) == 0 && (adversaryBoard & box) == 0)
 			throw new IllegalMoveException("Case non occupée : Colonne n°" + lastColumn

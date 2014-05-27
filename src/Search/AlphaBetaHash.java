@@ -33,7 +33,8 @@ public class AlphaBetaHash {
 			StateBornedValue borneCourante = new StateBornedValue (alpha, beta);
 			
 			//Si c'est au tour de l'adversaire on inverse la borne courante
-			if (!state.playerIsNext()) borneCourante = new StateBornedValue (beta.opposite(), alpha.opposite());
+			if (!state.playerIsNext()) 
+				borneCourante = new StateBornedValue (beta.opposite(), alpha.opposite());
 			
 			//On calcule l'intersection des deux intervalles trouvés
 			StateBornedValue nouvelleBorne = ancienneBorne.Intersection(borneCourante);
@@ -56,7 +57,7 @@ public class AlphaBetaHash {
 		StateValue value = state.result();
 
 		//On s'arrête si aucun coup n'est possible ou si l'issue est décidée
-		if(shots.isEmpty() ||!value.isDraw()) {
+		if(shots.isEmpty() || !value.isDraw()) {
 			if (profondeur <= profondeurMax) 
 				tableHachage.put(state.hachage(), new StateBornedValue (value, value));
 			
@@ -74,10 +75,10 @@ public class AlphaBetaHash {
 
 			StateValue score;
 
-			//Si l'état courant a déjà une entrée on change les bornes alpha-beta
 			StateValue newAlpha = alpha;
 			StateValue newBeta = beta;
-			
+
+			//Si l'état courant a déjà une entrée on change les bornes alpha-beta
 			if (tableHachage.containsKey(state.hachage())){
 				newAlpha = tableHachage.get(state.hachage()).alpha;
 				newBeta = tableHachage.get(state.hachage()).beta;

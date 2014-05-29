@@ -8,7 +8,7 @@ import Game.Position;
 
 public class AlphaBetaHash {
 	//On ajoute une table de hachage mémorisant les états jusqu'à profondeur limitée : <=profondeurMax
-	final HashMap<Position, StateBornedValue> tableHachage = new HashMap<Position, StateBornedValue> ();
+	//final HashMap<Position, StateBornedValue> tableHachage = new HashMap<Position, StateBornedValue> ();
 
 	int profondeurMax;
 
@@ -19,7 +19,7 @@ public class AlphaBetaHash {
 	}
 
 
-	public StateValue alphaBetaHache(PlateauCourant state, StateValue alpha, StateValue beta, int profondeur){
+	/*public StateValue alphaBetaHache(PlateauCourant state, StateValue alpha, StateValue beta, int profondeur){
 
 		List<Integer> shots = state.validShots();
 
@@ -101,13 +101,13 @@ public class AlphaBetaHash {
 			return value;
 		}
 
-	}
+	}*/
 	
 	final HashMap<Position, StateValueWithBound> hashTable = new HashMap<Position, StateValueWithBound>();
 	
-	public StateValue alphaBetaHache2(PlateauCourant state, StateValue alpha, StateValue beta, int profondeur){
+	public StateValue alphaBetaHache(PlateauCourant state, StateValue alpha, StateValue beta, int profondeur){
 		
-		Position pos = state.hachage();
+		Position pos = state.cle();
 		
 		StateValueWithBound boundValue = hashTable.get(pos);
 		StateValue newAlpha = alpha, newBeta = beta;
@@ -153,7 +153,7 @@ public class AlphaBetaHash {
 			state.playNext(shot);
 			
 			//On récupère l'opposé du coup suivant et on garde le max avec la valeur courante.
-			score = alphaBetaHache2(state, beta.opposite(), alpha.opposite(), profondeur+1).opposite();
+			score = alphaBetaHache(state, beta.opposite(), alpha.opposite(), profondeur+1).opposite();
 			value = value.max(score);
 			alpha = alpha.max(score);
 			

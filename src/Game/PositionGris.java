@@ -155,4 +155,61 @@ public class PositionGris extends Position{
 		}
 		return false;
 	} 
+	
+	/**
+	 * Affiche le plateau en affichant les pions gris avec 1.
+	 */
+	public String toString(){
+		String result = "";
+
+		long player = playerPos, adv = advPos, gr = gris;
+
+		int[][] board = new int[maxHeight][maxWidth];
+
+		for(int column = 0; column < maxWidth; column++){
+			for(int line = maxHeight-1; line >= 0; line--){ //Parcours de bas en haut, de gauche à droite
+
+				if((player & 1) == 1)
+					board[line][column] = 1;
+
+				else if((adv & 1) == 1)
+					board[line][column] = 2;
+				
+				else if((gr & 1) == 1)
+					board[line][column] = 3;
+
+				else
+					board[line][column] = 0;
+
+				//On décale d'un bit vers la droite
+				player >>= 1;
+				adv >>= 1;
+				gr >>= 1;
+			}
+
+			//On décale encore d'un bit à droite à chaque colonne pour gérer la ligne vide en haut.
+			player >>= 1;
+			adv >>= 1;
+			gr >>= 1;
+		}
+
+		//Ensuite on affiche
+		for(int[] line : board){
+			for(int box : line){
+
+				if(box == 1)
+					result += "0";
+				else if(box == 2)
+					result += "@";
+				else if(box == 3)
+					result += "1";
+				else
+					result += ".";
+
+			}
+			result += "\n";
+		}
+
+		return result;
+	}
 }

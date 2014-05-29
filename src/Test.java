@@ -2,6 +2,7 @@ import java.io.FileNotFoundException;
 
 import Game.PlateauCourant;
 import Game.Position;
+import Game.PositionGris;
 import Search.AlphaBeta;
 import Search.MiniMaxElague;
 import Search.NegaMaxElague;
@@ -14,7 +15,7 @@ public class Test {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		String path ="resources/boards/ended.cfg";
+		String path ="resources/boards/game-14.cfg";
 		
 		PlateauCourant board;
 		try {
@@ -22,9 +23,8 @@ public class Test {
 		
 			System.out.println(board);
 			
-			Position sym = board.cle().symmetricPosition();
-			board.importFromLong(sym.playerPos, sym.advPos);
-			System.out.println(board);
+			PositionGris cle = board.cleGris();
+			System.out.println(cle);
 			
 		} catch (FileNotFoundException e) {
 

@@ -93,4 +93,14 @@ public interface PlateauCourant {
 	 * 
 	 */
 	public Position cle ();
+	
+	/**
+	 * @return Nombre de coups restants à jouer sur le plateau.
+	 */
+	public int nombreCoupsRestants();
+	
+	/**
+	 * @return Evalue la position
+	 */
+	public StateValue eval();
 }

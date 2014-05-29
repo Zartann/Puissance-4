@@ -408,4 +408,18 @@ public class CurrentBoard implements PlateauCourant {
 		return new Position (0,0);
 	}
 
+	@Override
+	public int nombreCoupsRestants() {
+		int nb = 0;
+		for(int i = 0; i < maxWidth; i++){
+			nb += (maxHeight - heights[i]);
+		}
+		return nb;
+	}
+
+	@Override
+	public StateValue eval() {
+		return StateValue.DRAW;
+	}
+
 }

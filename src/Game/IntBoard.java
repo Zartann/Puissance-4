@@ -307,4 +307,18 @@ public class IntBoard implements PlateauCourant {
 		// TODO Auto-generated method stub
 		return new Position (playerBoard, adversaryBoard);
 	}
+
+	@Override
+	public int nombreCoupsRestants() {
+		int nb = 0;
+		for(int i = 0; i < maxWidth; i++){
+			nb += (maxHeight - heights[i]);
+		}
+		return nb;
+	}
+
+	@Override
+	public StateValue eval() {
+		return StateValue.DRAW;
+	}
 }

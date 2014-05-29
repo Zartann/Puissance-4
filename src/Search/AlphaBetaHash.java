@@ -11,7 +11,11 @@ public class AlphaBetaHash {
 	//final HashMap<Position, StateBornedValue> tableHachage = new HashMap<Position, StateBornedValue> ();
 
 	int profondeurMax;
-
+	
+	/**
+	 * Contient le nombre total de positions qui ont été évaluées.
+	 */
+	public static int totalPositions = 0;
 
 	public AlphaBetaHash(int profondeurMax) {
 		super();
@@ -106,7 +110,7 @@ public class AlphaBetaHash {
 	final HashMap<Position, StateValueWithBound> hashTable = new HashMap<Position, StateValueWithBound>();
 	
 	public StateValue alphaBetaHache(PlateauCourant state, StateValue alpha, StateValue beta, int profondeur){
-		
+		totalPositions++;
 		Position pos = state.cle();
 		
 		StateValueWithBound boundValue = hashTable.get(pos);

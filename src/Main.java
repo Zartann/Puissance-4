@@ -8,6 +8,7 @@ import Game.IntBoard;
 import Game.PlateauCourant;
 import Search.AlphaBeta;
 import Search.AlphaBetaHash;
+import Search.Iteratif;
 import Search.MiniMaxElague;
 import Search.NegaMaxElague;
 import Search.StateValue;
@@ -87,7 +88,7 @@ public class Main {
 			
 			long debutTime = System.currentTimeMillis();
 			
-			int cas = 3;
+			int cas = 2;
 	
 			switch(cas){
 			case 0 :
@@ -100,11 +101,20 @@ public class Main {
 				
 			case 2 :
 				System.out.println(AlphaBeta.alphaBeta(board, StateValue.LOSS, StateValue.WIN));
-				break;
+				System.out.println("Nombre total de positions évaluées : " + AlphaBeta.totalPositions);
+				//break;
 				
 			case 3 :
 				//pronfondeurMax = 10
 				System.out.println (new AlphaBetaHash (10).alphaBetaHache(board, StateValue.LOSS, StateValue.WIN, 0));
+				System.out.println("Nombre total de positions évaluées : " + AlphaBetaHash.totalPositions);
+				break;
+				
+			case 4 :
+				//pronfondeurMax = 10
+				System.out.println (new Iteratif(10).iteratif2(board));
+				System.out.println("Nombre total de positions évaluées : " + Iteratif.totalPositions);
+				break;
 				
 			}
 			

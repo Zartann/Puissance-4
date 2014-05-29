@@ -9,6 +9,11 @@ import Game.Position;
 public class Iteratif {
 
 	int profondeurStockageMax;
+	
+	/**
+	 * Contient le nombre total de positions qui ont été évaluées.
+	 */
+	public static int totalPositions = 0;
 
 	//On utilise deux tables de hachage, une pour l'itération précédente, une pour l'actuelle
 	HashMap<Position, StateValueWithBound> formerHashTable = 
@@ -39,7 +44,7 @@ public class Iteratif {
 	
 	public StateValue iteration(PlateauCourant state, StateValue alpha, StateValue beta,
 			int profondeur, int profondeurMaxIteration){
-		
+		totalPositions++;
 		Position pos = state.cle();
 		
 		//Evaluation rapide de l'état si possible
@@ -148,7 +153,7 @@ public class Iteratif {
 	
 	public StateValue iteration2(PlateauCourant state, StateValue alpha, StateValue beta,
 			int profondeur, int profondeurMaxIteration){
-		
+		totalPositions++;
 		Position pos = state.cle();
 		
 		//Evaluation rapide de l'état si possible

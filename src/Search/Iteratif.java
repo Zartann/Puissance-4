@@ -131,7 +131,7 @@ public class Iteratif {
 		
 		StateValue value = StateValue.DRAW;
 		for(int i = 0; i <= state.nombreCoupsRestants(); i += 2){
-			value = iteration(state, StateValue.LOSS, StateValue.WIN, 0, i);
+			value = iteration2(state, StateValue.LOSS, StateValue.WIN, 0, i);
 			if(!value.isDraw())
 				break;
 			
@@ -239,7 +239,7 @@ public class Iteratif {
 		
 		StateValue value = StateValue.DRAW;
 		for(int i = 0; i <= state.nombreCoupsRestants(); i += 2){
-			value = iteration(state, StateValue.LOSS, StateValue.WIN, 0, i);
+			value = iterationGris(state, StateValue.LOSS, StateValue.WIN, 0, i);
 			if(!value.isDraw())
 				break;
 			
@@ -264,7 +264,7 @@ public class Iteratif {
 			int profondeur, int profondeurMaxIteration){
 		totalPositions++;
 		PositionGris pos = state.cleGris();
-		
+		//System.out.println(pos);
 		//Evaluation rapide de l'état si possible
 		
 		List<Integer> shots = state.validShots();
@@ -318,7 +318,7 @@ public class Iteratif {
 			state.playNext(shot);
 			
 			//On récupère l'opposé du coup suivant et on garde le max avec la valeur courante.
-			score = iteration2(state, newBeta.opposite(), newAlpha.opposite(), profondeur+1, profondeurMaxIteration).opposite();
+			score = iterationGris(state, newBeta.opposite(), newAlpha.opposite(), profondeur+1, profondeurMaxIteration).opposite();
 			value = value.max(score);
 			newAlpha = newAlpha.max(score);
 			

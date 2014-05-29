@@ -136,4 +136,73 @@ public class PositionGris extends Position{
 			else {}
 		}*/
 	}
+	
+	/**
+	 * Constructeur à n'utiliser que si on connaît déjà les jetons gris et qu'ils ne sont pas présents
+	 * dans les autres plateaux
+	 * @param playerPos
+	 * @param advPos
+	 * @param maxWidth
+	 * @param maxHeight
+	 * @param gris
+	 */
+	public PositionGris(long playerPos, long advPos, int maxWidth, int maxHeight, long gris){
+		super(playerPos, advPos, maxWidth, maxHeight);
+		this.gris = gris;
+	}
+	
+	@Override
+	public int hashCode (){
+		Position sym = symmetricPosition();
+		int a = ((Long) playerPos).hashCode();
+		int asym = ((Long) sym.playerPos).hashCode();
+		int b = ((Long) advPos).hashCode();
+		int bsym = ((Long) sym.advPos).hashCode();
+		return (Math.min(a, asym)*Math.min(b, bsym));
+	}
+	
+	/**
+	 * Retourne la position symétrique
+	 */
+	@Override
+	public PositionGris symmetricPosition (){
+		
+		long player = playerPos, adv = advPos, gr = gris;
+		long playerSym = 0, advSym = 0, grSym = 0;
+		
+		//Entier correspondant à une colonne remplie de 1.
+		long column = (long) 1 << (maxHeight + 1);
+		column--;
+		
+		for(int i = 0; i < maxWidth; i++){
+			playerSym <<= maxHeight+1;
+			advSym <<= maxHeight+1;
+			grSym <<= maxHeight+1;
+			
+			playerSym |= (player & column);
+			advSym |= (adv & column);
+			grSym |= (gr & column);
+			
+			player >>= maxHeight+1;
+			adv >>= maxHeight+1;
+			gr >>= maxHeight+1;
+		}
+		
+		return new PositionGris(playerSym,advSym,maxWidth, maxHeight, grSym);
+	}
+	
+	/**
+	 * Test d'égalité : en tenant compte des symétries
+	 */
+	@Override
+	public boolean equals (Object pos){
+		if (pos instanceof PositionGris){
+			PositionGris pos2 = (PositionGris) pos;
+			boolean a =((playerPos==pos2.playerPos) && (advPos==pos2.advPos) && (gris == pos2.gris));
+			PositionGris sym = pos2.symmetricPosition();
+			boolean b = ((playerPos==sym.playerPos)&&(advPos==sym.advPos) && (gris == sym.gris));
+			return (a||b);
+		}
+		return false;
+	} 
 }

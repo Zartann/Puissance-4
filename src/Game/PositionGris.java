@@ -14,50 +14,11 @@ public class PositionGris extends Position{
 
 	public PositionGris(long playerPos, long advPos, int maxWidth, int maxHeight) {
 		super(playerPos, advPos, maxWidth, maxHeight);
-		//Pour chaque case, on regarde si elle est occupée et si elle peut être étendue en solution dans chaque direction
-		/*for (int i=0;i<49;i++){
-			//case inoccupée -> ne rien faire
-			if ((trouveIemeBit(playerPos, i)==0) && (trouveIemeBit(advPos, i)==0)) {}
-			else {
-				//on détermine les coordonnées du jeton
-				int height = i % (maxHeight+1);
-				int width = i / (maxHeight+1);
-				//devient faux si le jeton n'est pas gris
-				boolean isGris = true;
-				//au-dessus
-				/*if ((maxHeight - height)<4) {}
-				else {
-					//en haut
-				}
-				if ()
-			}
-
-		}*/
 
 		//On remplit le tableau de jetons blancs/noirs puis on grise les jetons ne donnant pas d'alignements de 4
-		long player2 = playerPos, adv2 = advPos;
 		long playerToutSeul = 0;
 		long advToutSeul = 0;
 		//Remplissage
-		/*for (int i=0;i<maxHeight*maxWidth;i++){
-			if ((trouveIemeBit(playerPos, i)==0) && (trouveIemeBit(advPos, i)==0)) {
-				playerToutSeul = placeIemeBit (playerToutSeul, i, (byte)1);
-				advToutSeul = placeIemeBit (advToutSeul, i, (byte)1);
-			}
-		}*/
-		/*Faux, car remplit à l'envers, également trop couteux
-		   for (int i=0;i<maxWidth;i++){
-			for (int j=0;j<maxHeight;j++){
-				if ((adv2 % 2 ==0)||(player2 %2 ==1))playerToutSeul+=1;
-				if ((player2 % 2 ==0)||(adv2 % 2 ==1)) advToutSeul+=1;
-				player2 /=2;
-				adv2 /=2;
-				playerToutSeul <<= 1;
-				advToutSeul <<=1;
-			}
-			playerToutSeul <<= 1;
-			advToutSeul <<=1;
-		}*/
 
 		//plateauPlein correspond à un plateau rempli, ligne du dessus comprise.
 		long plateauPlein = ((long) 1) << (maxWidth * (maxHeight+1));
@@ -124,17 +85,6 @@ public class PositionGris extends Position{
 
 		this.playerPos=playerUtil;
 		this.advPos=advUtil;
-		/*for (int i =0;i<maxHeight*maxWidth;i++){
-			//On cherche si cette case est occupée par l'un des joueurs
-			if (trouveIemeBit(playerPos, i)==1){
-				//On trouve si un alignement de 4 contenant ce jeton existe
-				long column = 
-			}
-			else if (trouveIemeBit(advPos, i)==1){
-		
-			}
-			else {}
-		}*/
 	}
 	
 	/**

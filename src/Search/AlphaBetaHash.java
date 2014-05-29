@@ -153,13 +153,13 @@ public class AlphaBetaHash {
 			state.playNext(shot);
 			
 			//On récupère l'opposé du coup suivant et on garde le max avec la valeur courante.
-			score = alphaBetaHache(state, beta.opposite(), alpha.opposite(), profondeur+1).opposite();
+			score = alphaBetaHache(state, newBeta.opposite(), newAlpha.opposite(), profondeur+1).opposite();
 			value = value.max(score);
-			alpha = alpha.max(score);
+			newAlpha = newAlpha.max(score);
 			
 			state.undoLast();
 
-			if(score.betterOrEquals(beta))
+			if(score.betterOrEquals(newBeta))
 				break;
 			
 		}

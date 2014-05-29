@@ -405,7 +405,7 @@ public class CurrentBoard implements PlateauCourant {
 	@Override
 	public Position cle() {
 		// TODO Auto-generated method stub
-		return new Position (0,0);
+		return new Position (0,0, maxWidth, maxHeight);
 	}
 
 	@Override

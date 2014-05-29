@@ -55,8 +55,8 @@ public class PositionGris extends Position{
 		diagPlayer = (playerToutSeul & (playerToutSeul >> maxHeight) & (playerToutSeul >> 2*maxHeight) & (playerToutSeul >> 3*maxHeight));
 		diagAdv = (advToutSeul & (advToutSeul >> maxHeight) & (advToutSeul >> 2*maxHeight) & (advToutSeul >> 3*maxHeight));
 
-		antidiagPlayer = (playerPos & (playerPos >> maxHeight+2) & (playerPos >> 2*maxHeight+4) & (playerPos >> 3*maxHeight+6));
-		antidiagAdv = (advPos & (advPos >> maxHeight+2) & (advPos >> 2*maxHeight+4) & (advPos >> 3*maxHeight+6));
+		antidiagPlayer = (playerToutSeul & (playerToutSeul >> maxHeight+2) & (playerToutSeul >> 2*maxHeight+4) & (playerToutSeul >> 3*maxHeight+6));
+		antidiagAdv = (advToutSeul & (advToutSeul >> maxHeight+2) & (advToutSeul >> 2*maxHeight+4) & (advToutSeul >> 3*maxHeight+6));
 
 		//On détermine tous les jetons susceptibles de former une séquence de 4 dans chaque direction pour chaque joueur
 		//(y compris les jetons virtuels)

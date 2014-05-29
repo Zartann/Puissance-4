@@ -250,7 +250,8 @@ public class IntBoard implements PlateauCourant {
 
 	@Override
 	public PlateauCourant importFromLong(long player, long adversary) {
-		// TODO Auto-generated method stub
+		playerBoard = player;
+		adversaryBoard = adversary;
 		return null;
 	}
 

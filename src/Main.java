@@ -102,18 +102,26 @@ public class Main {
 			case 2 :
 				System.out.println(AlphaBeta.alphaBeta(board, StateValue.LOSS, StateValue.WIN));
 				System.out.println("Nombre total de positions évaluées : " + AlphaBeta.totalPositions);
-				//break;
+				break;
 				
 			case 3 :
 				//pronfondeurMax = 10
 				System.out.println (new AlphaBetaHash (10).alphaBetaHache(board, StateValue.LOSS, StateValue.WIN, 0));
 				System.out.println("Nombre total de positions évaluées : " + AlphaBetaHash.totalPositions);
-				//break;
+				break;
 				
 			case 4 :
 				//pronfondeurMax = 10
-				System.out.println (new Iteratif(10).iteratif2(board));
-				System.out.println("Nombre total de positions évaluées : " + Iteratif.totalPositions);
+				Iteratif it2 = new Iteratif(20);
+				System.out.println (it2.iteratif2(board));
+				System.out.println("Nombre total de positions évaluées : " + it2.totalPositions);
+				//break;
+				
+			case 5 :
+				//pronfondeurMax = 10
+				Iteratif itGris = new Iteratif(20);
+				System.out.println (itGris.iteratifGris(board));
+				System.out.println("Nombre total de positions évaluées : " + itGris.totalPositions);
 				break;
 				
 			}

@@ -89,8 +89,8 @@ public interface PlateauCourant {
 	public String toString();
 	
 	/**
-	 * Renvoie le code de hachage de l'état considéré
+	 * Renvoie la clé associée à la position du plateau
 	 * 
 	 */
-	public Position hachage ();
+	public Position cle ();
 }

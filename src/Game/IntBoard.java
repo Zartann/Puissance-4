@@ -303,7 +303,7 @@ public class IntBoard implements PlateauCourant {
 	}
 
 	@Override
-	public Position hachage() {
+	public Position cle() {
 		// TODO Auto-generated method stub
 		return new Position (playerBoard, adversaryBoard);
 	}

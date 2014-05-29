@@ -88,7 +88,7 @@ public class Main {
 			
 			long debutTime = System.currentTimeMillis();
 			
-			int cas = 2;
+			int cas = 4;
 	
 			switch(cas){
 			case 0 :
@@ -108,7 +108,7 @@ public class Main {
 				//pronfondeurMax = 10
 				System.out.println (new AlphaBetaHash (10).alphaBetaHache(board, StateValue.LOSS, StateValue.WIN, 0));
 				System.out.println("Nombre total de positions évaluées : " + AlphaBetaHash.totalPositions);
-				break;
+				//break;
 				
 			case 4 :
 				//pronfondeurMax = 10

@@ -41,4 +41,11 @@ public class StateValueWithBound {
 	public boolean isAccurate(){
 		return bound == 0;
 	}
+	
+	public void setBound(int i){
+		if(i < -1 || i > 1)
+			throw new RuntimeException("La borne doit être -1, 0 ou 1.");
+		
+		bound = i;
+	}
 }

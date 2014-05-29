@@ -305,10 +305,14 @@ public class IntBoard implements PlateauCourant {
 
 	@Override
 	public Position cle() {
-		// TODO Auto-generated method stub
 		return new Position (playerBoard, adversaryBoard, maxWidth, maxHeight);
 	}
 
+	@Override
+	public PositionGris cleGris() {
+		return new PositionGris (playerBoard, adversaryBoard, maxWidth, maxHeight);
+	}
+	
 	@Override
 	public int nombreCoupsRestants() {
 		int nb = 0;

@@ -89,10 +89,14 @@ public interface PlateauCourant {
 	public String toString();
 	
 	/**
-	 * Renvoie la clé associée à la position du plateau
-	 * 
+	 * @return Renvoie la clé associée à la position du plateau
 	 */
 	public Position cle ();
+	
+	/**
+	 * @return Renvoie la clé avec jetons grisés associée au plateau
+	 */
+	public PositionGris cleGris();
 	
 	/**
 	 * @return Nombre de coups restants à jouer sur le plateau.

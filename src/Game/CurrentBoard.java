@@ -422,4 +422,10 @@ public class CurrentBoard implements PlateauCourant {
 		return StateValue.DRAW;
 	}
 
+	@Override
+	public PositionGris cleGris() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

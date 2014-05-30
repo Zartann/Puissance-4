@@ -323,14 +323,20 @@ public class Iteratif {
 			newAlpha = newAlpha.max(score);
 			
 			state.undoLast();
+			
+			if(score.isWin())
+				break;
 
 			if(score.betterOrEquals(beta))
 				break;
 			
 		}
 
-		if(profondeur <= profondeurStockageMax)
-			currentGrisHashTable.put(pos, new StateValueWithBound(value, newAlpha, newBeta));
+		if(profondeur <= profondeurStockageMax){
+				StateValueWithBound v = value.isWin() ? new  StateValueWithBound(value, 0)
+														: new StateValueWithBound(value, newAlpha, newBeta);
+				currentGrisHashTable.put(pos, v);
+		}
 			
 		return value;
 		

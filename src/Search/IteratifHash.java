@@ -11,7 +11,7 @@ public class IteratifHash {
 		public int cout = 0;
 	}
 	
-	public static int tailleTable = 10000000;
+	public static int tailleTable = 20000000;
 
 	/**
 	 * Contient le nombre total de positions qui ont été évaluées.
@@ -44,7 +44,7 @@ public class IteratifHash {
 
 		//Evaluation rapide de l'état si possible
 
-		List<Integer> shots = state.validShots();
+		List<Integer> shots = state.orderedValidShots();
 
 		StateValue value = state.result();
 
@@ -103,6 +103,9 @@ public class IteratifHash {
 			cout.cout += c.cout;
 
 			state.undoLast();
+			
+			if(score.isWin())
+				break;
 
 			if(score.betterOrEquals(beta))
 				break;
@@ -110,7 +113,8 @@ public class IteratifHash {
 		}
 		cout.cout++;
 
-		StateValueWithBound v = new StateValueWithBound(value, newAlpha, newBeta);
+		StateValueWithBound v = value.isWin() ? new  StateValueWithBound(value, 0)
+												: new StateValueWithBound(value, newAlpha, newBeta);
 		grisRecentHashTable.put(pos, v, cout.cout);
 		grisComplexHashTable.put(pos, v, cout.cout);
 

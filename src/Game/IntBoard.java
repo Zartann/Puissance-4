@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+import Search.ContinueStateValue;
 import Search.StateValue;
 
 public class IntBoard implements PlateauCourant {
@@ -325,5 +326,109 @@ public class IntBoard implements PlateauCourant {
 	@Override
 	public StateValue eval() {
 		return StateValue.DRAW;
+	}
+
+	@Override
+	public ContinueStateValue evalContinue() {
+		long playerToutSeul = 0;
+		long advToutSeul = 0;
+		//Remplissage
+
+		//plateauPlein correspond à un plateau rempli, ligne du dessus comprise.
+		long plateauPlein = ((long) 1) << (maxWidth * (maxHeight+1));
+		plateauPlein--;
+
+		//PlayerToutSeul et advToutSeul vont contenir le plateau en entier avec que des 1 sauf aux 
+		//positions des jetons de Adversary et de Player respectivement
+		playerToutSeul = adversaryBoard ^ plateauPlein;
+		advToutSeul = playerBoard ^ plateauPlein;
+
+		//ligneSup correspond à la seule ligne du dessus remplie avec des 1.
+		long ligneSup = 0;
+		for(int i = 0; i < maxWidth; i++){
+			ligneSup++;
+			ligneSup <<= maxHeight+1;
+		}
+		ligneSup >>= 1;
+
+		//On élimine la ligne du dessus, actuellement remplie de 0
+		playerToutSeul ^= ligneSup;
+		advToutSeul ^= ligneSup;
+
+
+		//On trouve les alignements ainsi créés
+		long columnPlayer, linePlayer, diagPlayer, antidiagPlayer;
+		long columnAdv, lineAdv, diagAdv, antidiagAdv;
+
+		columnPlayer = (playerToutSeul & (playerToutSeul >> 1) & (playerToutSeul >> 2) & (playerToutSeul >> 3));
+		columnAdv = (advToutSeul & (advToutSeul >> 1) & (advToutSeul >> 2) & (advToutSeul >> 3));
+
+		linePlayer = (playerToutSeul & (playerToutSeul >> maxHeight+1) & (playerToutSeul >> 2*maxHeight+2) & (playerToutSeul >> 3*maxHeight+3));
+		lineAdv = (advToutSeul & (advToutSeul >> maxHeight+1) & (advToutSeul >> 2*maxHeight+2) & (advToutSeul >> 3*maxHeight+3));
+
+		diagPlayer = (playerToutSeul & (playerToutSeul >> maxHeight) & (playerToutSeul >> 2*maxHeight) & (playerToutSeul >> 3*maxHeight));
+		diagAdv = (advToutSeul & (advToutSeul >> maxHeight) & (advToutSeul >> 2*maxHeight) & (advToutSeul >> 3*maxHeight));
+
+		antidiagPlayer = (playerToutSeul & (playerToutSeul >> maxHeight+2) & (playerToutSeul >> 2*maxHeight+4) & (playerToutSeul >> 3*maxHeight+6));
+		antidiagAdv = (advToutSeul & (advToutSeul >> maxHeight+2) & (advToutSeul >> 2*maxHeight+4) & (advToutSeul >> 3*maxHeight+6));
+
+		/*//On détermine tous les jetons susceptibles de former une séquence de 4 dans chaque direction pour chaque joueur
+		//(y compris les jetons virtuels)
+		columnPlayer = (columnPlayer | (columnPlayer << 1) | (columnPlayer << 2) | (columnPlayer << 3));
+		columnAdv = (columnAdv | (columnAdv << 1) | (columnAdv << 2) | (columnAdv << 3));
+
+		linePlayer = (linePlayer | (linePlayer << maxHeight+1) | (linePlayer << 2*maxHeight+2) | (linePlayer << 3*maxHeight+3));
+		lineAdv = (lineAdv | (lineAdv << maxHeight+1) | (lineAdv << 2*maxHeight+2) | (lineAdv << 3*maxHeight+3));
+
+		diagPlayer = (diagPlayer | (diagPlayer << maxHeight) | (diagPlayer << 2*maxHeight) | (diagPlayer << 3*maxHeight));
+		diagAdv = (diagAdv | (diagAdv << maxHeight) | (diagAdv << 2*maxHeight) | (diagAdv << 3*maxHeight));
+
+		antidiagPlayer = (antidiagPlayer | (antidiagPlayer << maxHeight+2) | (antidiagPlayer << 2*maxHeight+4) | (antidiagPlayer << 3*maxHeight+6));
+		antidiagAdv = (antidiagAdv | (antidiagAdv << maxHeight+2) | (antidiagAdv << 2*maxHeight+4) | (antidiagAdv << 3*maxHeight+6));*/
+		
+		//Le "et" a lieu avec player/adv pour ne conserver que les jetons existants utiles pour le joueur en question
+		int valPlayer =0;
+		valPlayer += Long.bitCount(linePlayer & playerBoard);
+		valPlayer += Long.bitCount((linePlayer << maxHeight+1) & playerBoard);
+		valPlayer += Long.bitCount((linePlayer << 2*maxHeight+2) & playerBoard);
+		valPlayer += Long.bitCount((linePlayer << 3*maxHeight+3) & playerBoard);
+		
+		valPlayer += Long.bitCount(columnPlayer & playerBoard);
+		valPlayer += Long.bitCount((columnPlayer << 1) & playerBoard);
+		valPlayer += Long.bitCount((columnPlayer << 2) & playerBoard);
+		valPlayer += Long.bitCount((columnPlayer << 3) & playerBoard);
+		
+		valPlayer += Long.bitCount(diagPlayer & playerBoard);
+		valPlayer += Long.bitCount((diagPlayer << maxHeight) & playerBoard);
+		valPlayer += Long.bitCount((diagPlayer << 2*maxHeight) & playerBoard);
+		valPlayer += Long.bitCount((diagPlayer << 3*maxHeight) & playerBoard);
+		
+		valPlayer += Long.bitCount(antidiagPlayer & playerBoard);
+		valPlayer += Long.bitCount((antidiagPlayer << maxHeight+2) & playerBoard);
+		valPlayer += Long.bitCount((antidiagPlayer << 2*maxHeight+4) & playerBoard);
+		valPlayer += Long.bitCount((antidiagPlayer << 3*maxHeight+6) & playerBoard);
+		
+		int valAdv = 0;
+		valAdv += Long.bitCount(lineAdv & adversaryBoard);
+		valAdv += Long.bitCount((lineAdv << maxHeight+1) & adversaryBoard);
+		valAdv += Long.bitCount((lineAdv << 2*maxHeight+2) & adversaryBoard);
+		valAdv += Long.bitCount((lineAdv << 3*maxHeight+3) & adversaryBoard);
+		
+		valAdv += Long.bitCount(columnAdv & adversaryBoard);
+		valAdv += Long.bitCount((columnAdv << 1) & adversaryBoard);
+		valAdv += Long.bitCount((columnAdv << 2) & adversaryBoard);
+		valAdv += Long.bitCount((columnAdv << 3) & adversaryBoard);
+		
+		valAdv += Long.bitCount(diagAdv & adversaryBoard);
+		valAdv += Long.bitCount((diagAdv << maxHeight) & adversaryBoard);
+		valAdv += Long.bitCount((diagAdv << 2*maxHeight) & adversaryBoard);
+		valAdv += Long.bitCount((diagAdv << 3*maxHeight) & adversaryBoard);
+		
+		valAdv += Long.bitCount(antidiagAdv & adversaryBoard);
+		valAdv += Long.bitCount((antidiagAdv << maxHeight+2) & adversaryBoard);
+		valAdv += Long.bitCount((antidiagAdv << 2*maxHeight+4) & adversaryBoard);
+		valAdv += Long.bitCount((antidiagAdv << 3*maxHeight+6) & adversaryBoard);
+		
+		return new ContinueStateValue(valPlayer - valAdv);
 	}
 }

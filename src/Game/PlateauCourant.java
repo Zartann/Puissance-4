@@ -2,6 +2,7 @@ package Game;
 
 import java.util.List;
 
+import Search.ContinueStateValue;
 import Search.StateValue;
 
 /*
@@ -107,4 +108,9 @@ public interface PlateauCourant {
 	 * @return Evalue la position
 	 */
 	public StateValue eval();
+	
+	/**
+	 * @return Evalue la position continue
+	 */
+	public ContinueStateValue evalContinue();
 }

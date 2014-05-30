@@ -3,6 +3,7 @@ package Game;
 import java.util.ArrayList;
 import java.util.Stack;
 
+import Search.ContinueStateValue;
 import Search.StateValue;
 
 
@@ -424,6 +425,12 @@ public class CurrentBoard implements PlateauCourant {
 
 	@Override
 	public PositionGris cleGris() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ContinueStateValue evalContinue() {
 		// TODO Auto-generated method stub
 		return null;
 	}

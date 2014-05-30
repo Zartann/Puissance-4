@@ -442,4 +442,10 @@ public class CurrentBoard implements PlateauCourant {
 		return validShots();
 	}
 
+	@Override
+	public List<Integer> dynOrderedValidShots(int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

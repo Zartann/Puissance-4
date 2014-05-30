@@ -469,4 +469,22 @@ public class IntBoard implements PlateauCourant {
 		}
 		return result;
 	}
+
+	@Override
+	public List<Integer> dynOrderedValidShots(int j) {
+		ArrayList<Integer> result = new ArrayList<Integer>();
+		int cons = maxWidth/2;
+		if((heights[cons] < maxHeight)&&(cons!=j))
+			result.add(cons);
+		for (int i=1;i<=(maxWidth-1)/2;i++){
+			if((heights[cons-i] < maxHeight)&&(cons-i!=j))
+				result.add(cons-i);
+			if((heights[cons+i] < maxHeight)&&(cons+i!=j))
+				result.add(cons+i);
+		}
+		if (((maxWidth & 1) == 0 && heights[0] < maxHeight)&&(j!=0)){
+			result.add(0);
+		}
+		return result;
+	}
 }

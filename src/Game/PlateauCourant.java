@@ -39,7 +39,12 @@ public interface PlateauCourant {
 	 * @return Liste des cases où le joueur peut jouer par ordre de priorité statique
 	 */
 	public List<Integer> orderedValidShots();
+	
 	/**
+	 * Retourne la liste des orderedValidShots sans le coup i	 
+	**/
+	public List<Integer> dynOrderedValidShots (int i);
+	 /**
 	 * Joueur courant joue en colonne i
 	 * @param i entre 0 et 5
 	 */

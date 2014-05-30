@@ -6,7 +6,6 @@ public class ContinueStateValue {
 	
 	//Constructeurs
 	public ContinueStateValue (int val){
-		valDiscrete = StateValue.DRAW;
 		valContinue = val;
 	}
 	

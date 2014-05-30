@@ -36,6 +36,10 @@ public interface PlateauCourant {
 	public List<Integer> validShots();
 	
 	/**
+	 * @return Liste des cases où le joueur peut jouer par ordre de priorité statique
+	 */
+	public List<Integer> orderedValidShots();
+	/**
 	 * Joueur courant joue en colonne i
 	 * @param i entre 0 et 5
 	 */

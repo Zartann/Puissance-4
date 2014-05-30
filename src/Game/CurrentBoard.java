@@ -1,6 +1,7 @@
 package Game;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 import Search.ContinueStateValue;
@@ -433,6 +434,12 @@ public class CurrentBoard implements PlateauCourant {
 	public ContinueStateValue evalContinue() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Integer> orderedValidShots() {
+		// TODO Auto-generated method stub
+		return validShots();
 	}
 
 }

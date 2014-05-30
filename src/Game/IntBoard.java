@@ -451,4 +451,19 @@ public class IntBoard implements PlateauCourant {
 		
 		return new ContinueStateValue(valPlayer - valAdv);
 	}
+
+	@Override
+	public List<Integer> orderedValidShots() {
+		ArrayList<Integer> result = new ArrayList<Integer>();
+		int cons = maxWidth/2;
+		result.add(cons);
+		for (int i=1;i<=(maxWidth-1)/2;i++){
+			result.add(cons-i);
+			result.add(cons+i);
+		}
+		if ((maxWidth & 1) !=0 ){
+			result.add(0);
+		}
+		return result;
+	}
 }

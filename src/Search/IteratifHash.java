@@ -11,7 +11,7 @@ public class IteratifHash {
 		public int cout = 0;
 	}
 	
-	static int tailleTable = 10000000;
+	public static int tailleTable = 10000000;
 
 	/**
 	 * Contient le nombre total de positions qui ont été évaluées.

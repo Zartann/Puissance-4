@@ -387,8 +387,29 @@ public class IntBoard implements PlateauCourant {
 		antidiagAdv = (antidiagAdv | (antidiagAdv << maxHeight+2) | (antidiagAdv << 2*maxHeight+4) | (antidiagAdv << 3*maxHeight+6));*/
 		
 		//Le "et" a lieu avec player/adv pour ne conserver que les jetons existants utiles pour le joueur en question
-		int valPlayer =0;
+		int valPlayer =0,valAdv = 0;
 		valPlayer += Long.bitCount(linePlayer & playerBoard);
+		valPlayer += Long.bitCount(columnPlayer & playerBoard);
+		valPlayer += Long.bitCount(diagPlayer & playerBoard);
+		valPlayer += Long.bitCount(antidiagPlayer & playerBoard);
+		
+		valAdv += Long.bitCount(lineAdv & adversaryBoard);
+		valAdv += Long.bitCount(columnAdv & adversaryBoard);
+		valAdv += Long.bitCount(diagAdv & adversaryBoard);
+		valAdv += Long.bitCount(antidiagAdv & adversaryBoard);
+		
+		for (int i=0;i<3;i++){
+			valPlayer += Long.bitCount((linePlayer <<= maxHeight+1) & playerBoard);
+			valPlayer += Long.bitCount((columnPlayer <<= 1) & playerBoard);
+			valPlayer += Long.bitCount((diagPlayer <<= maxHeight) & playerBoard);
+			valPlayer += Long.bitCount((antidiagPlayer <<= maxHeight+2) & playerBoard);
+			
+			valAdv += Long.bitCount((lineAdv <<= maxHeight+1) & adversaryBoard);
+			valAdv += Long.bitCount((columnAdv <<= 1) & adversaryBoard);
+			valAdv += Long.bitCount((diagAdv <<= maxHeight) & adversaryBoard);
+			valAdv += Long.bitCount((antidiagAdv <<= maxHeight+2) & adversaryBoard);
+		}
+		/*valPlayer += Long.bitCount(linePlayer & playerBoard);
 		valPlayer += Long.bitCount((linePlayer << maxHeight+1) & playerBoard);
 		valPlayer += Long.bitCount((linePlayer << 2*maxHeight+2) & playerBoard);
 		valPlayer += Long.bitCount((linePlayer << 3*maxHeight+3) & playerBoard);
@@ -408,7 +429,6 @@ public class IntBoard implements PlateauCourant {
 		valPlayer += Long.bitCount((antidiagPlayer << 2*maxHeight+4) & playerBoard);
 		valPlayer += Long.bitCount((antidiagPlayer << 3*maxHeight+6) & playerBoard);
 		
-		int valAdv = 0;
 		valAdv += Long.bitCount(lineAdv & adversaryBoard);
 		valAdv += Long.bitCount((lineAdv << maxHeight+1) & adversaryBoard);
 		valAdv += Long.bitCount((lineAdv << 2*maxHeight+2) & adversaryBoard);
@@ -427,7 +447,7 @@ public class IntBoard implements PlateauCourant {
 		valAdv += Long.bitCount(antidiagAdv & adversaryBoard);
 		valAdv += Long.bitCount((antidiagAdv << maxHeight+2) & adversaryBoard);
 		valAdv += Long.bitCount((antidiagAdv << 2*maxHeight+4) & adversaryBoard);
-		valAdv += Long.bitCount((antidiagAdv << 3*maxHeight+6) & adversaryBoard);
+		valAdv += Long.bitCount((antidiagAdv << 3*maxHeight+6) & adversaryBoard);*/
 		
 		return new ContinueStateValue(valPlayer - valAdv);
 	}

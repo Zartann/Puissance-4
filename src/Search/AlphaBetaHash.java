@@ -162,14 +162,20 @@ public class AlphaBetaHash {
 			newAlpha = newAlpha.max(score);
 			
 			state.undoLast();
+			
+			if(score.isWin())
+				break;
 
 			if(score.betterOrEquals(newBeta))
 				break;
 			
 		}
 
-		if(profondeur <= profondeurMax)
-			hashTable.put(pos, new StateValueWithBound(value, newAlpha, newBeta));
+		if(profondeur <= profondeurMax){
+			StateValueWithBound v = value.isWin() ? new  StateValueWithBound(value, 0)
+													: new StateValueWithBound(value, newAlpha, newBeta);
+			hashTable.put(pos, v);
+		}
 			
 		return value;
 		

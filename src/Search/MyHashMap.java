@@ -185,8 +185,12 @@ public class MyHashMap implements Map<PositionGris, StateValueWithBound> {
 	public void clearNonFinalPos(){
 		for(int i = 0; i < map.length; i++){
 			//On elimine tous les éléments qui ne sont pas Win ou Loss
-			if(map[i] != null && !map[i].val.value.isDraw())
-				map[i] = null;
+			if(map[i] != null){
+				if(map[i].val.value.isDraw())
+					map[i] = null;
+				else
+					map[i].val.setBound(0);
+			}
 		}
 	}
 	

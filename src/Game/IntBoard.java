@@ -330,6 +330,10 @@ public class IntBoard implements PlateauCourant {
 
 	@Override
 	public ContinueStateValue evalContinue() {
+		StateValue res = result();
+		if(!res.isDraw())
+			return new ContinueStateValue(res);
+			
 		long playerToutSeul = 0;
 		long advToutSeul = 0;
 		//Remplissage

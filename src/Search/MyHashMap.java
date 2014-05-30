@@ -80,6 +80,10 @@ public class MyHashMap implements Map<PositionGris, StateValueWithBound> {
 			return null;
 		
 		MyElement elem = map[key.hashCode()];
+		
+		if(elem == null)
+			return null;
+		
 		if(elem.pos.equals(key)){
 			return elem.val;
 		}

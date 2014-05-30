@@ -1,5 +1,7 @@
 package Game;
 
+import Search.IteratifHash;
+
 public class PositionGris extends Position{
 	long gris;
 
@@ -108,7 +110,10 @@ public class PositionGris extends Position{
 		int asym = ((Long) sym.playerPos).hashCode();
 		int b = ((Long) advPos).hashCode();
 		int bsym = ((Long) sym.advPos).hashCode();
-		return (Math.min(a, asym)*Math.min(b, bsym));
+		int hash = (Math.min(a, asym)*Math.min(b, bsym)) % IteratifHash.tailleTable;
+		if(hash < 0)
+			hash += IteratifHash.tailleTable;
+		return hash;
 	}
 	
 	/**

@@ -456,12 +456,15 @@ public class IntBoard implements PlateauCourant {
 	public List<Integer> orderedValidShots() {
 		ArrayList<Integer> result = new ArrayList<Integer>();
 		int cons = maxWidth/2;
-		result.add(cons);
+		if(heights[cons] < maxHeight)
+			result.add(cons);
 		for (int i=1;i<=(maxWidth-1)/2;i++){
-			result.add(cons-i);
-			result.add(cons+i);
+			if(heights[cons-i] < maxHeight)
+				result.add(cons-i);
+			if(heights[cons+i] < maxHeight)
+				result.add(cons+i);
 		}
-		if ((maxWidth & 1) !=0 ){
+		if ((maxWidth & 1) == 0 && heights[0] < maxHeight){
 			result.add(0);
 		}
 		return result;

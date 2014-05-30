@@ -8,19 +8,19 @@ import java.util.Set;
 import Game.PositionGris;
 
 
-public class MyHashMap implements Map<PositionGris, Integer> {
+public class MyHashMap implements Map<PositionGris, StateValueWithBound> {
 	
 	private class MyElement{
 		public PositionGris pos;
-		public int val;
+		public StateValueWithBound val;
 		public int cout = 0;
 		
-		public MyElement(PositionGris key, Integer value) {
+		public MyElement(PositionGris key, StateValueWithBound value) {
 			pos = key;
 			val = value;
 		}
 		
-		public MyElement(PositionGris key, Integer value, int cout) {
+		public MyElement(PositionGris key, StateValueWithBound value, int cout) {
 			pos = key;
 			val = value;
 			this.cout = cout;
@@ -37,6 +37,11 @@ public class MyHashMap implements Map<PositionGris, Integer> {
 	 */
 	boolean keepRecent;
 	
+	/**
+	 * 
+	 * @param taille
+	 * @param keepRecent 
+	 */
 	public MyHashMap(int taille, boolean keepRecent){
 		map = new MyElement[taille];
 		this.keepRecent = keepRecent;
@@ -64,13 +69,13 @@ public class MyHashMap implements Map<PositionGris, Integer> {
 	}
 
 	@Override
-	public Set<java.util.Map.Entry<PositionGris, Integer>> entrySet() {
+	public Set<java.util.Map.Entry<PositionGris, StateValueWithBound>> entrySet() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Integer get(Object key) {
+	public StateValueWithBound get(Object key) {
 		if(!(key instanceof PositionGris))
 			return null;
 		
@@ -98,11 +103,11 @@ public class MyHashMap implements Map<PositionGris, Integer> {
 	}
 
 	@Override
-	public Integer put(PositionGris key, Integer value){
+	public StateValueWithBound put(PositionGris key, StateValueWithBound value){
 		throw new RuntimeException("Mauvaise méthode put !!! Spécifier le cout !");
 	}
 	
-	public Integer put(PositionGris key, Integer value, int cout) {
+	public StateValueWithBound put(PositionGris key, StateValueWithBound value, int cout) {
 		
 		if(keepRecent)
 			return putRecent(key, value);
@@ -111,7 +116,7 @@ public class MyHashMap implements Map<PositionGris, Integer> {
 
 	}
 	
-	public Integer putRecent(PositionGris key, Integer value){
+	public StateValueWithBound putRecent(PositionGris key, StateValueWithBound value){
 		int hash = key.hashCode();
 		MyElement elem = map[hash];
 		map[hash] = new MyElement(key, value);
@@ -122,7 +127,7 @@ public class MyHashMap implements Map<PositionGris, Integer> {
 		return elem.val;
 	}
 	
-	public Integer putMostComplex(PositionGris key, Integer value, int cout){
+	public StateValueWithBound putMostComplex(PositionGris key, StateValueWithBound value, int cout){
 		int hash = key.hashCode();
 		
 		MyElement elem = map[hash];
@@ -138,14 +143,14 @@ public class MyHashMap implements Map<PositionGris, Integer> {
 	}
 
 	@Override
-	public void putAll(Map<? extends PositionGris, ? extends Integer> m) {
+	public void putAll(Map<? extends PositionGris, ? extends StateValueWithBound> m) {
 		throw new RuntimeException("Unimplemented : putAll");
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public Integer remove(Object key) {
+	public StateValueWithBound remove(Object key) {
 		if(!(key instanceof PositionGris))
 			return null;
 		
@@ -164,9 +169,21 @@ public class MyHashMap implements Map<PositionGris, Integer> {
 	}
 
 	@Override
-	public Collection<Integer> values() {
+	public Collection<StateValueWithBound> values() {
 		throw new RuntimeException("Unimplemented : putAll");
 		// TODO Auto-generated method stub
+	}
+	
+	/**
+	 * Supprime de la table tous les éléments qui ne sont pas à Win ou Loss
+	 * et ne servent donc pas à l'itération suivante
+	 */
+	public void clearNonFinalPos(){
+		for(int i = 0; i < map.length; i++){
+			//On elimine tous les éléments qui ne sont pas Win ou Loss
+			if(map[i] != null && !map[i].val.value.isDraw())
+				map[i] = null;
+		}
 	}
 	
 }

@@ -9,10 +9,10 @@ public class AlphaBeta {
 	/**
 	 * Contient le nombre total de positions qui ont été évaluées.
 	 */
-	public static int totalPositions = 0;
+	public int totalPositions = 0;
 	
 	//Au début, on va à la profondeur maximale.
-	public static StateValue alphaBeta(PlateauCourant state, StateValue alpha, StateValue beta){
+	public StateValue alphaBeta(PlateauCourant state, StateValue alpha, StateValue beta){
 		totalPositions++;
 		List<Integer> shots = state.validShots();
 

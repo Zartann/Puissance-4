@@ -15,7 +15,7 @@ public class AlphaBetaHash {
 	/**
 	 * Contient le nombre total de positions qui ont été évaluées.
 	 */
-	public static int totalPositions = 0;
+	public int totalPositions = 0;
 
 	public AlphaBetaHash(int profondeurMax) {
 		super();

@@ -1,20 +1,27 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 import Game.Box;
-import Game.CurrentBoard;
 import Game.IntBoard;
 import Game.PlateauCourant;
 import Search.AlphaBeta;
 import Search.AlphaBetaHash;
+import Search.DynIteratifHash;
 import Search.Iteratif;
+import Search.IteratifHash;
 import Search.MiniMaxElague;
 import Search.NegaMaxElague;
 import Search.StateValue;
 
 
 public class Main {
+	
+	/**
+	 * Nombre de millisecondes à attendre avant que l'on arrête les Thread
+	 */
+	static long timeOut = 1000;
 
 	/**
 	 * 
@@ -78,6 +85,12 @@ public class Main {
 		
 		String path = asker.nextLine();
 		
+		if(path.equals("all")){
+			autoTest();
+			asker.close();
+			return;
+		}
+		
 		path = "resources/boards/" + path;
 		
 		PlateauCourant board;
@@ -88,7 +101,7 @@ public class Main {
 			
 			long debutTime = System.currentTimeMillis();
 			
-			int cas = 4;
+			int cas = 3;
 	
 			switch(cas){
 			case 0 :
@@ -100,14 +113,16 @@ public class Main {
 				break;
 				
 			case 2 :
-				System.out.println(AlphaBeta.alphaBeta(board, StateValue.LOSS, StateValue.WIN));
-				System.out.println("Nombre total de positions évaluées : " + AlphaBeta.totalPositions);
+				AlphaBeta ab = new AlphaBeta();
+				System.out.println(ab.alphaBeta(board, StateValue.LOSS, StateValue.WIN));
+				System.out.println("Nombre total de positions évaluées : " + ab.totalPositions);
 				break;
 				
 			case 3 :
 				//pronfondeurMax = 10
-				System.out.println (new AlphaBetaHash (10).alphaBetaHache(board, StateValue.LOSS, StateValue.WIN, 0));
-				System.out.println("Nombre total de positions évaluées : " + AlphaBetaHash.totalPositions);
+				AlphaBetaHash abh = new AlphaBetaHash(20);
+				System.out.println (abh.alphaBetaHache(board, StateValue.LOSS, StateValue.WIN, 0));
+				System.out.println("Nombre total de positions évaluées : " + abh.totalPositions);
 				break;
 				
 			case 4 :
@@ -115,13 +130,25 @@ public class Main {
 				Iteratif it2 = new Iteratif(20);
 				System.out.println (it2.iteratif2(board));
 				System.out.println("Nombre total de positions évaluées : " + it2.totalPositions);
-				//break;
+				break;
 				
 			case 5 :
 				//pronfondeurMax = 10
 				Iteratif itGris = new Iteratif(20);
 				System.out.println (itGris.iteratifGris(board));
 				System.out.println("Nombre total de positions évaluées : " + itGris.totalPositions);
+				//break;
+				
+			case 6 :
+				IteratifHash it = new IteratifHash();
+				System.out.println (it.iteratifHash(board));
+				System.out.println("Nombre total de positions évaluées : " + it.totalPositions);
+				//break;
+				
+			case 7 :
+				DynIteratifHash dynIt = new DynIteratifHash();
+				System.out.println (dynIt.dynIteratifHash(board));
+				System.out.println("Nombre total de positions évaluées : " + dynIt.totalPositions);
 				break;
 				
 			}
@@ -139,42 +166,62 @@ public class Main {
 		asker.close();
 	}
 	
+	public static void autoTest(){
+		
+		File tests = new File("resources/boards");
+		File result = new File("Result.txt");
+		try {
+			PrintStream out = new PrintStream(result);
+			System.setOut(out);
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		System.out.println("Timeout de " + (((double)timeOut)/1000) + " secondes.");
+		
+		PlateauCourant board;
+		for(String path : tests.list()){
+			if(path.substring(path.length()-4).equals(".out") || path.equals("Test.cfg"))
+				continue;
+			try{
+				board = importFromFile("resources/boards/" + path);
+				
+				System.out.println();
+				System.out.println(path + " :");
+				System.out.println(board);
+				for(int i = 0; i <= 7; i++){
+					AutoTester test = new AutoTester(board,
+							"resources/boards/" +  path.substring(0, path.length()-4)+".out", 20, i);
+					
+					test.start();
+					try {
+						Thread.sleep(timeOut);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					if(test.isAlive()){
+						test.interrupt();
+						System.out.println("Trop long");
+					}
+
+					board = importFromFile("resources/boards/" + path);
+				}
+			}
+			catch (FileNotFoundException e) {
+
+				System.out.println("Le fichier est introuvable !");
+			}
+		}
+	}
+	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		
 		ask();
-		/*String path ="resources/boards/Test.cfg";
-		
-		PlateauCourant board;
-		try {
-			board = importFromFile(path);
-		
-			System.out.println(board);
-			
-			int cas = 2;
-	
-			switch(cas){
-			case 0 :
-				System.out.println(MiniMaxElague.miniMax(board, true));
-				break;
-				
-			case 1 :
-				System.out.println(NegaMaxElague.negaMax(board));
-				break;
-				
-			case 2 :
-				System.out.println(AlphaBeta.alphaBeta(board, StateValue.LOSS, StateValue.WIN));
-				break;
-				
-			}
-			
-		} catch (FileNotFoundException e) {
-
-			System.out.println("Le fichier est introuvable !");
-		}
-		*/
 	}
 
 }

@@ -16,26 +16,17 @@ public class Test {
 	 */
 	public static void main(String[] args) {
 		String path ="resources/boards/Test.cfg";
-		String path2 ="resources/boards/ended.cfg";
 		
 		PlateauCourant board;
-		PlateauCourant board2;
 		try {
 			board = Main.importFromFile(path);
-			board2 = Main.importFromFile(path2);
 		
 			System.out.println(board);
-			System.out.println(board2);
 			
 			PositionGris cle = board.cleGris();
 			System.out.println(cle);
 			
-			PositionGris cle2 = board2.cleGris();
-			System.out.println(cle2);
-			
-			System.out.println(cle.equals(cle2));
-			System.out.println(cle.hashCode());
-			System.out.println(cle2.hashCode());
+			System.out.println(board.evalContinue());
 			
 		} catch (FileNotFoundException e) {
 

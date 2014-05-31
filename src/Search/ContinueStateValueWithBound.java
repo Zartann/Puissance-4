@@ -9,32 +9,32 @@ public class ContinueStateValueWithBound {
 	 */
 	private int bound;
 	
-	int bestCoup;
+	//int bestCoup;
 	
-	public ContinueStateValueWithBound(ContinueStateValue v, ContinueStateValue alpha, ContinueStateValue beta, int i){
+	public ContinueStateValueWithBound(ContinueStateValue v, ContinueStateValue alpha, ContinueStateValue beta/*, int i*/){
 		value = v;
 		
 		if(v.lessOrEquals(alpha)){
 			bound = 1;
-			bestCoup = i;
+			//bestCoup = i;
 			return;
 		}
 		
 		if(v.betterOrEquals(beta)){
 			bound = -1;
-			bestCoup = i;
+			//bestCoup = i;
 			return;
 		}
 		
 		bound = 0;
-		bestCoup = i;
+		//bestCoup = i;
 	}
 	
 
-	public ContinueStateValueWithBound(ContinueStateValue v, int b, int i){
+	public ContinueStateValueWithBound(ContinueStateValue v, int b/*, int i*/){
 		value = v;
 		bound = b;
-		bestCoup = i;
+		//bestCoup = i;
 	}
 	
 	public boolean isUpperBound(){

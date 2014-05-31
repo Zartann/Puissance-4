@@ -6,11 +6,11 @@ import Game.PlateauCourant;
 import Game.PositionGris;
 
 public class DynIteratifHash {
-	
+
 	private class Cout{
 		public int cout = 0;
 	}
-	
+
 	public static int tailleTable = 20000000;
 
 	/**
@@ -38,21 +38,52 @@ public class DynIteratifHash {
 
 		if(value.isNotWinNorLoss())
 			return StateValue.DRAW;
-		
+
 		return value.valDiscrete;
 	}
 
 	public ContinueStateValue dynIterationHash(PlateauCourant state, ContinueStateValue alpha, ContinueStateValue beta,
 			int profondeur, int profondeurMaxIteration, Cout cout){
 		totalPositions++;
-		
-		//Comparaison avec les tables de hachage
+		System.out.println(state);
 
 		PositionGris pos = state.cleGris();
-		
-		ContinueStateValueWithBound boundValue = grisRecentHashTable.get(pos);
+
+		//Evaluation rapide de l'état si possible
+
+		//On ajoute le meilleur coup en premier dans la liste
+		int bestCoup = grisRecentHashTable.getBestCoup(pos);
+		if(bestCoup == -1)
+			bestCoup = grisComplexHashTable.getBestCoup(pos);
+
+		List<Integer> shots = (bestCoup != -1) ? state.dynOrderedValidShots(bestCoup) 
+				: state.orderedValidShots();
+
+		if(bestCoup != -1)
+			shots.add(0, bestCoup);
+
+		ContinueStateValue value = new ContinueStateValue(state.result());
+
+		//Si c'est au tour de l'adversaire, on inverse le résultat calculé
+		if(!state.playerIsNext())
+			value = value.opposite();
+
+		//On s'arrête si aucun coup n'est possible ou si l'issue est décidée
+		if(shots.isEmpty() || value.isLoss() || value.isWin()){
+			return value;
+		}
+
+
+		//Evaluation de l'état si profondeur de recherche atteinte
+		if(profondeur == profondeurMaxIteration){
+			return state.playerIsNext() ? state.evalContinue() : state.evalContinue().opposite();
+		}
+
+		//Comparaison avec les tables de hachage
+
+		ContinueStateValueWithBound boundValue = grisRecentHashTable.getValue(pos);
 		if(boundValue == null)
-			boundValue = grisComplexHashTable.get(pos);
+			boundValue = grisComplexHashTable.getValue(pos);
 		ContinueStateValue newAlpha = alpha, newBeta = beta;
 
 		if(boundValue != null){
@@ -71,31 +102,7 @@ public class DynIteratifHash {
 				return boundValue.value;
 		}
 
-		//Evaluation rapide de l'état si possible
-		
-		//On ajoute le meilleur coup en premier dans la liste
 
-		List<Integer> shots = boundValue != null ? state.dynOrderedValidShots(boundValue.bestCoup) 
-													: state.orderedValidShots();
-
-		if(boundValue != null)
-			shots.add(0, boundValue.bestCoup);
-		
-		ContinueStateValue value = new ContinueStateValue(state.result());
-
-		//Si c'est au tour de l'adversaire, on inverse le résultat calculé
-		if(!state.playerIsNext())
-			value = value.opposite();
-
-		//On s'arrête si aucun coup n'est possible ou si l'issue est décidée
-		if(shots.isEmpty() || value.isLoss() || value.isWin()){
-			return value;
-		}
-
-
-		//Evaluation de l'état si profondeur de recherche atteinte
-		if(profondeur == profondeurMaxIteration)
-			return state.playerIsNext() ? state.evalContinue() : state.evalContinue().opposite();
 
 		//On initialise l'état au pire non décidé
 		value = new ContinueStateValue(StateValue.LOSS);
@@ -104,10 +111,6 @@ public class DynIteratifHash {
 		ContinueStateValue score;
 		int bestShot = shots.get(0);
 		for(int shot : shots){
-			if(boundValue != null)
-				System.out.print("bestCoup : " + boundValue.bestCoup + "; ");
-			System.out.println("bestShot : " + bestShot + "; " + shot + " : ");
-			System.out.println(state);
 			state.playNext(shot);
 			c = new Cout();
 
@@ -120,7 +123,7 @@ public class DynIteratifHash {
 			cout.cout += c.cout;
 
 			state.undoLast();
-			
+
 			if(score.isWin())
 				break;
 
@@ -129,13 +132,11 @@ public class DynIteratifHash {
 
 		}
 		cout.cout++;
-System.out.println(bestShot + " : ");
-System.out.println(state);
-		
-		ContinueStateValueWithBound v = value.isWin() ? new  ContinueStateValueWithBound(value, 0, bestShot)
-												: new ContinueStateValueWithBound(value, newAlpha, newBeta, bestShot);
-		grisRecentHashTable.put(pos, v, cout.cout);
-		grisComplexHashTable.put(pos, v, cout.cout);
+
+		ContinueStateValueWithBound v = value.isWin() ? new  ContinueStateValueWithBound(value, 0)
+		: new ContinueStateValueWithBound(value, newAlpha, newBeta);
+		grisRecentHashTable.put(pos, v, bestShot, cout.cout);
+		grisComplexHashTable.put(pos, v, bestShot, cout.cout);
 
 		return value;
 

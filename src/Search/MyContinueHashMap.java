@@ -9,27 +9,43 @@ import Game.PositionGris;
 
 public class MyContinueHashMap implements Map<PositionGris, ContinueStateValueWithBound> {
 	
-	private class MyElement{
+	private class MyValue{
 		public PositionGris pos;
 		public ContinueStateValueWithBound val;
 		public int cout = 0;
 		
-		public MyElement(PositionGris key, ContinueStateValueWithBound value) {
+		public MyValue(PositionGris key, ContinueStateValueWithBound value) {
 			pos = key;
 			val = value;
 		}
 		
-		public MyElement(PositionGris key, ContinueStateValueWithBound value, int cout) {
+		public MyValue(PositionGris key, ContinueStateValueWithBound value, int cout) {
 			pos = key;
 			val = value;
 			this.cout = cout;
 		}
 	}
 	
+	private class MyBestShot{
+		public PositionGris pos;
+		public int bestShot;
+		
+		public MyBestShot(PositionGris key, int best) {
+			pos = key;
+			bestShot = best;
+		}
+	}
+	
 	/**
 	 * Contient les valeurs de la table
 	 */
-	MyElement[] map;
+	MyValue[] map;
+	
+	/**
+	 * Contient les meilleurs coups associés à chaque position
+	 * Si la position est remplacée dans la table des valeurs, elle est remplacée ici aussi.
+	 */
+	MyBestShot[] bestCoups;
 	
 	/**
 	 * Type de la table, en fonction de la stratégie de remplacement
@@ -42,7 +58,8 @@ public class MyContinueHashMap implements Map<PositionGris, ContinueStateValueWi
 	 * @param keepRecent 
 	 */
 	public MyContinueHashMap(int taille, boolean keepRecent){
-		map = new MyElement[taille];
+		map = new MyValue[taille];
+		bestCoups = new MyBestShot[taille];
 		this.keepRecent = keepRecent;
 	}
 	
@@ -69,16 +86,17 @@ public class MyContinueHashMap implements Map<PositionGris, ContinueStateValueWi
 
 	@Override
 	public Set<java.util.Map.Entry<PositionGris, ContinueStateValueWithBound>> entrySet() {
+		throw new RuntimeException("Unimplemented : keySet");
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
 	public ContinueStateValueWithBound get(Object key) {
-		if(!(key instanceof PositionGris))
+		throw new RuntimeException("Mauvaise méthode get !!! Utiliser getValue ou getBestCoup !");
+		/*if(!(key instanceof PositionGris))
 			return null;
 		
-		MyElement elem = map[key.hashCode()];
+		MyValue elem = map[key.hashCode()];
 		
 		if(elem == null)
 			return null;
@@ -86,7 +104,47 @@ public class MyContinueHashMap implements Map<PositionGris, ContinueStateValueWi
 		if(elem.pos.equals(key)){
 			return elem.val;
 		}
+		return null;*/
+	}
+	
+	/**
+	 * Renvoie la valeur associée à la position si elle est dans la table
+	 * Renvoie null sinon
+	 * @param pos
+	 * @return
+	 */
+	public ContinueStateValueWithBound getValue(PositionGris pos){
+		MyValue elem = map[pos.hashCode()];
+		
+		if(elem == null)
+			return null;
+		
+		if(elem.pos.equals(pos)){
+			return elem.val;
+		}
 		return null;
+	}
+	
+	/**
+	 * Renvoie le meilleur coup associé à la position si elle est dans la table
+	 * Renvoie le coup symétrique si le symétrique de la position est dans la table
+	 * Renvoie -1 sinon
+	 * @param pos
+	 * @return
+	 */
+	public int getBestCoup(PositionGris pos){
+		MyBestShot shot = bestCoups[pos.hashCode()];
+		
+		if(shot == null)
+			return -1;
+		
+		if(shot.pos.equals(pos)){
+			if(shot.pos.isSymetrical(pos))
+				return pos.symetricalShot(shot.bestShot);
+			else
+				return shot.bestShot;
+		}
+		return -1;
 	}
 
 	@Override
@@ -110,19 +168,29 @@ public class MyContinueHashMap implements Map<PositionGris, ContinueStateValueWi
 		throw new RuntimeException("Mauvaise méthode put !!! Spécifier le cout !");
 	}
 	
-	public ContinueStateValueWithBound put(PositionGris key, ContinueStateValueWithBound value, int cout) {
+	public ContinueStateValueWithBound put(PositionGris key, 
+										ContinueStateValueWithBound value, int bestShot, int cout) {
 		
 		if(keepRecent)
-			return putRecent(key, value);
+			return putRecent(key, value, bestShot);
 		else
-			return putMostComplex(key, value, cout);
+			return putMostComplex(key, value, bestShot, cout);
 
 	}
 	
-	public ContinueStateValueWithBound putRecent(PositionGris key, ContinueStateValueWithBound value){
+	/**
+	 * On remplace dans les deux tableaux l'ancienne position par la nouvelle.
+	 * @param key
+	 * @param value
+	 * @param bestShot
+	 * @return
+	 */
+	public ContinueStateValueWithBound putRecent(PositionGris key, 
+									ContinueStateValueWithBound value, int bestShot){
 		int hash = key.hashCode();
-		MyElement elem = map[hash];
-		map[hash] = new MyElement(key, value);
+		MyValue elem = map[hash];
+		map[hash] = new MyValue(key, value);
+		bestCoups[hash] = new MyBestShot(key, bestShot);
 		
 		if(elem == null)
 			return null;
@@ -130,17 +198,29 @@ public class MyContinueHashMap implements Map<PositionGris, ContinueStateValueWi
 		return elem.val;
 	}
 	
-	public ContinueStateValueWithBound putMostComplex(PositionGris key, ContinueStateValueWithBound value, int cout){
+	/**
+	 * On garde dans les deux tableaux la position la plus coûteuse.
+	 * @param key
+	 * @param value
+	 * @param bestShot
+	 * @param cout
+	 * @return
+	 */
+	public ContinueStateValueWithBound putMostComplex(PositionGris key, 
+			ContinueStateValueWithBound value, int bestShot, int cout){
 		int hash = key.hashCode();
 		
-		MyElement elem = map[hash];
+		MyValue elem = map[hash];
 		if(elem == null){
-			map[hash] = new MyElement(key, value, cout);
+			map[hash] = new MyValue(key, value, cout);
+			bestCoups[hash] = new MyBestShot(key, bestShot);
 			return null;
 		}
 		
-		if(elem.cout < cout)
-			map[hash] = new MyElement(key, value, cout);
+		if(elem.cout < cout){
+			map[hash] = new MyValue(key, value, cout);
+			bestCoups[hash] = new MyBestShot(key, bestShot);
+		}
 		
 		return elem.val;
 	}
@@ -157,7 +237,7 @@ public class MyContinueHashMap implements Map<PositionGris, ContinueStateValueWi
 		if(!(key instanceof PositionGris))
 			return null;
 		
-		MyElement elem = map[key.hashCode()];
+		MyValue elem = map[key.hashCode()];
 		if(elem.pos.equals(key)){
 			map[key.hashCode()] = null;
 			return elem.val;

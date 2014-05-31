@@ -4,6 +4,7 @@ import Search.IteratifHash;
 
 public class PositionGris extends Position{
 	long gris;
+	long playerPosSym, advPosSym, grisSym;
 
 	/**
 	 * 
@@ -87,6 +88,28 @@ public class PositionGris extends Position{
 
 		this.playerPos=playerUtil;
 		this.advPos=advUtil;
+		
+		//********** On détermine la position symétrique
+		
+		long player = this.playerPos, adv = this.advPos, gr = gris;
+		
+		//Entier correspondant à une colonne remplie de 1.
+		long column = (long) 1 << (maxHeight + 1);
+		column--;
+		
+		for(int i = 0; i < maxWidth; i++){
+			playerPosSym <<= maxHeight+1;
+			advPosSym <<= maxHeight+1;
+			grisSym <<= maxHeight+1;
+			
+			playerPosSym |= (player & column);
+			advPosSym |= (adv & column);
+			grisSym |= (gr & column);
+			
+			player >>= maxHeight+1;
+			adv >>= maxHeight+1;
+			gr >>= maxHeight+1;
+		}
 	}
 	
 	/**
@@ -98,18 +121,25 @@ public class PositionGris extends Position{
 	 * @param maxHeight
 	 * @param gris
 	 */
-	public PositionGris(long playerPos, long advPos, int maxWidth, int maxHeight, long gris){
+	public PositionGris(long playerPos, long advPos, int maxWidth, int maxHeight, long gris,
+			long playerPosSym, long advPosSym, long grisSym){
 		super(playerPos, advPos, maxWidth, maxHeight);
 		this.gris = gris;
+		this.playerPosSym = playerPosSym;
+		this.advPosSym = advPosSym;
+		this.grisSym = grisSym;
+		
 	}
 	
 	@Override
 	public int hashCode (){
-		Position sym = symmetricPosition();
+		//Position sym = symmetricPosition();
 		int a = ((Long) playerPos).hashCode();
-		int asym = ((Long) sym.playerPos).hashCode();
+		//int asym = ((Long) sym.playerPos).hashCode();
+		int asym = ((Long) playerPosSym).hashCode();
 		int b = ((Long) advPos).hashCode();
-		int bsym = ((Long) sym.advPos).hashCode();
+		//int bsym = ((Long) sym.advPos).hashCode();
+		int bsym = ((Long) advPosSym).hashCode();
 		int hash = (Math.min(a, asym)*Math.min(b, bsym)) % IteratifHash.tailleTable;
 		if(hash < 0)
 			hash += IteratifHash.tailleTable;
@@ -119,10 +149,10 @@ public class PositionGris extends Position{
 	/**
 	 * Retourne la position symétrique
 	 */
-	@Override
-	public PositionGris symmetricPosition (){
+//	@Override
+	//public PositionGris symmetricPosition (){
 		
-		long player = playerPos, adv = advPos, gr = gris;
+		/*long player = playerPos, adv = advPos, gr = gris;
 		long playerSym = 0, advSym = 0, grSym = 0;
 		
 		//Entier correspondant à une colonne remplie de 1.
@@ -141,9 +171,18 @@ public class PositionGris extends Position{
 			player >>= maxHeight+1;
 			adv >>= maxHeight+1;
 			gr >>= maxHeight+1;
-		}
+		}*/
 		
-		return new PositionGris(playerSym,advSym,maxWidth, maxHeight, grSym);
+	//	return new PositionGris(playerPosSym,advPosSym,maxWidth, maxHeight, grisSym, playerPos, advPos, gris);
+	//}
+	
+	/**
+	 * Indique si la position actuelle est la symétrique de pos2
+	 * @param pos2
+	 * @return boolean
+	 */
+	public boolean isSymetrical(PositionGris pos2){
+		return ((playerPos==pos2.playerPosSym)&&(advPos==pos2.advPosSym) && (gris == pos2.grisSym));
 	}
 	
 	/**
@@ -153,10 +192,10 @@ public class PositionGris extends Position{
 	public boolean equals (Object pos){
 		if (pos instanceof PositionGris){
 			PositionGris pos2 = (PositionGris) pos;
-			boolean a =((playerPos==pos2.playerPos) && (advPos==pos2.advPos) && (gris == pos2.gris));
-			PositionGris sym = pos2.symmetricPosition();
-			boolean b = ((playerPos==sym.playerPos)&&(advPos==sym.advPos) && (gris == sym.gris));
-			return (a||b);
+			boolean same =((playerPos==pos2.playerPos) && (advPos==pos2.advPos) && (gris == pos2.gris));
+			//PositionGris sym = pos2.symmetricPosition();
+			boolean symetrical = ((playerPos==pos2.playerPosSym)&&(advPos==pos2.advPosSym) && (gris == pos2.grisSym));
+			return (same||symetrical);
 		}
 		return false;
 	} 

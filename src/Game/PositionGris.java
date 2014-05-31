@@ -186,6 +186,15 @@ public class PositionGris extends Position{
 	}
 	
 	/**
+	 * Renvoie le coup symétrique de i
+	 * @param i
+	 * @return
+	 */
+	public int symetricalShot(int i){
+		return (maxWidth - i - 1);
+	}
+	
+	/**
 	 * Test d'égalité : en tenant compte des symétries
 	 */
 	@Override

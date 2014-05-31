@@ -88,6 +88,6 @@ public class ContinueStateValue {
 			default : return "LOSS";
 			}
 		}
-		else return "Pas eu le temps de déterminer";
+		else return ""+this.valContinue;
 	}
 }

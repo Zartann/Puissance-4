@@ -45,7 +45,7 @@ public class DynIteratifHash {
 	public ContinueStateValue dynIterationHash(PlateauCourant state, ContinueStateValue alpha, ContinueStateValue beta,
 			int profondeur, int profondeurMaxIteration, Cout cout){
 		totalPositions++;
-		System.out.println(state);
+		//System.out.println(state);
 
 		PositionGris pos = state.cleGris();
 

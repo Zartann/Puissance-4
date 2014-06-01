@@ -14,8 +14,10 @@ public class AlphaBeta {
 	//Au début, on va à la profondeur maximale.
 	public StateValue alphaBeta(PlateauCourant state, StateValue alpha, StateValue beta){
 		totalPositions++;
+		//On considère les coups réalisables
 		List<Integer> shots = state.validShots();
 
+		//On regarde si la partie a déjà un gagnant
 		StateValue value = state.result();
 
 		//Si c'est au tour de l'adversaire, on inverse le résultat calculé
@@ -33,13 +35,15 @@ public class AlphaBeta {
 		for(int shot : shots){
 			state.playNext(shot);
 
-			//On récupère l'opposé du coup suivant et on garde le max avec la valeur courante.
+			//Pour chaque coup suivant valide, on récupère l'opposé du coup suivant et on garde le max avec la valeur courante.
 			score = alphaBeta(state, beta.opposite(), alpha.opposite()).opposite();
 			value = value.max(score);
 			alpha = alpha.max(score);
-
+			
+			//On défait le coup que l'on vient de jouer
 			state.undoLast();
 
+			//Si on dépasse la borne supérieure, on fait une coupure
 			if(score.betterOrEquals(beta))
 				break;
 

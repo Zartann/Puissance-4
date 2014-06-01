@@ -1,6 +1,7 @@
 package Search;
 
 public class StateValueWithBound {
+	//Classe adaptée aux valeurs rencontrées dans l'algorithme Alpha-Beta : certaines sont bien définies (accurate), d'autres dépendent de bornes
 	
 	StateValue value;
 	

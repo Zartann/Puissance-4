@@ -1,6 +1,9 @@
 package Search;
 
 public enum StateValue {
+	/**
+	 * Etats possibles d'un plateau de jeu
+	 */
 	LOSS, DRAW, WIN;
 
 	public boolean isLoss(){
@@ -37,7 +40,7 @@ public enum StateValue {
 		
 		return (this == LOSS || 
 				this == DRAW && s != LOSS ||
-				this == WIN && s == WIN);
+				s == WIN);
 	}
 
 	/**

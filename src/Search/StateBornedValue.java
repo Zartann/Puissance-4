@@ -1,13 +1,13 @@
 package Search;
 
 public class StateBornedValue {
-	StateValue alpha;
+	/*StateValue alpha;
 	StateValue beta;
 	
 	/**
 	 * Renvoie true si la valeur représentée est fixée
 	 */
-	public boolean IsFixed (){
+	/*public boolean IsFixed (){
 		return alpha.equals(beta);
 	}
 
@@ -25,5 +25,5 @@ public class StateBornedValue {
 			StateValue max = beta.min(value.beta);
 			return new StateBornedValue (min, max);
 		}
-	}
+	}*/
 }

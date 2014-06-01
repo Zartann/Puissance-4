@@ -1,6 +1,7 @@
 package Search;
 
 public class ContinueStateValueWithBound {
+	//Version continue de StateValueWithBound
 	
 	ContinueStateValue value;
 	
@@ -25,7 +26,7 @@ public class ContinueStateValueWithBound {
 			//bestCoup = i;
 			return;
 		}
-		
+		//valeur accurate
 		bound = 0;
 		//bestCoup = i;
 	}

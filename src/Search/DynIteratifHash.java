@@ -116,7 +116,7 @@ public class DynIteratifHash {
 
 			//On récupère l'opposé du coup suivant et on garde le max avec la valeur courante.
 			score = dynIterationHash(state, newBeta.opposite(), newAlpha.opposite(), profondeur+1, profondeurMaxIteration, c).opposite();
-			if(!value.lessOrEquals(score))
+			if(!score.lessOrEquals(value))
 				bestShot = shot;
 			value = value.max(score);
 			newAlpha = newAlpha.max(score);

@@ -140,7 +140,8 @@ public class PositionGris extends Position{
 		int b = ((Long) advPos).hashCode();
 		//int bsym = ((Long) sym.advPos).hashCode();
 		int bsym = ((Long) advPosSym).hashCode();
-		int hash = (Math.min(a, asym)*Math.min(b, bsym)) % IteratifHash.tailleTable;
+		//int hash = (Math.min(a, asym)*Math.min(b, bsym)) % IteratifHash.tailleTable;
+		int hash = (Math.min(a+b,asym+bsym)) % IteratifHash.tailleTable;
 		if(hash < 0)
 			hash += IteratifHash.tailleTable;
 		return hash;

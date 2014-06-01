@@ -1,12 +1,4 @@
-import java.io.FileNotFoundException;
-
-import Game.PlateauCourant;
-import Game.Position;
-import Game.PositionGris;
-import Search.AlphaBeta;
-import Search.MiniMaxElague;
-import Search.NegaMaxElague;
-import Search.StateValue;
+import java.util.ArrayList;
 
 
 public class Test {
@@ -15,7 +7,7 @@ public class Test {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		String path ="resources/boards/Test.cfg";
+		//String path ="resources/boards/Test.cfg";
 
 		/*PlateauCourant board;
 		try {
@@ -33,56 +25,23 @@ public class Test {
 			System.out.println("Le fichier est introuvable !");
 		}*/
 		
-		Thread t = new Thread(){
-			public void run(){
-				for(int i = 0; i < 1000000; i++)
-					System.out.println(i);
-			}
-		};
-		t.start();
-		try {
-			Thread.sleep(100);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		if(t.isAlive())
-			t.stop();
-		/*
-		t = new Thread(){
-			public void run(){
-				for(int i = 0; i < 1000000; i++)
-					System.out.println(i);
-			}
-		};
+		ArrayList<Integer> l = new ArrayList<Integer>();
 		
-		t.start();*/
-		/*
-		PlateauCourant board;
-		try{
-			board = Main.importFromFile("resources/boards/" + path);
-
-			System.out.println(path + " :");
-			System.out.println(board);
-			AutoTester test = new AutoTester(board,
-					"resources/boards/" +  path.substring(0, path.length()-4)+".out", 20, 0);
-
-			test.run();
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			if(test.isAlive()){
-				test.interrupt();
-				System.out.println("Trop long");
-			}
+		l.add(0);l.add(1);l.add(2);l.add(3);
+		int i;
+		while(!l.isEmpty()){
+			i = l.remove(0);
+			System.out.println(i);
+			if(i == 1)
+				break;
 		}
-		catch (FileNotFoundException e) {
-
-			System.out.println("Le fichier est introuvable !");
-		}*/
+		System.out.println("breaké");
+		while(!l.isEmpty()){
+			i = l.remove(0);
+			System.out.println(i);
+			if(i == 1)
+				break;
+		}
 	}
 
 }

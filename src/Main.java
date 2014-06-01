@@ -21,7 +21,7 @@ public class Main {
 	/**
 	 * Nombre de millisecondes à attendre avant que l'on arrête les Thread
 	 */
-	static long timeOut = 1000;
+	static long timeOut = 60000;
 
 	/**
 	 * 
@@ -101,7 +101,7 @@ public class Main {
 			
 			long debutTime = System.currentTimeMillis();
 			
-			int cas = 3;
+			int cas = 6;
 	
 			switch(cas){
 			case 0 :
@@ -202,7 +202,7 @@ public class Main {
 						e.printStackTrace();
 					}
 					if(test.isAlive()){
-						test.interrupt();
+						test.stop();
 						System.out.println("Trop long");
 					}
 

@@ -64,12 +64,18 @@ public class AutoTester extends Thread {
 	public void run(){
 		
 		StateValue valeur;
+		long debutTime = System.currentTimeMillis(), endTime;
+		double time;
+		
 		switch(type){
 		case 0 :
 			System.out.print("MiniMax : ");
 			valeur = MiniMaxElague.miniMax(board, true);
+			
+			endTime = System.currentTimeMillis();
+			time = ((double) (endTime - debutTime))/1000;
 			if(valeur == solution)
-				System.out.println("Solution trouvée");
+				System.out.println("Solution trouvée en " + time + " secondes");
 			else
 				System.out.println("Erreur");
 			break;
@@ -78,8 +84,10 @@ public class AutoTester extends Thread {
 			System.out.print("NegaMax : ");
 			valeur = NegaMaxElague.negaMax(board);
 
+			endTime = System.currentTimeMillis();
+			time = ((double) (endTime - debutTime))/1000;
 			if(valeur == solution)
-				System.out.println("Solution trouvée");
+				System.out.println("Solution trouvée en " + time + " secondes");
 			else
 				System.out.println("Erreur");
 			break;
@@ -89,8 +97,10 @@ public class AutoTester extends Thread {
 			AlphaBeta ab = new AlphaBeta();
 			valeur = ab.alphaBeta(board, StateValue.LOSS, StateValue.WIN);
 
+			endTime = System.currentTimeMillis();
+			time = ((double) (endTime - debutTime))/1000;
 			if(valeur == solution)
-				System.out.println("Solution trouvée en " + ab.totalPositions + " coups");
+				System.out.println("Solution trouvée en " + ab.totalPositions + " coups et " + time + " secondes");
 			else
 				System.out.println("Erreur");
 			//System.out.println("Nombre total de positions évaluées : " + AlphaBeta.totalPositions);
@@ -101,8 +111,10 @@ public class AutoTester extends Thread {
 			AlphaBetaHash abh = new AlphaBetaHash(profondeurMax);
 			valeur = abh.alphaBetaHache(board, StateValue.LOSS, StateValue.WIN, 0);
 
+			endTime = System.currentTimeMillis();
+			time = ((double) (endTime - debutTime))/1000;
 			if(valeur == solution)
-				System.out.println("Solution trouvée en " + abh.totalPositions + " coups");
+				System.out.println("Solution trouvée en " + abh.totalPositions + " coups et " + time + " secondes");
 			else
 				System.out.println("Erreur");
 			//System.out.println("Nombre total de positions évaluées : " + AlphaBetaHash.totalPositions);
@@ -113,8 +125,10 @@ public class AutoTester extends Thread {
 			Iteratif it = new Iteratif(profondeurMax);
 			valeur = it.iteratif2(board);
 
+			endTime = System.currentTimeMillis();
+			time = ((double) (endTime - debutTime))/1000;
 			if(valeur == solution)
-				System.out.println("Solution trouvée en " + it.totalPositions + " coups");
+				System.out.println("Solution trouvée en " + it.totalPositions + " coups et " + time + " secondes");
 			else
 				System.out.println("Erreur");
 			//System.out.println("Nombre total de positions évaluées : " + it.totalPositions);
@@ -125,8 +139,10 @@ public class AutoTester extends Thread {
 			Iteratif itGris = new Iteratif(profondeurMax);
 			valeur = itGris.iteratifGris(board);
 
+			endTime = System.currentTimeMillis();
+			time = ((double) (endTime - debutTime))/1000;
 			if(valeur == solution)
-				System.out.println("Solution trouvée en " + itGris.totalPositions + " coups");
+				System.out.println("Solution trouvée en " + itGris.totalPositions + " coups et " + time + " secondes");
 			else
 				System.out.println("Erreur");
 			//System.out.println("Nombre total de positions évaluées : " + itGris.totalPositions);
@@ -137,8 +153,10 @@ public class AutoTester extends Thread {
 			IteratifHash ith = new IteratifHash();
 			valeur = ith.iteratifHash(board);
 
+			endTime = System.currentTimeMillis();
+			time = ((double) (endTime - debutTime))/1000;
 			if(valeur == solution)
-				System.out.println("Solution trouvée en " + ith.totalPositions + " coups");
+				System.out.println("Solution trouvée en " + ith.totalPositions + " coups et " + time + " secondes");
 			else
 				System.out.println("Erreur");
 			//System.out.println("Nombre total de positions évaluées : " + ith.totalPositions);
@@ -149,8 +167,10 @@ public class AutoTester extends Thread {
 			DynIteratifHash dynIt = new DynIteratifHash();
 			valeur = dynIt.dynIteratifHash(board);
 
+			endTime = System.currentTimeMillis();
+			time = ((double) (endTime - debutTime))/1000;
 			if(valeur == solution)
-				System.out.println("Solution trouvée en " + dynIt.totalPositions + " coups");
+				System.out.println("Solution trouvée en " + dynIt.totalPositions + " coups et " + time + " secondes");
 			else
 				System.out.println("Erreur");
 			//System.out.println("Nombre total de positions évaluées : " + dynIt.totalPositions);

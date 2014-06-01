@@ -3,7 +3,13 @@ package Game;
 import Search.IteratifHash;
 
 public class PositionGris extends Position{
+	/**
+	 * gris représente les jetons ne pouvant participer à aucun alignement à venir (jetons isolés)
+	 */
 	long gris;
+	/**
+	 * jetons utiles du joueur et de l'adversaire, et jetons isolés, pour la position symétrique
+	 */
 	long playerPosSym, advPosSym, grisSym;
 
 	/**
@@ -24,6 +30,7 @@ public class PositionGris extends Position{
 		//Remplissage
 
 		//plateauPlein correspond à un plateau rempli, ligne du dessus comprise.
+		//Pas de débordement de capacité du long en taille 6*7
 		long plateauPlein = ((long) 1) << (maxWidth * (maxHeight+1));
 		plateauPlein--;
 
@@ -46,6 +53,12 @@ public class PositionGris extends Position{
 
 
 		//On trouve les alignements ainsi créés
+		/* columnPlayer va contenir après cette étape un 1 à chaque position 
+		 * qui est le jeton le plus bas d'un alignement vertical de 4 jetons du joueur (et des 0 partout ailleurs)
+		 * Les 7 autres variables ont des sens analogues dans chaque direction et pour chaque joueur : par exemple,
+		 * lineAdv contient un 1 pour chaque jeton le plus à gauche d'un alignement horizontal de 4 jetons de l'adversaire,
+		 * et des 0 partout ailleurs
+		 */
 		long columnPlayer, linePlayer, diagPlayer, antidiagPlayer;
 		long columnAdv, lineAdv, diagAdv, antidiagAdv;
 
@@ -86,6 +99,7 @@ public class PositionGris extends Position{
 		//Les jetons gris sont les inutiles pour les deux joueurs
 		gris = (playerPos ^ playerUtil) | (advPos ^ advUtil);
 
+		//Les champs playerPos et advPos ne prennent que les jetons non isolés
 		this.playerPos=playerUtil;
 		this.advPos=advUtil;
 		
@@ -98,6 +112,7 @@ public class PositionGris extends Position{
 		column--;
 		
 		for(int i = 0; i < maxWidth; i++){
+			//On symétrise player, adv et gr (même procédé que dans symmetricPosition () de la classe Position)
 			playerPosSym <<= maxHeight+1;
 			advPosSym <<= maxHeight+1;
 			grisSym <<= maxHeight+1;
@@ -133,17 +148,16 @@ public class PositionGris extends Position{
 	
 	@Override
 	public int hashCode (){
-		//Position sym = symmetricPosition();
+		//Le hashCode doit être identique en passant à la position symétrique
 		int a = ((Long) playerPos).hashCode();
-		//int asym = ((Long) sym.playerPos).hashCode();
 		int asym = ((Long) playerPosSym).hashCode();
 		int b = ((Long) advPos).hashCode();
-		//int bsym = ((Long) sym.advPos).hashCode();
 		int bsym = ((Long) advPosSym).hashCode();
 		//int hash = (Math.min(a, asym)*Math.min(b, bsym)) % IteratifHash.tailleTable;
 		int hash = (Math.min(a+b,asym+bsym)) % IteratifHash.tailleTable;
 		if(hash < 0)
 			hash += IteratifHash.tailleTable;
+		//On évite les OutOfBoundsException en gazrantissant ainsi que 0 <= hash < IteratifHash.tailleTable
 		return hash;
 	}
 	
@@ -203,10 +217,11 @@ public class PositionGris extends Position{
 		if (pos instanceof PositionGris){
 			PositionGris pos2 = (PositionGris) pos;
 			boolean same =((playerPos==pos2.playerPos) && (advPos==pos2.advPos) && (gris == pos2.gris));
-			//PositionGris sym = pos2.symmetricPosition();
 			boolean symetrical = ((playerPos==pos2.playerPosSym)&&(advPos==pos2.advPosSym) && (gris == pos2.grisSym));
+			//On renvoie vrai si les positions sont identiques ou symétriques l'une de l'autre
 			return (same||symetrical);
 		}
+		//Si pos n'est pas de type PositionGris, renvoyer false
 		return false;
 	} 
 	
@@ -219,11 +234,13 @@ public class PositionGris extends Position{
 		long player = playerPos, adv = advPos, gr = gris;
 
 		int[][] board = new int[maxHeight][maxWidth];
+		//board va contenir une forme visualisable du plateau de jeu
 
 		for(int column = 0; column < maxWidth; column++){
 			for(int line = maxHeight-1; line >= 0; line--){ //Parcours de bas en haut, de gauche à droite
 
 				if((player & 1) == 1)
+					//player se termine par un 1
 					board[line][column] = 1;
 
 				else if((adv & 1) == 1)
@@ -233,6 +250,7 @@ public class PositionGris extends Position{
 					board[line][column] = 3;
 
 				else
+					//Pas de jeton ici
 					board[line][column] = 0;
 
 				//On décale d'un bit vers la droite

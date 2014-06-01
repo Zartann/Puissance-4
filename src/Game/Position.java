@@ -3,6 +3,10 @@ package Game;
 import Search.IteratifHash;
 
 public class Position {
+	/**
+	 * playerPos et advPos représentent respectivement les jetons du joueur et de l'adversaire
+	 * maxWidth et maxHeight représentent les dimensions du plateau de jeu
+	 */
 	public long playerPos;
 	public long advPos;
 	int maxWidth;
@@ -27,13 +31,15 @@ public class Position {
 		int asym = ((Long) sym.playerPos).hashCode();
 		int b = ((Long) advPos).hashCode();
 		int bsym = ((Long) sym.advPos).hashCode();
+		//Cette formule garantit qu'une position et sa position symétrique ont le même hashCode
 		int hash = (Math.min(a, asym)*Math.min(b, bsym)) % IteratifHash.tailleTable;
 		if(hash < 0)
 			hash += IteratifHash.tailleTable;
+		//Ainsi on garantit 0 <= hash < IteratifHash.tailleTable : pas d'IndexOutofBoundsException ici
 		return hash;
 	}
 	
-	/**
+	/*/**
 	 * 
 	 * @param a (long)
 	 * @return le ième bit de a (0<=i<49)
@@ -43,7 +49,7 @@ public class Position {
 		return (byte)(b&1);
 	}*/
 	
-	/**
+	/*/**
 	 * place le bit k à l'emplacement i dans a (long)
 	 */
 	/*public static long placeIemeBit (long a, int i, byte k){
@@ -68,17 +74,20 @@ public class Position {
 		long column = (long) 1 << (maxHeight + 1);
 		column--;
 		
-		for(int i = 0; i < maxWidth; i++){
+		for(int i = 0; i < maxWidth; i++){//de gauche à droite
+			//On libère la colonne de droite de playerSym et advSym en les décalant d'une colonne à gauche
 			playerSym <<= maxHeight+1;
 			advSym <<= maxHeight+1;
 			
+			//on ajoute à playerSym et advSym les jetons de la colonne de droite de player et adv dans leur colonne de droite
 			playerSym |= (player & column);
 			advSym |= (adv & column);
 			
+			//On décale player et adv d'une colonne vers la droite
 			player >>= maxHeight+1;
 			adv >>= maxHeight+1;
 		}
-		
+		//Ainsi on a rempli playerSym et advSym colonne par colonne en symétrisant player et adv
 		return new Position(playerSym,advSym,maxWidth, maxHeight);
 	}
 	
@@ -92,8 +101,10 @@ public class Position {
 			boolean a =((playerPos==pos2.playerPos) && (advPos==pos2.advPos));
 			Position sym = pos2.symmetricPosition();
 			boolean b = ((playerPos==sym.playerPos)&&(advPos==sym.advPos));
+			// On renvoie true ssi pos est this ou la position symétrique de this
 			return (a||b);
 		}
+		//Si pos n'est pas de type Position equals doit renvoyer false
 		return false;
 	} 
 

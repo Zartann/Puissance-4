@@ -45,6 +45,7 @@ public class DynIteratifHash {
 	public ContinueStateValue dynIterationHash(PlateauCourant state, ContinueStateValue alpha, ContinueStateValue beta,
 			int profondeur, int profondeurMaxIteration, Cout cout){
 		totalPositions++;
+		//System.out.println("Etude de :");
 		//System.out.println(state);
 
 		PositionGris pos = state.cleGris();
@@ -59,8 +60,10 @@ public class DynIteratifHash {
 		List<Integer> shots = (bestCoup != -1) ? state.dynOrderedValidShots(bestCoup) 
 				: state.orderedValidShots();
 
-		if(bestCoup != -1)
+		if(bestCoup != -1){
+			//System.out.println("BestShot Trouvé : " + bestCoup);
 			shots.add(0, bestCoup);
+		}
 
 		ContinueStateValue value = new ContinueStateValue(state.result());
 
@@ -70,12 +73,16 @@ public class DynIteratifHash {
 
 		//On s'arrête si aucun coup n'est possible ou si l'issue est décidée
 		if(shots.isEmpty() || value.isLoss() || value.isWin()){
+			//System.out.println("Calcul direct : Joueur = " + state.playerIsNext() + "; Valeur = " + value);
+			//System.out.println();
 			return value;
 		}
 
 
 		//Evaluation de l'état si profondeur de recherche atteinte
 		if(profondeur == profondeurMaxIteration){
+			//System.out.println("Evaluation : Joueur = " + state.playerIsNext() + "; Valeur = " + (state.playerIsNext() ? state.evalContinue() : state.evalContinue().opposite()));
+			//System.out.println();
 			return state.playerIsNext() ? state.evalContinue() : state.evalContinue().opposite();
 		}
 
@@ -98,8 +105,11 @@ public class DynIteratifHash {
 				newBeta = boundValue.value;
 			}
 
-			if(newAlpha.betterOrEquals(newBeta))
+			if(newAlpha.betterOrEquals(newBeta)){
+				//System.out.println("Table de hachage : Joueur = " + state.playerIsNext() + "; Valeur = " + boundValue.value);
+				//System.out.println();
 				return boundValue.value;
+			}
 		}
 
 
@@ -110,12 +120,15 @@ public class DynIteratifHash {
 		Cout c;
 		ContinueStateValue score;
 		int bestShot = shots.get(0);
+		boolean coupure = false;
 		for(int shot : shots){
 			state.playNext(shot);
 			c = new Cout();
 
 			//On récupère l'opposé du coup suivant et on garde le max avec la valeur courante.
 			score = dynIterationHash(state, newBeta.opposite(), newAlpha.opposite(), profondeur+1, profondeurMaxIteration, c).opposite();
+			//System.out.println("BestShot : " + bestShot + "; Shot : " + shot);
+			//System.out.println(state);
 			if(!score.lessOrEquals(value))
 				bestShot = shot;
 			value = value.max(score);
@@ -124,20 +137,26 @@ public class DynIteratifHash {
 
 			state.undoLast();
 
-			if(score.isWin())
+			if(score.isWin()){
+				coupure = true;
 				break;
+			}
 
-			if(score.betterOrEquals(beta))
+			if(score.betterOrEquals(beta)){
+				coupure = true;
 				break;
+			}
 
 		}
 		cout.cout++;
 
-		ContinueStateValueWithBound v = value.isWin() ? new  ContinueStateValueWithBound(value, 0)
+		ContinueStateValueWithBound v = (value.isWin() || !coupure) ? new  ContinueStateValueWithBound(value, 0)
 		: new ContinueStateValueWithBound(value, newAlpha, newBeta);
 		grisRecentHashTable.put(pos, v, bestShot, cout.cout);
 		grisComplexHashTable.put(pos, v, bestShot, cout.cout);
 
+		//System.out.println("Fin d'étude : Joueur = " + state.playerIsNext() + "; Valeur = " + value + "; bestCoup = " + bestShot);
+		//System.out.println();
 		return value;
 
 	}

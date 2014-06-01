@@ -1,0 +1,1116 @@
+Timeout de 10.0 secondes.
+
+damned.cfg :
+.......
+.......
+.......
+@......
+0...0..
+00.@@@.
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Trop long
+AlphaBetaHash 20 : Trop long
+Iteratif 20 : Solution trouvée en 34 coups et 0.001 secondes
+IteratifGris 20 : Solution trouvée en 34 coups et 0.002 secondes
+IteratifHash  : Solution trouvée en 28 coups et 0.105 secondes
+DynIteratifHash  : Solution trouvée en 28 coups et 0.255 secondes
+
+damned2.cfg :
+.......
+.......
+.......
+.......
+......0
+.@@@.00
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Trop long
+AlphaBetaHash 20 : Trop long
+Iteratif 20 : Solution trouvée en 20 coups et 0.0 secondes
+IteratifGris 20 : Solution trouvée en 20 coups et 0.001 secondes
+IteratifHash  : Solution trouvée en 33 coups et 0.106 secondes
+DynIteratifHash  : Solution trouvée en 33 coups et 0.444 secondes
+
+empty-3x3.cfg :
+...
+...
+...
+
+MiniMax : Solution trouvée en 0.002 secondes
+NegaMax : Solution trouvée en 0.001 secondes
+AlphaBeta : Solution trouvée en 271 coups et 0.0 secondes
+AlphaBetaHash 20 : Solution trouvée en 173 coups et 0.002 secondes
+Iteratif 20 : Solution trouvée en 261 coups et 0.003 secondes
+IteratifGris 20 : Solution trouvée en 79 coups et 0.002 secondes
+IteratifHash  : Solution trouvée en 361 coups et 0.218 secondes
+DynIteratifHash  : Solution trouvée en 358 coups et 0.759 secondes
+
+empty-4x4.cfg :
+....
+....
+....
+....
+
+MiniMax : Solution trouvée en 7.683 secondes
+NegaMax : Solution trouvée en 6.84 secondes
+AlphaBeta : Solution trouvée en 60184 coups et 0.017 secondes
+AlphaBetaHash 20 : Solution trouvée en 11562 coups et 0.082 secondes
+Iteratif 20 : Solution trouvée en 17058 coups et 0.088 secondes
+IteratifGris 20 : Solution trouvée en 12117 coups et 0.085 secondes
+IteratifHash  : Solution trouvée en 33678 coups et 0.899 secondes
+DynIteratifHash  : Solution trouvée en 135071 coups et 1.327 secondes
+
+empty-4x5.cfg :
+....
+....
+....
+....
+....
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Solution trouvée en 1212762 coups et 0.167 secondes
+AlphaBetaHash 20 : Solution trouvée en 68622 coups et 0.048 secondes
+Iteratif 20 : Solution trouvée en 93025 coups et 0.096 secondes
+IteratifGris 20 : Solution trouvée en 58007 coups et 0.282 secondes
+IteratifHash  : Solution trouvée en 131590 coups et 1.083 secondes
+DynIteratifHash  : Solution trouvée en 1091649 coups et 2.993 secondes
+
+empty-4x6.cfg :
+....
+....
+....
+....
+....
+....
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Solution trouvée en 23641584 coups et 3.235 secondes
+AlphaBetaHash 20 : Solution trouvée en 694521 coups et 0.368 secondes
+Iteratif 20 : Solution trouvée en 1026833 coups et 1.079 secondes
+IteratifGris 20 : Solution trouvée en 362091 coups et 2.537 secondes
+IteratifHash  : Solution trouvée en 1589382 coups et 2.532 secondes
+DynIteratifHash  : Trop long
+
+empty-4x7.cfg :
+....
+....
+....
+....
+....
+....
+....
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Trop long
+AlphaBetaHash 20 : Solution trouvée en 7485616 coups et 2.829 secondes
+Iteratif 20 : Solution trouvée en 7906966 coups et 3.449 secondes
+IteratifGris 20 : Solution trouvée en 2316147 coups et 9.684 secondes
+IteratifHash  : Solution trouvée en 4560369 coups et 5.214 secondes
+DynIteratifHash  : Trop long
+
+empty-4x8.cfg :
+....
+....
+....
+....
+....
+....
+....
+....
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Trop long
+AlphaBetaHash 20 : Trop long
+Iteratif 20 : Trop long
+IteratifGris 20 : Trop long
+IteratifHash  : Trop long
+DynIteratifHash  : Trop long
+
+empty-4x9.cfg :
+....
+....
+....
+....
+....
+....
+....
+....
+....
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Trop long
+AlphaBetaHash 20 : Trop long
+Iteratif 20 : Trop long
+IteratifGris 20 : Trop long
+IteratifHash  : Trop long
+DynIteratifHash  : Trop long
+
+empty-5x4.cfg :
+.....
+.....
+.....
+.....
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Solution trouvée en 17915470 coups et 2.854 secondes
+AlphaBetaHash 20 : Solution trouvée en 548324 coups et 0.351 secondes
+Iteratif 20 : Solution trouvée en 962733 coups et 0.828 secondes
+IteratifGris 20 : Solution trouvée en 337163 coups et 8.364 secondes
+IteratifHash  : Solution trouvée en 335606 coups et 1.567 secondes
+DynIteratifHash  : Solution trouvée en 1490770 coups et 3.004 secondes
+
+empty-5x5.cfg :
+.....
+.....
+.....
+.....
+.....
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Trop long
+AlphaBetaHash 20 : Trop long
+Iteratif 20 : Trop long
+IteratifGris 20 : Trop long
+IteratifHash  : Solution trouvée en 2352774 coups et 2.779 secondes
+DynIteratifHash  : Trop long
+
+empty-5x6.cfg :
+.....
+.....
+.....
+.....
+.....
+.....
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Trop long
+AlphaBetaHash 20 : Trop long
+Iteratif 20 : Trop long
+IteratifGris 20 : Trop long
+IteratifHash  : Trop long
+DynIteratifHash  : Trop long
+
+empty-5x7.cfg :
+.....
+.....
+.....
+.....
+.....
+.....
+.....
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Trop long
+AlphaBetaHash 20 : Trop long
+Iteratif 20 : Trop long
+IteratifGris 20 : Trop long
+IteratifHash  : Trop long
+DynIteratifHash  : Trop long
+
+empty-6x4.cfg :
+......
+......
+......
+......
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Trop long
+AlphaBetaHash 20 : Trop long
+Iteratif 20 : Trop long
+IteratifGris 20 : Trop long
+IteratifHash  : Trop long
+DynIteratifHash  : Trop long
+
+empty-6x5.cfg :
+......
+......
+......
+......
+......
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Trop long
+AlphaBetaHash 20 : Trop long
+Iteratif 20 : Trop long
+IteratifGris 20 : Trop long
+IteratifHash  : Trop long
+DynIteratifHash  : Trop long
+
+empty-6x6.cfg :
+......
+......
+......
+......
+......
+......
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Trop long
+AlphaBetaHash 20 : Trop long
+Iteratif 20 : Trop long
+IteratifGris 20 : Trop long
+IteratifHash  : Trop long
+DynIteratifHash  : Trop long
+
+empty-6x7.cfg :
+......
+......
+......
+......
+......
+......
+......
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Trop long
+AlphaBetaHash 20 : Trop long
+Iteratif 20 : Trop long
+IteratifGris 20 : Trop long
+IteratifHash  : Trop long
+DynIteratifHash  : Trop long
+
+empty-7x4.cfg :
+.......
+.......
+.......
+.......
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Trop long
+AlphaBetaHash 20 : Trop long
+Iteratif 20 : Trop long
+IteratifGris 20 : Trop long
+IteratifHash  : Trop long
+DynIteratifHash  : Trop long
+
+empty-7x5.cfg :
+.......
+.......
+.......
+.......
+.......
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Trop long
+AlphaBetaHash 20 : Trop long
+Iteratif 20 : Trop long
+IteratifGris 20 : Trop long
+IteratifHash  : Trop long
+DynIteratifHash  : Trop long
+
+empty-7x6.cfg :
+.......
+.......
+.......
+.......
+.......
+.......
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Trop long
+AlphaBetaHash 20 : Trop long
+Iteratif 20 : Trop long
+IteratifGris 20 : Trop long
+IteratifHash  : Trop long
+DynIteratifHash  : Trop long
+
+ended.cfg :
+000@@@0
+@@@000@
+000@@@0
+@@@000@
+000@@@0
+@@@000@
+
+MiniMax : Solution trouvée en 0.0 secondes
+NegaMax : Solution trouvée en 0.001 secondes
+AlphaBeta : Solution trouvée en 1 coups et 0.0 secondes
+AlphaBetaHash 20 : Solution trouvée en 1 coups et 0.0 secondes
+Iteratif 20 : Solution trouvée en 1 coups et 0.0 secondes
+IteratifGris 20 : Solution trouvée en 1 coups et 0.0 secondes
+IteratifHash  : Solution trouvée en 1 coups et 0.294 secondes
+DynIteratifHash  : Solution trouvée en 1 coups et 0.42 secondes
+
+game-02.cfg :
+.......
+.......
+.......
+.......
+...@...
+...0...
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Trop long
+AlphaBetaHash 20 : Trop long
+Iteratif 20 : Trop long
+IteratifGris 20 : Trop long
+IteratifHash  : Trop long
+DynIteratifHash  : Trop long
+
+game-04.cfg :
+.......
+.......
+.......
+...0...
+...@...
+..@0...
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Trop long
+AlphaBetaHash 20 : Trop long
+Iteratif 20 : Trop long
+IteratifGris 20 : Trop long
+IteratifHash  : Trop long
+DynIteratifHash  : Trop long
+
+game-06.cfg :
+.......
+.......
+...0...
+...0...
+..@@...
+..@0...
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Trop long
+AlphaBetaHash 20 : Trop long
+Iteratif 20 : Trop long
+IteratifGris 20 : Trop long
+IteratifHash  : Trop long
+DynIteratifHash  : Trop long
+
+game-08.cfg :
+...@...
+...0...
+...0...
+...0...
+..@@...
+..@0...
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Trop long
+AlphaBetaHash 20 : Trop long
+Iteratif 20 : Trop long
+IteratifGris 20 : Trop long
+IteratifHash  : Trop long
+DynIteratifHash  : Trop long
+
+game-10.cfg :
+...@...
+...0...
+...0...
+...0...
+..@@...
+..@0.0@
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Trop long
+AlphaBetaHash 20 : Trop long
+Iteratif 20 : Trop long
+IteratifGris 20 : Trop long
+IteratifHash  : Trop long
+DynIteratifHash  : Trop long
+
+game-12.cfg :
+...@...
+...0...
+...0...
+...0.@.
+..@@.0.
+..@0.0@
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Trop long
+AlphaBetaHash 20 : Trop long
+Iteratif 20 : Trop long
+IteratifGris 20 : Trop long
+IteratifHash  : Trop long
+DynIteratifHash  : Trop long
+
+game-14.cfg :
+...@...
+...0...
+..@0...
+..00.@.
+..@@.0.
+..@0.0@
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Trop long
+AlphaBetaHash 20 : Trop long
+Iteratif 20 : Solution trouvée en 6315325 coups et 4.86 secondes
+IteratifGris 20 : Solution trouvée en 1103838 coups et 2.943 secondes
+IteratifHash  : Trop long
+DynIteratifHash  : Trop long
+
+game-16.cfg :
+..@@...
+..00...
+..@0...
+..00.@.
+..@@.0.
+..@0.0@
+
+MiniMax : Solution trouvée en 7.373 secondes
+NegaMax : Solution trouvée en 6.818 secondes
+AlphaBeta : Solution trouvée en 22268516 coups et 4.517 secondes
+AlphaBetaHash 20 : Solution trouvée en 313230 coups et 0.179 secondes
+Iteratif 20 : Solution trouvée en 57714 coups et 0.055 secondes
+IteratifGris 20 : Solution trouvée en 48979 coups et 0.051 secondes
+IteratifHash  : Solution trouvée en 188441 coups et 1.148 secondes
+DynIteratifHash  : Solution trouvée en 536956 coups et 2.489 secondes
+
+game-18.cfg :
+..@@...
+..00...
+..@0...
+..00.@.
+@.@@.0.
+0.@0.0@
+
+MiniMax : Solution trouvée en 0.008 secondes
+NegaMax : Solution trouvée en 0.008 secondes
+AlphaBeta : Solution trouvée en 21116 coups et 0.008 secondes
+AlphaBetaHash 20 : Solution trouvée en 6450 coups et 0.006 secondes
+Iteratif 20 : Solution trouvée en 12308 coups et 0.007 secondes
+IteratifGris 20 : Solution trouvée en 11718 coups et 0.015 secondes
+IteratifHash  : Solution trouvée en 16752 coups et 0.768 secondes
+DynIteratifHash  : Solution trouvée en 68334 coups et 1.029 secondes
+
+game-20.cfg :
+..@@...
+..00...
+..@0...
+@.00.@.
+@.@@.0.
+0.@000@
+
+MiniMax : Solution trouvée en 0.002 secondes
+NegaMax : Solution trouvée en 0.002 secondes
+AlphaBeta : Solution trouvée en 7056 coups et 0.003 secondes
+AlphaBetaHash 20 : Solution trouvée en 3095 coups et 0.003 secondes
+Iteratif 20 : Solution trouvée en 4817 coups et 0.187 secondes
+IteratifGris 20 : Solution trouvée en 4729 coups et 0.006 secondes
+IteratifHash  : Solution trouvée en 6119 coups et 0.667 secondes
+DynIteratifHash  : Solution trouvée en 14235 coups et 0.928 secondes
+
+game-22.cfg :
+..@@...
+..00...
+..@0...
+@.00@@.
+@.@@00.
+0.@000@
+
+MiniMax : Solution trouvée en 0.005 secondes
+NegaMax : Solution trouvée en 0.006 secondes
+AlphaBeta : Solution trouvée en 14672 coups et 0.005 secondes
+AlphaBetaHash 20 : Solution trouvée en 4843 coups et 0.005 secondes
+Iteratif 20 : Solution trouvée en 4904 coups et 0.004 secondes
+IteratifGris 20 : Solution trouvée en 4492 coups et 0.005 secondes
+IteratifHash  : Solution trouvée en 4214 coups et 0.728 secondes
+DynIteratifHash  : Solution trouvée en 9054 coups et 0.754 secondes
+
+game-24.cfg :
+..@@...
+..00...
+@.@0.0.
+@.00@@.
+@.@@00.
+0.@000@
+
+MiniMax : Solution trouvée en 0.0 secondes
+NegaMax : Solution trouvée en 0.0 secondes
+AlphaBeta : Solution trouvée en 1422 coups et 0.001 secondes
+AlphaBetaHash 20 : Solution trouvée en 906 coups et 0.001 secondes
+Iteratif 20 : Solution trouvée en 1422 coups et 0.001 secondes
+IteratifGris 20 : Solution trouvée en 1344 coups et 0.001 secondes
+IteratifHash  : Solution trouvée en 1643 coups et 0.616 secondes
+DynIteratifHash  : Solution trouvée en 2415 coups et 0.751 secondes
+
+game-26.cfg :
+@.@@...
+0.00...
+@.@0.0.
+@.00@@.
+@.@@00.
+0.@000@
+
+MiniMax : Solution trouvée en 0.0 secondes
+NegaMax : Solution trouvée en 0.001 secondes
+AlphaBeta : Solution trouvée en 380 coups et 0.001 secondes
+AlphaBetaHash 20 : Solution trouvée en 292 coups et 0.001 secondes
+Iteratif 20 : Solution trouvée en 481 coups et 0.001 secondes
+IteratifGris 20 : Solution trouvée en 474 coups et 0.001 secondes
+IteratifHash  : Solution trouvée en 493 coups et 0.535 secondes
+DynIteratifHash  : Solution trouvée en 588 coups et 0.576 secondes
+
+game-28.cfg :
+@.@@.@.
+0.00.0.
+@.@0.0.
+@.00@@.
+@.@@00.
+0.@000@
+
+MiniMax : Solution trouvée en 0.001 secondes
+NegaMax : Solution trouvée en 0.0 secondes
+AlphaBeta : Solution trouvée en 64 coups et 0.0 secondes
+AlphaBetaHash 20 : Solution trouvée en 64 coups et 0.001 secondes
+Iteratif 20 : Solution trouvée en 79 coups et 0.0 secondes
+IteratifGris 20 : Solution trouvée en 79 coups et 0.001 secondes
+IteratifHash  : Solution trouvée en 74 coups et 0.52 secondes
+DynIteratifHash  : Solution trouvée en 61 coups et 0.457 secondes
+
+game-30.cfg :
+@.@@.@.
+0.00.0.
+@.@0.0.
+@.00@@@
+@.@@000
+0.@000@
+
+MiniMax : Solution trouvée en 0.0 secondes
+NegaMax : Solution trouvée en 0.001 secondes
+AlphaBeta : Solution trouvée en 26 coups et 0.0 secondes
+AlphaBetaHash 20 : Solution trouvée en 26 coups et 0.0 secondes
+Iteratif 20 : Solution trouvée en 26 coups et 0.001 secondes
+IteratifGris 20 : Solution trouvée en 26 coups et 0.001 secondes
+IteratifHash  : Solution trouvée en 23 coups et 0.348 secondes
+DynIteratifHash  : Solution trouvée en 27 coups et 0.406 secondes
+
+game-32.cfg :
+@.@@.@.
+0.00.0.
+@.@000@
+@.00@@@
+@.@@000
+0.@000@
+
+MiniMax : Solution trouvée en 0.0 secondes
+NegaMax : Solution trouvée en 0.0 secondes
+AlphaBeta : Solution trouvée en 4 coups et 0.0 secondes
+AlphaBetaHash 20 : Solution trouvée en 4 coups et 0.0 secondes
+Iteratif 20 : Solution trouvée en 5 coups et 0.0 secondes
+IteratifGris 20 : Solution trouvée en 5 coups et 0.0 secondes
+IteratifHash  : Solution trouvée en 3 coups et 0.336 secondes
+DynIteratifHash  : Solution trouvée en 3 coups et 0.427 secondes
+
+jeu-04.cfg :
+.......
+.......
+...@...
+...0...
+...@...
+...0...
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Trop long
+AlphaBetaHash 20 : Trop long
+Iteratif 20 : Trop long
+IteratifGris 20 : Trop long
+IteratifHash  : Trop long
+DynIteratifHash  : Trop long
+
+jeu-06.cfg :
+...@...
+...0...
+...@...
+...0...
+...@...
+...0...
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Trop long
+AlphaBetaHash 20 : Trop long
+Iteratif 20 : Trop long
+IteratifGris 20 : Trop long
+IteratifHash  : Trop long
+DynIteratifHash  : Trop long
+
+jeu-08.cfg :
+...@...
+...0...
+...@...
+...0...
+...@...
+..00@..
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Trop long
+AlphaBetaHash 20 : Trop long
+Iteratif 20 : Trop long
+IteratifGris 20 : Trop long
+IteratifHash  : Trop long
+DynIteratifHash  : Trop long
+
+jeu-10.cfg :
+...@...
+...0...
+...@...
+...0...
+...@0..
+@.00@..
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Trop long
+AlphaBetaHash 20 : Trop long
+Iteratif 20 : Trop long
+IteratifGris 20 : Trop long
+IteratifHash  : Trop long
+DynIteratifHash  : Trop long
+
+jeu-12.cfg :
+...@...
+...0...
+...@...
+..@0...
+..0@0..
+@.00@..
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Trop long
+AlphaBetaHash 20 : Trop long
+Iteratif 20 : Trop long
+IteratifGris 20 : Trop long
+IteratifHash  : Solution trouvée en 3593199 coups et 3.992 secondes
+DynIteratifHash  : Trop long
+
+jeu-14.cfg :
+...@...
+...0...
+..0@...
+..@0...
+..0@0..
+@.00@@.
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Trop long
+AlphaBetaHash 20 : Trop long
+Iteratif 20 : Trop long
+IteratifGris 20 : Trop long
+IteratifHash  : Solution trouvée en 2165231 coups et 2.777 secondes
+DynIteratifHash  : Trop long
+
+jeu-16.cfg :
+..@@...
+..00...
+..0@...
+..@0...
+..0@0..
+@.00@@.
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Solution trouvée en 23649444 coups et 4.082 secondes
+AlphaBetaHash 20 : Solution trouvée en 577052 coups et 0.31 secondes
+Iteratif 20 : Solution trouvée en 2468510 coups et 1.597 secondes
+IteratifGris 20 : Solution trouvée en 673172 coups et 1.786 secondes
+IteratifHash  : Solution trouvée en 154947 coups et 1.186 secondes
+DynIteratifHash  : Solution trouvée en 678825 coups et 2.587 secondes
+
+jeu-18.cfg :
+..@@...
+..00...
+..0@...
+..@0...
+0.0@0..
+@@00@@.
+
+MiniMax : Solution trouvée en 8.151 secondes
+NegaMax : Solution trouvée en 7.197 secondes
+AlphaBeta : Solution trouvée en 3692895 coups et 0.645 secondes
+AlphaBetaHash 20 : Solution trouvée en 127580 coups et 0.068 secondes
+Iteratif 20 : Solution trouvée en 209085 coups et 0.151 secondes
+IteratifGris 20 : Solution trouvée en 86380 coups et 0.179 secondes
+IteratifHash  : Solution trouvée en 70247 coups et 1.108 secondes
+DynIteratifHash  : Solution trouvée en 167718 coups et 1.826 secondes
+
+jeu-20.cfg :
+..@@...
+..00...
+..0@...
+@.@0...
+000@0..
+@@00@@.
+
+MiniMax : Solution trouvée en 0.449 secondes
+NegaMax : Solution trouvée en 0.487 secondes
+AlphaBeta : Solution trouvée en 285037 coups et 0.065 secondes
+AlphaBetaHash 20 : Solution trouvée en 20333 coups et 0.016 secondes
+Iteratif 20 : Solution trouvée en 9 coups et 0.0 secondes
+IteratifGris 20 : Solution trouvée en 9 coups et 0.001 secondes
+IteratifHash  : Solution trouvée en 9 coups et 0.297 secondes
+DynIteratifHash  : Solution trouvée en 9 coups et 0.58 secondes
+
+partie-10.cfg :
+...@...
+...0...
+...0...
+...0...
+..@@.@.
+..@0.0.
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Trop long
+AlphaBetaHash 20 : Trop long
+Iteratif 20 : Trop long
+IteratifGris 20 : Trop long
+IteratifHash  : Trop long
+DynIteratifHash  : Trop long
+
+partie-12.cfg :
+...@...
+...0...
+...0...
+...0...
+..@@.@.
+..@0@00
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Trop long
+AlphaBetaHash 20 : Trop long
+Iteratif 20 : Trop long
+IteratifGris 20 : Trop long
+IteratifHash  : Trop long
+DynIteratifHash  : Trop long
+
+partie-14.cfg :
+...@...
+...0...
+...0...
+..@0...
+..@@0@.
+..@0@00
+
+MiniMax : Solution trouvée en 0.0 secondes
+NegaMax : Solution trouvée en 0.001 secondes
+AlphaBeta : Solution trouvée en 2252 coups et 0.001 secondes
+AlphaBetaHash 20 : Solution trouvée en 1246 coups et 0.001 secondes
+Iteratif 20 : Solution trouvée en 11 coups et 0.0 secondes
+IteratifGris 20 : Solution trouvée en 11 coups et 0.001 secondes
+IteratifHash  : Solution trouvée en 3 coups et 0.13 secondes
+DynIteratifHash  : Solution trouvée en 3 coups et 0.692 secondes
+
+play-14.cfg :
+.......
+.......
+@...@..
+@...@..
+00..00.
+00.@@@0
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Trop long
+AlphaBetaHash 20 : Solution trouvée en 3330533 coups et 1.505 secondes
+Iteratif 20 : Solution trouvée en 824697 coups et 0.661 secondes
+IteratifGris 20 : Solution trouvée en 575593 coups et 0.544 secondes
+IteratifHash  : Solution trouvée en 852019 coups et 1.684 secondes
+DynIteratifHash  : Solution trouvée en 4902345 coups et 8.758 secondes
+
+play-16.cfg :
+.......
+.......
+@...@..
+@...@..
+00..00@
+000@@@0
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Trop long
+AlphaBetaHash 20 : Solution trouvée en 1479784 coups et 0.741 secondes
+Iteratif 20 : Solution trouvée en 5118688 coups et 3.941 secondes
+IteratifGris 20 : Solution trouvée en 1761416 coups et 7.785 secondes
+IteratifHash  : Solution trouvée en 5322410 coups et 3.745 secondes
+DynIteratifHash  : Trop long
+
+play-18.cfg :
+.......
+.......
+@...@..
+@...@..
+000@00@
+000@@@0
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Solution trouvée en 22833575 coups et 3.931 secondes
+AlphaBetaHash 20 : Solution trouvée en 396381 coups et 0.209 secondes
+Iteratif 20 : Solution trouvée en 1150293 coups et 0.592 secondes
+IteratifGris 20 : Solution trouvée en 311689 coups et 1.506 secondes
+IteratifHash  : Solution trouvée en 992063 coups et 2.061 secondes
+DynIteratifHash  : Solution trouvée en 4519781 coups et 9.776 secondes
+
+play-20.cfg :
+.......
+.......
+@@..@..
+@0..@..
+000@00@
+000@@@0
+
+MiniMax : Solution trouvée en 0.052 secondes
+NegaMax : Solution trouvée en 0.052 secondes
+AlphaBeta : Solution trouvée en 198081 coups et 0.052 secondes
+AlphaBetaHash 20 : Solution trouvée en 10702 coups et 0.009 secondes
+Iteratif 20 : Solution trouvée en 135610 coups et 0.122 secondes
+IteratifGris 20 : Solution trouvée en 85930 coups et 0.24 secondes
+IteratifHash  : Solution trouvée en 115054 coups et 1.01 secondes
+DynIteratifHash  : Solution trouvée en 595472 coups et 2.223 secondes
+
+play-22.cfg :
+.......
+.......
+@@@.@..
+@00.@..
+000@00@
+000@@@0
+
+MiniMax : Solution trouvée en 0.019 secondes
+NegaMax : Solution trouvée en 0.018 secondes
+AlphaBeta : Solution trouvée en 51245 coups et 0.017 secondes
+AlphaBetaHash 20 : Solution trouvée en 8853 coups et 0.008 secondes
+Iteratif 20 : Solution trouvée en 111495 coups et 0.103 secondes
+IteratifGris 20 : Solution trouvée en 76435 coups et 0.077 secondes
+IteratifHash  : Solution trouvée en 114692 coups et 0.931 secondes
+DynIteratifHash  : Solution trouvée en 595207 coups et 2.194 secondes
+
+play-24-a.cfg :
+.......
+....@..
+@@@.@..
+@00.@.0
+000@00@
+000@@@0
+
+MiniMax : Solution trouvée en 0.005 secondes
+NegaMax : Solution trouvée en 0.004 secondes
+AlphaBeta : Solution trouvée en 12009 coups et 0.004 secondes
+AlphaBetaHash 20 : Solution trouvée en 2977 coups et 0.002 secondes
+Iteratif 20 : Solution trouvée en 38081 coups et 0.04 secondes
+IteratifGris 20 : Solution trouvée en 23778 coups et 0.031 secondes
+IteratifHash  : Solution trouvée en 46507 coups et 0.898 secondes
+DynIteratifHash  : Solution trouvée en 59610 coups et 1.106 secondes
+
+play-24.cfg :
+.......
+.......
+@@@.@..
+@00@@0.
+000@00@
+000@@@0
+
+MiniMax : Solution trouvée en 0.0 secondes
+NegaMax : Solution trouvée en 0.0 secondes
+AlphaBeta : Solution trouvée en 338 coups et 0.0 secondes
+AlphaBetaHash 20 : Solution trouvée en 225 coups et 0.001 secondes
+Iteratif 20 : Solution trouvée en 18 coups et 0.0 secondes
+IteratifGris 20 : Solution trouvée en 18 coups et 0.0 secondes
+IteratifHash  : Solution trouvée en 3 coups et 0.133 secondes
+DynIteratifHash  : Solution trouvée en 3 coups et 0.309 secondes
+
+play-26.cfg :
+....0..
+@...@..
+@@@.@..
+@00.@.0
+000@00@
+000@@@0
+
+MiniMax : Solution trouvée en 0.0 secondes
+NegaMax : Solution trouvée en 0.001 secondes
+AlphaBeta : Solution trouvée en 1945 coups et 0.001 secondes
+AlphaBetaHash 20 : Solution trouvée en 875 coups et 0.001 secondes
+Iteratif 20 : Solution trouvée en 7608 coups et 0.005 secondes
+IteratifGris 20 : Solution trouvée en 5873 coups et 0.007 secondes
+IteratifHash  : Solution trouvée en 11733 coups et 0.855 secondes
+DynIteratifHash  : Solution trouvée en 17385 coups et 0.841 secondes
+
+play-28.cfg :
+0...0..
+@@..@..
+@@@.@..
+@00.@.0
+000@00@
+000@@@0
+
+MiniMax : Solution trouvée en 0.001 secondes
+NegaMax : Solution trouvée en 0.001 secondes
+AlphaBeta : Solution trouvée en 1933 coups et 0.001 secondes
+AlphaBetaHash 20 : Solution trouvée en 863 coups et 0.001 secondes
+Iteratif 20 : Solution trouvée en 1910 coups et 0.002 secondes
+IteratifGris 20 : Solution trouvée en 1859 coups et 0.002 secondes
+IteratifHash  : Solution trouvée en 2269 coups et 0.731 secondes
+DynIteratifHash  : Solution trouvée en 5392 coups et 0.889 secondes
+
+play-30.cfg :
+0...0..
+@@0.@..
+@@@.@..
+@00.@@0
+000@00@
+000@@@0
+
+MiniMax : Solution trouvée en 0.001 secondes
+NegaMax : Solution trouvée en 0.001 secondes
+AlphaBeta : Solution trouvée en 473 coups et 0.001 secondes
+AlphaBetaHash 20 : Solution trouvée en 279 coups et 0.0 secondes
+Iteratif 20 : Solution trouvée en 646 coups et 0.001 secondes
+IteratifGris 20 : Solution trouvée en 625 coups et 0.001 secondes
+IteratifHash  : Solution trouvée en 693 coups et 0.629 secondes
+DynIteratifHash  : Solution trouvée en 1350 coups et 0.664 secondes
+
+play-32.cfg :
+0...0..
+@@0.@..
+@@@.@@0
+@00.@@0
+000@00@
+000@@@0
+
+MiniMax : Solution trouvée en 0.001 secondes
+NegaMax : Solution trouvée en 0.0 secondes
+AlphaBeta : Solution trouvée en 453 coups et 0.0 secondes
+AlphaBetaHash 20 : Solution trouvée en 238 coups et 0.0 secondes
+Iteratif 20 : Solution trouvée en 206 coups et 0.0 secondes
+IteratifGris 20 : Solution trouvée en 202 coups et 0.0 secondes
+IteratifHash  : Solution trouvée en 175 coups et 0.521 secondes
+DynIteratifHash  : Solution trouvée en 175 coups et 0.564 secondes
+
+play-34.cfg :
+0...0.@
+@@0.@.0
+@@@.@@0
+@00.@@0
+000@00@
+000@@@0
+
+MiniMax : Solution trouvée en 0.0 secondes
+NegaMax : Solution trouvée en 0.0 secondes
+AlphaBeta : Solution trouvée en 47 coups et 0.0 secondes
+AlphaBetaHash 20 : Solution trouvée en 40 coups et 0.001 secondes
+Iteratif 20 : Solution trouvée en 106 coups et 0.0 secondes
+IteratifGris 20 : Solution trouvée en 102 coups et 0.0 secondes
+IteratifHash  : Solution trouvée en 85 coups et 0.506 secondes
+DynIteratifHash  : Solution trouvée en 79 coups et 0.546 secondes
+
+play-36.cfg :
+00..0.@
+@@0.@@0
+@@@.@@0
+@00.@@0
+000@00@
+000@@@0
+
+MiniMax : Solution trouvée en 0.0 secondes
+NegaMax : Solution trouvée en 0.0 secondes
+AlphaBeta : Solution trouvée en 11 coups et 0.0 secondes
+AlphaBetaHash 20 : Solution trouvée en 11 coups et 0.0 secondes
+Iteratif 20 : Solution trouvée en 10 coups et 0.0 secondes
+IteratifGris 20 : Solution trouvée en 10 coups et 0.001 secondes
+IteratifHash  : Solution trouvée en 8 coups et 0.322 secondes
+DynIteratifHash  : Solution trouvée en 8 coups et 0.335 secondes
+
+play-38.cfg :
+00@.00@
+@@0.@@0
+@@@.@@0
+@00.@@0
+000@00@
+000@@@0
+
+MiniMax : Solution trouvée en 0.0 secondes
+NegaMax : Solution trouvée en 0.0 secondes
+AlphaBeta : Solution trouvée en 3 coups et 0.001 secondes
+AlphaBetaHash 20 : Solution trouvée en 3 coups et 0.0 secondes
+Iteratif 20 : Solution trouvée en 4 coups et 0.0 secondes
+IteratifGris 20 : Solution trouvée en 4 coups et 0.0 secondes
+IteratifHash  : Solution trouvée en 4 coups et 0.273 secondes
+DynIteratifHash  : Solution trouvée en 4 coups et 0.333 secondes
+
+trivial.cfg :
+000.@@.
+@@@000@
+000@@@0
+@@@000@
+000@@@0
+@@@000@
+
+MiniMax : Solution trouvée en 0.001 secondes
+NegaMax : Solution trouvée en 0.0 secondes
+AlphaBeta : Solution trouvée en 2 coups et 0.0 secondes
+AlphaBetaHash 20 : Solution trouvée en 2 coups et 0.0 secondes
+Iteratif 20 : Solution trouvée en 3 coups et 0.0 secondes
+IteratifGris 20 : Solution trouvée en 3 coups et 0.0 secondes
+IteratifHash  : Solution trouvée en 3 coups et 0.327 secondes
+DynIteratifHash  : Solution trouvée en 3 coups et 0.295 secondes
+
+trivial2.cfg :
+00.@@@.
+@@@000@
+000@@@0
+@@@000@
+000@@@0
+0@@000@
+
+MiniMax : Solution trouvée en 0.0 secondes
+NegaMax : Solution trouvée en 0.0 secondes
+AlphaBeta : Solution trouvée en 5 coups et 0.001 secondes
+AlphaBetaHash 20 : Solution trouvée en 5 coups et 0.0 secondes
+Iteratif 20 : Solution trouvée en 6 coups et 0.0 secondes
+IteratifGris 20 : Solution trouvée en 6 coups et 0.0 secondes
+IteratifHash  : Solution trouvée en 6 coups et 0.289 secondes
+DynIteratifHash  : Solution trouvée en 6 coups et 0.347 secondes
+
+win1.cfg :
+.......
+.......
+.......
+....@..
+...000.
+...@@@0
+
+MiniMax : Trop long
+NegaMax : Trop long
+AlphaBeta : Trop long
+AlphaBetaHash 20 : Trop long
+Iteratif 20 : Solution trouvée en 25 coups et 0.0 secondes
+IteratifGris 20 : Solution trouvée en 25 coups et 0.001 secondes
+IteratifHash  : Solution trouvée en 22 coups et 0.271 secondes
+DynIteratifHash  : Solution trouvée en 24 coups et 0.729 secondes

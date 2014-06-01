@@ -120,7 +120,6 @@ public class DynIteratifHash {
 		Cout c;
 		ContinueStateValue score;
 		int bestShot = shots.get(0);
-		boolean coupure = false;
 		for(int shot : shots){
 			state.playNext(shot);
 			c = new Cout();
@@ -137,20 +136,16 @@ public class DynIteratifHash {
 
 			state.undoLast();
 
-			if(score.isWin()){
-				coupure = true;
+			if(score.isWin())
 				break;
-			}
 
-			if(score.betterOrEquals(beta)){
-				coupure = true;
+			if(score.betterOrEquals(beta))
 				break;
-			}
 
 		}
 		cout.cout++;
 
-		ContinueStateValueWithBound v = (value.isWin() || !coupure) ? new  ContinueStateValueWithBound(value, 0)
+		ContinueStateValueWithBound v = value.isWin() ? new  ContinueStateValueWithBound(value, 0)
 		: new ContinueStateValueWithBound(value, newAlpha, newBeta);
 		grisRecentHashTable.put(pos, v, bestShot, cout.cout);
 		grisComplexHashTable.put(pos, v, bestShot, cout.cout);

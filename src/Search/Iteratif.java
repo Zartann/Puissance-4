@@ -189,7 +189,7 @@ public class Iteratif {
 		PositionGris pos = state.cleGris();
 		//Evaluation rapide de l'état si possible
 		
-		List<Integer> shots = state.validShots();
+		List<Integer> shots = state.orderedValidShots();
 
 		StateValue value = state.result();
 		
@@ -246,9 +246,11 @@ public class Iteratif {
 			
 			state.undoLast();
 			
+			//On ne fera pas mieux que WIN
 			if(score.isWin())
 				break;
 
+			//Coupure éventuelle
 			if(score.betterOrEquals(newBeta))
 				break;
 			

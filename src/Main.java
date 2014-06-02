@@ -114,7 +114,7 @@ public class Main {
 
 			long debutTime = 0;
 
-			int cas = 7;
+			int cas = 5;
 
 			if(verbose){
 				//Demande de la méthode

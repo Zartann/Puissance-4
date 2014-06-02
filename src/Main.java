@@ -21,7 +21,7 @@ public class Main {
 	/**
 	 * Nombre de millisecondes à attendre avant que l'on arrête les Thread
 	 */
-	static long timeOut = 60000;
+	static long timeOut = 2000;
 
 	/**
 	 * 
@@ -83,11 +83,14 @@ public class Main {
 	public static void ask(){
 		Scanner asker = new Scanner(System.in);
 		
+		System.out.println("Indiquer un fichier ou \"all\" : ");
 		String path = asker.nextLine();
 		
 		if(path.equals("all")){
-			autoTest();
+			System.out.println("Quel time-out ? (temps en secondes)");
+			timeOut = asker.nextInt() * 1000;
 			asker.close();
+			autoTest();
 			return;
 		}
 		

@@ -85,6 +85,7 @@ public class Main {
 		
 		System.out.println("Indiquer un fichier ou \"all\" : ");
 		String path = asker.nextLine();
+		System.out.println();
 		
 		if(path.equals("all")){
 			System.out.println("Quel time-out ? (temps en secondes)");
@@ -94,72 +95,106 @@ public class Main {
 			return;
 		}
 		
-		path = "resources/boards/" + path;
-		
 		PlateauCourant board;
 		try {
-			board = importFromFile(path);
-		
-			System.out.println(board);
+			board = importFromFile("resources/boards/" + path);
 			
-			long debutTime = System.currentTimeMillis();
+			long debutTime = 0;
 			
-			int cas = 6;
-	
+			System.out.println("Quelle méthode utiliser ?");
+			System.out.println("MiniMax : 0; NegaMax : 1; AlphaBeta : 2; AlphaBetaHash : 3");
+			System.out.println("Iteratif : 4; IteratifGris : 5; IteratifHash : 6; DynIterativeHash : 7");
+			int cas = 7;
+			cas = asker.nextInt();
+			System.out.println();
+			
+			int prof = 20;
 			switch(cas){
 			case 0 :
+				System.out.println(path);
+				System.out.println(board);
+				debutTime = System.currentTimeMillis();
 				System.out.println(MiniMaxElague.miniMax(board, true));
 				break;
 				
 			case 1 :
+				System.out.println(path);
+				System.out.println(board);
+				debutTime = System.currentTimeMillis();
 				System.out.println(NegaMaxElague.negaMax(board));
 				break;
 				
 			case 2 :
+				System.out.println(path);
+				System.out.println(board);
+				debutTime = System.currentTimeMillis();
 				AlphaBeta ab = new AlphaBeta();
 				System.out.println(ab.alphaBeta(board, StateValue.LOSS, StateValue.WIN));
 				System.out.println("Nombre total de positions évaluées : " + ab.totalPositions);
 				break;
 				
 			case 3 :
-				//pronfondeurMax = 10
-				AlphaBetaHash abh = new AlphaBetaHash(20);
+				System.out.println("Quelle profondeur maximale ?");
+				prof = asker.nextInt();
+				System.out.println();
+				System.out.println(path);
+				System.out.println(board);
+				debutTime = System.currentTimeMillis();
+				AlphaBetaHash abh = new AlphaBetaHash(prof);
 				System.out.println (abh.alphaBetaHache(board, StateValue.LOSS, StateValue.WIN, 0));
 				System.out.println("Nombre total de positions évaluées : " + abh.totalPositions);
 				break;
 				
 			case 4 :
-				//pronfondeurMax = 10
-				Iteratif it2 = new Iteratif(20);
+				System.out.println("Quelle profondeur maximale ?");
+				prof = asker.nextInt();
+				System.out.println();
+				System.out.println(path);
+				System.out.println(board);
+				debutTime = System.currentTimeMillis();
+				Iteratif it2 = new Iteratif(prof);
 				System.out.println (it2.iteratif2(board));
 				System.out.println("Nombre total de positions évaluées : " + it2.totalPositions);
 				break;
 				
 			case 5 :
-				//pronfondeurMax = 10
-				Iteratif itGris = new Iteratif(20);
+				System.out.println("Quelle profondeur maximale ?");
+				prof = asker.nextInt();
+				System.out.println();
+				System.out.println(path);
+				System.out.println(board);
+				Iteratif itGris = new Iteratif(prof);
 				System.out.println (itGris.iteratifGris(board));
 				System.out.println("Nombre total de positions évaluées : " + itGris.totalPositions);
-				//break;
+				break;
 				
 			case 6 :
+				System.out.println(path);
+				System.out.println(board);
+				debutTime = System.currentTimeMillis();
 				IteratifHash it = new IteratifHash();
 				System.out.println (it.iteratifHash(board));
 				System.out.println("Nombre total de positions évaluées : " + it.totalPositions);
-				//break;
+				break;
 				
 			case 7 :
+				System.out.println(path);
+				System.out.println(board);
+				debutTime = System.currentTimeMillis();
 				DynIteratifHash dynIt = new DynIteratifHash();
 				System.out.println (dynIt.dynIteratifHash(board));
 				System.out.println("Nombre total de positions évaluées : " + dynIt.totalPositions);
 				break;
 				
+			default :
+				debutTime = System.currentTimeMillis();
+				System.out.println("Cas inconnu !");
 			}
 			
 			long endTime = System.currentTimeMillis();
 			double time = ((double) (endTime - debutTime))/1000;
 			
-			System.out.println("Le résultat a été trouvé en " + time + " secondes.");
+			System.out.println("Temps d'exécution : " + time + " secondes.");
 			
 		} catch (FileNotFoundException e) {
 

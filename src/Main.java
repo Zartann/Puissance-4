@@ -46,6 +46,7 @@ public class Main {
 
 		String nextBox;
 
+		//On parse le fichier
 		for(int line = 0; line < height; line++){
 			for(int column = 0; column < width; column++){
 				nextBox = scan.next();
@@ -83,10 +84,12 @@ public class Main {
 	public static void ask(){
 		Scanner asker = new Scanner(System.in);
 		
+		//Demande de la commande
 		System.out.println("Indiquer un fichier ou \"all\" : ");
 		String path = asker.nextLine();
 		System.out.println();
 		
+		//Traitement automatisé
 		if(path.equals("all")){
 			System.out.println("Quel time-out ? (temps en secondes)");
 			timeOut = asker.nextInt() * 1000;
@@ -97,10 +100,12 @@ public class Main {
 		
 		PlateauCourant board;
 		try {
+			//Importation du plateau
 			board = importFromFile("resources/boards/" + path);
 			
 			long debutTime = 0;
 			
+			//Demande de la méthode
 			System.out.println("Quelle méthode utiliser ?");
 			System.out.println("MiniMax : 0; NegaMax : 1; AlphaBeta : 2; AlphaBetaHash : 3");
 			System.out.println("Iteratif : 4; IteratifGris : 5; IteratifHash : 6; DynIterativeHash : 7");
@@ -111,82 +116,106 @@ public class Main {
 			int prof = 20;
 			switch(cas){
 			case 0 :
+				
 				System.out.println(path);
 				System.out.println(board);
 				debutTime = System.currentTimeMillis();
+				
 				System.out.println(MiniMaxElague.miniMax(board, true));
 				break;
 				
 			case 1 :
+				
 				System.out.println(path);
 				System.out.println(board);
 				debutTime = System.currentTimeMillis();
+				
 				System.out.println(NegaMaxElague.negaMax(board));
 				break;
 				
 			case 2 :
+				
 				System.out.println(path);
 				System.out.println(board);
 				debutTime = System.currentTimeMillis();
+				
 				AlphaBeta ab = new AlphaBeta();
 				System.out.println(ab.alphaBeta(board, StateValue.LOSS, StateValue.WIN));
 				System.out.println("Nombre total de positions évaluées : " + ab.totalPositions);
 				break;
 				
 			case 3 :
+				
+				//Demande de la profondeur maximale
 				System.out.println("Quelle profondeur maximale ?");
 				prof = asker.nextInt();
 				System.out.println();
+				
 				System.out.println(path);
 				System.out.println(board);
 				debutTime = System.currentTimeMillis();
+				
 				AlphaBetaHash abh = new AlphaBetaHash(prof);
 				System.out.println (abh.alphaBetaHache(board, StateValue.LOSS, StateValue.WIN, 0));
 				System.out.println("Nombre total de positions évaluées : " + abh.totalPositions);
 				break;
 				
 			case 4 :
+				
+				//Demande de la profondeur maximale
 				System.out.println("Quelle profondeur maximale ?");
 				prof = asker.nextInt();
 				System.out.println();
+				
 				System.out.println(path);
 				System.out.println(board);
 				debutTime = System.currentTimeMillis();
+				
 				Iteratif it2 = new Iteratif(prof);
 				System.out.println (it2.iteratif2(board));
 				System.out.println("Nombre total de positions évaluées : " + it2.totalPositions);
 				break;
 				
 			case 5 :
+				
+				//Demande de la profondeur maximale
 				System.out.println("Quelle profondeur maximale ?");
 				prof = asker.nextInt();
 				System.out.println();
+				
 				System.out.println(path);
 				System.out.println(board);
+				debutTime = System.currentTimeMillis();
+				
 				Iteratif itGris = new Iteratif(prof);
 				System.out.println (itGris.iteratifGris(board));
 				System.out.println("Nombre total de positions évaluées : " + itGris.totalPositions);
 				break;
 				
 			case 6 :
+				
 				System.out.println(path);
 				System.out.println(board);
 				debutTime = System.currentTimeMillis();
+				
 				IteratifHash it = new IteratifHash();
 				System.out.println (it.iteratifHash(board));
 				System.out.println("Nombre total de positions évaluées : " + it.totalPositions);
 				break;
 				
 			case 7 :
+				
 				System.out.println(path);
 				System.out.println(board);
 				debutTime = System.currentTimeMillis();
+				
 				DynIteratifHash dynIt = new DynIteratifHash();
 				System.out.println (dynIt.dynIteratifHash(board));
 				System.out.println("Nombre total de positions évaluées : " + dynIt.totalPositions);
 				break;
 				
 			default :
+				
 				debutTime = System.currentTimeMillis();
 				System.out.println("Cas inconnu !");
 			}
@@ -194,6 +223,7 @@ public class Main {
 			long endTime = System.currentTimeMillis();
 			double time = ((double) (endTime - debutTime))/1000;
 			
+			//Affichage du temps d'exécution
 			System.out.println("Temps d'exécution : " + time + " secondes.");
 			
 		} catch (FileNotFoundException e) {
@@ -207,6 +237,8 @@ public class Main {
 	public static void autoTest(){
 		
 		File tests = new File("resources/boards");
+		
+		//Transfert de la sortie standard
 		File result = new File("Result.txt");
 		try {
 			PrintStream out = new PrintStream(result);
@@ -220,15 +252,26 @@ public class Main {
 		
 		PlateauCourant board;
 		for(String path : tests.list()){
+			
+			/*
+			 * Si le fichier n'est pas un fichier test (en .cfg) 
+			 * ou alors est Test.cfg qui est potentiellement incorrect,
+			 * on ne fait rien
+			 */
 			if(path.substring(path.length()-4).equals(".out") || path.equals("Test.cfg"))
 				continue;
+			
 			try{
 				board = importFromFile("resources/boards/" + path);
 				
+				//Affichage du fichier
 				System.out.println();
 				System.out.println(path + " :");
 				System.out.println(board);
+				
+				//Test de toutes les méthodes
 				for(int i = 0; i <= 7; i++){
+					//Lancement du Thread de test
 					AutoTester test = new AutoTester(board,
 							"resources/boards/" +  path.substring(0, path.length()-4)+".out", 20, i);
 					
@@ -240,6 +283,7 @@ public class Main {
 						e.printStackTrace();
 					}
 					if(test.isAlive()){
+						//Si le Thread ne s'est pas arrêté, on le tue
 						test.stop();
 						System.out.println("Trop long");
 					}

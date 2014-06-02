@@ -154,10 +154,10 @@ public class PositionGris extends Position{
 		int b = ((Long) advPos).hashCode();
 		int bsym = ((Long) advPosSym).hashCode();
 		//int hash = (Math.min(a, asym)*Math.min(b, bsym)) % IteratifHash.tailleTable;
-		int hash = (Math.min(a+b,asym+bsym)) % IteratifHash.tailleTable;
+		int hash = (Math.min(373*a+b,373*asym+bsym)) % IteratifHash.tailleTable;
 		if(hash < 0)
 			hash += IteratifHash.tailleTable;
-		//On évite les OutOfBoundsException en gazrantissant ainsi que 0 <= hash < IteratifHash.tailleTable
+		//On évite les OutOfBoundsException en garantissant ainsi que 0 <= hash < IteratifHash.tailleTable
 		return hash;
 	}
 	

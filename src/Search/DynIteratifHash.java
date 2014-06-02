@@ -11,7 +11,7 @@ public class DynIteratifHash {
 		public int cout = 0;
 	}
 
-	public static int tailleTable = 20000000;
+	public static int tailleTable = 20000003;
 
 	/**
 	 * Contient le nombre total de positions qui ont été évaluées.
@@ -83,7 +83,7 @@ public class DynIteratifHash {
 		if(profondeur == profondeurMaxIteration){
 			//System.out.println("Evaluation : Joueur = " + state.playerIsNext() + "; Valeur = " + (state.playerIsNext() ? state.evalContinue() : state.evalContinue().opposite()));
 			//System.out.println();
-			return state.playerIsNext() ? state.evalContinue() : state.evalContinue().opposite();
+			return state.playerIsNext() ? new ContinueStateValue(state.eval()) : new ContinueStateValue(state.eval().opposite());
 		}
 
 		//Comparaison avec les tables de hachage

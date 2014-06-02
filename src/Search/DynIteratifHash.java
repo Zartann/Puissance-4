@@ -139,13 +139,13 @@ public class DynIteratifHash {
 			if(score.isWin())
 				break;
 
-			if(score.betterOrEquals(beta))
+			if(score.betterOrEquals(newBeta))
 				break;
 
 		}
 		cout.cout++;
 
-		ContinueStateValueWithBound v = value.isWin() ? new  ContinueStateValueWithBound(value, 0)
+		ContinueStateValueWithBound v = !value.isNotWinNorLoss() ? new  ContinueStateValueWithBound(value, 0)
 		: new ContinueStateValueWithBound(value, newAlpha, newBeta);
 		grisRecentHashTable.put(pos, v, bestShot, cout.cout);
 		grisComplexHashTable.put(pos, v, bestShot, cout.cout);

@@ -27,7 +27,7 @@ public class Iteratif {
 		profondeurStockageMax = prof;
 	}
 	
-	public StateValue iteratif(PlateauCourant state){
+	/*public StateValue iteratif(PlateauCourant state){
 		
 		StateValue value = StateValue.DRAW;
 		for(int i = 0; i <= state.nombreCoupsRestants(); i += 2){
@@ -124,7 +124,7 @@ public class Iteratif {
 			
 		return value;
 		
-	}
+	}*/
 	
 
 	public StateValue iteratif2(PlateauCourant state){
@@ -215,14 +215,21 @@ public class Iteratif {
 			newAlpha = newAlpha.max(score);
 			
 			state.undoLast();
+			
+			if (score.isWin())
+				break;
 
-			if(score.betterOrEquals(beta))
+			if(score.betterOrEquals(newBeta))
 				break;
 			
 		}
-
-		if(profondeur <= profondeurStockageMax)
-			currentHashTable.put(pos, new StateValueWithBound(value, newAlpha, newBeta));
+		
+		if(profondeur <= profondeurStockageMax){
+			//Si value vaut WIN ou LOSS, le principe de prudence impose que cette valeur est accurate
+			StateValueWithBound v = !value.isDraw() ? new  StateValueWithBound(value, 0)
+													: new StateValueWithBound(value, newAlpha, newBeta);
+			currentHashTable.put(pos, v);
+		}
 			
 		return value;
 		
@@ -327,13 +334,14 @@ public class Iteratif {
 			if(score.isWin())
 				break;
 
-			if(score.betterOrEquals(beta))
+			if(score.betterOrEquals(newBeta))
 				break;
 			
 		}
 
 		if(profondeur <= profondeurStockageMax){
-				StateValueWithBound v = value.isWin() ? new  StateValueWithBound(value, 0)
+			//Si value vaut WIN ou LOSS, le principe de prudence impose que cette valeur est accurate
+				StateValueWithBound v = !value.isDraw() ? new  StateValueWithBound(value, 0)
 														: new StateValueWithBound(value, newAlpha, newBeta);
 				currentGrisHashTable.put(pos, v);
 		}

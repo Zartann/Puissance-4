@@ -107,13 +107,14 @@ public class IteratifHash {
 			if(score.isWin())
 				break;
 
-			if(score.betterOrEquals(beta))
+			if(score.betterOrEquals(newBeta))
 				break;
 
 		}
 		cout.cout++;
-
-		StateValueWithBound v = value.isWin() ? new  StateValueWithBound(value, 0)
+		
+		//Si value vaut WIN ou LOSS, le principe de prudence impose que cette valeur est accurate
+		StateValueWithBound v = !value.isDraw() ? new  StateValueWithBound(value, 0)
 												: new StateValueWithBound(value, newAlpha, newBeta);
 		grisRecentHashTable.put(pos, v, cout.cout);
 		grisComplexHashTable.put(pos, v, cout.cout);

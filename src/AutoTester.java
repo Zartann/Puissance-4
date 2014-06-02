@@ -67,6 +67,7 @@ public class AutoTester extends Thread {
 		long debutTime = System.currentTimeMillis(), endTime;
 		double time;
 		
+		//On teste selon la méthode choisie
 		switch(type){
 		case 0 :
 			System.out.print("MiniMax : ");
@@ -103,7 +104,6 @@ public class AutoTester extends Thread {
 				System.out.println("Solution trouvée en " + ab.totalPositions + " coups et " + time + " secondes");
 			else
 				System.out.println("Erreur");
-			//System.out.println("Nombre total de positions évaluées : " + AlphaBeta.totalPositions);
 			break;
 			
 		case 3 :
@@ -117,7 +117,6 @@ public class AutoTester extends Thread {
 				System.out.println("Solution trouvée en " + abh.totalPositions + " coups et " + time + " secondes");
 			else
 				System.out.println("Erreur");
-			//System.out.println("Nombre total de positions évaluées : " + AlphaBetaHash.totalPositions);
 			break;
 			
 		case 4 :
@@ -131,7 +130,6 @@ public class AutoTester extends Thread {
 				System.out.println("Solution trouvée en " + it.totalPositions + " coups et " + time + " secondes");
 			else
 				System.out.println("Erreur");
-			//System.out.println("Nombre total de positions évaluées : " + it.totalPositions);
 			break;
 			
 		case 5 :
@@ -145,7 +143,6 @@ public class AutoTester extends Thread {
 				System.out.println("Solution trouvée en " + itGris.totalPositions + " coups et " + time + " secondes");
 			else
 				System.out.println("Erreur");
-			//System.out.println("Nombre total de positions évaluées : " + itGris.totalPositions);
 			break;
 			
 		case 6 :
@@ -159,7 +156,6 @@ public class AutoTester extends Thread {
 				System.out.println("Solution trouvée en " + ith.totalPositions + " coups et " + time + " secondes");
 			else
 				System.out.println("Erreur");
-			//System.out.println("Nombre total de positions évaluées : " + ith.totalPositions);
 			break;
 			
 		case 7 :
@@ -173,7 +169,6 @@ public class AutoTester extends Thread {
 				System.out.println("Solution trouvée en " + dynIt.totalPositions + " coups et " + time + " secondes");
 			else
 				System.out.println("Erreur");
-			//System.out.println("Nombre total de positions évaluées : " + dynIt.totalPositions);
 			break;
 			
 		}

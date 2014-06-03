@@ -6,14 +6,17 @@ import java.util.Map;
 import java.util.Set;
 
 import Game.PositionGris;
-
+//Notre table de hachage ad hoc dont on a étendu les valeurs au-delà de WIN, LOSS et DRAW par des ContinueStateValue(WithBound)
 public class MyContinueHashMap implements Map<PositionGris, ContinueStateValueWithBound> {
-	
+	/**
+	 *Information totale contenue dans une case de la table
+	 */
 	private class MyValue{
 		public PositionGris pos;
 		public ContinueStateValueWithBound val;
 		public int cout = 0;
 		
+		//Deux constructeurs différents en fonction du mode de remplacement choisi
 		public MyValue(PositionGris key, ContinueStateValueWithBound value) {
 			pos = key;
 			val = value;
@@ -26,6 +29,7 @@ public class MyContinueHashMap implements Map<PositionGris, ContinueStateValueWi
 		}
 	}
 	
+	//Le meilleur coup (ordonnancement dynamique)
 	private class MyBestShot{
 		public PositionGris pos;
 		public int bestShot;
@@ -66,13 +70,12 @@ public class MyContinueHashMap implements Map<PositionGris, ContinueStateValueWi
 	@Override
 	public void clear() {
 		throw new RuntimeException("Unimplemented : clear");
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public boolean containsKey(Object key) {
 		if(key instanceof PositionGris)
+			//Tout élément de type positionGris de la table est on nul de champ pos non nul (cf constructeurs) 
 			return (map[key.hashCode()].pos.equals(key));
 		
 		return false;
@@ -81,30 +84,16 @@ public class MyContinueHashMap implements Map<PositionGris, ContinueStateValueWi
 	@Override
 	public boolean containsValue(Object value) {
 		throw new RuntimeException("Unimplemented : containsValue");
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public Set<java.util.Map.Entry<PositionGris, ContinueStateValueWithBound>> entrySet() {
-		throw new RuntimeException("Unimplemented : keySet");
-		// TODO Auto-generated method stub
+		throw new RuntimeException("Unimplemented : entrySet");
 	}
 
 	@Override
 	public ContinueStateValueWithBound get(Object key) {
 		throw new RuntimeException("Mauvaise méthode get !!! Utiliser getValue ou getBestCoup !");
-		/*if(!(key instanceof PositionGris))
-			return null;
-		
-		MyValue elem = map[key.hashCode()];
-		
-		if(elem == null)
-			return null;
-		
-		if(elem.pos.equals(key)){
-			return elem.val;
-		}
-		return null;*/
 	}
 	
 	/**
@@ -118,7 +107,7 @@ public class MyContinueHashMap implements Map<PositionGris, ContinueStateValueWi
 		
 		if(elem == null)
 			return null;
-		
+		//elem!= null -> son champ pos est non nul (cf constructeurs)
 		if(elem.pos.equals(pos)){
 			return elem.val;
 		}
@@ -144,13 +133,13 @@ public class MyContinueHashMap implements Map<PositionGris, ContinueStateValueWi
 			else
 				return shot.bestShot;
 		}
+		//Dans ce cas le hashCode utilisé envoie sur une position différente -> Aucune info sur la position qui nous intéresse
 		return -1;
 	}
 
 	@Override
 	public boolean isEmpty() {
 		throw new RuntimeException("Unimplemented : isEmpty");
-		// TODO Auto-generated method stub
 	}
 
 	@Override
@@ -168,9 +157,12 @@ public class MyContinueHashMap implements Map<PositionGris, ContinueStateValueWi
 		throw new RuntimeException("Mauvaise méthode put !!! Spécifier le cout !");
 	}
 	
+	//Certes on aurait pu faire rentrer ces informations dans value pour respecter l'Override, mais nous n'avons pas besoin
+	//d'utiliser notre table comme une table de hachage générale, aussi ça n'a pas été nécessaire
 	public ContinueStateValueWithBound put(PositionGris key, 
 										ContinueStateValueWithBound value, int bestShot, int cout) {
 		
+		//On tient compte de la stratégie de remplacement
 		if(keepRecent)
 			return putRecent(key, value, bestShot);
 		else
@@ -189,9 +181,11 @@ public class MyContinueHashMap implements Map<PositionGris, ContinueStateValueWi
 									ContinueStateValueWithBound value, int bestShot){
 		int hash = key.hashCode();
 		MyValue elem = map[hash];
+		//On remplace dans tous les cas car le coup demandé est plus récent que le coup déjà présent
 		map[hash] = new MyValue(key, value);
 		bestCoups[hash] = new MyBestShot(key, bestShot);
 		
+		//On renvoie l'ancienne valeur
 		if(elem == null)
 			return null;
 		
@@ -211,25 +205,26 @@ public class MyContinueHashMap implements Map<PositionGris, ContinueStateValueWi
 		int hash = key.hashCode();
 		
 		MyValue elem = map[hash];
+		//Si la table ne contient aucune entrée associée à ce hashCode, on écrit la nouvelle entrée
 		if(elem == null){
 			map[hash] = new MyValue(key, value, cout);
 			bestCoups[hash] = new MyBestShot(key, bestShot);
 			return null;
 		}
 		
+		//Sinon on l'écrit seulement si elle est plus coûteuse que l'ancienne entrée
 		if(elem.cout < cout){
 			map[hash] = new MyValue(key, value, cout);
 			bestCoups[hash] = new MyBestShot(key, bestShot);
 		}
 		
+		//On renvoie la valeur initialement présente (null s'il n'y en avait pas, cf plus haut)
 		return elem.val;
 	}
 
 	@Override
 	public void putAll(Map<? extends PositionGris, ? extends ContinueStateValueWithBound> m) {
 		throw new RuntimeException("Unimplemented : putAll");
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -238,6 +233,7 @@ public class MyContinueHashMap implements Map<PositionGris, ContinueStateValueWi
 			return null;
 		
 		MyValue elem = map[key.hashCode()];
+		//On vérifie que l'élément dans le tableau correspond bien à la position à supprimer
 		if(elem.pos.equals(key)){
 			map[key.hashCode()] = null;
 			return elem.val;
@@ -247,14 +243,12 @@ public class MyContinueHashMap implements Map<PositionGris, ContinueStateValueWi
 
 	@Override
 	public int size() {
-		throw new RuntimeException("Unimplemented : putAll");
-		// TODO Auto-generated method stub
+		throw new RuntimeException("Unimplemented : size");
 	}
 
 	@Override
 	public Collection<ContinueStateValueWithBound> values() {
-		throw new RuntimeException("Unimplemented : putAll");
-		// TODO Auto-generated method stub
+		throw new RuntimeException("Unimplemented : values");
 	}
 	
 	/**
@@ -263,11 +257,13 @@ public class MyContinueHashMap implements Map<PositionGris, ContinueStateValueWi
 	 */
 	public void clearNonFinalPos(){
 		for(int i = 0; i < map.length; i++){
-			//On elimine tous les éléments qui ne sont pas Win ou Loss
+			//On élimine tous les éléments qui ne sont pas Win ou Loss
 			if(map[i] != null){
+				//Un élément non nul a son champ va non nul dont le champ value est non nul (cf constructeurs)
 				if(map[i].val.value.isNotWinNorLoss())
 					map[i] = null;
 				else
+					//Dans ce cas la valeur est accurate (principe de prudence)
 					map[i].val.setBound(0);
 			}
 		}

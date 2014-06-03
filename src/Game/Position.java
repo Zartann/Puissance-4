@@ -39,29 +39,6 @@ public class Position {
 		return hash;
 	}
 	
-	/*/**
-	 * 
-	 * @param a (long)
-	 * @return le ième bit de a (0<=i<49)
-	 */
-	/*public static byte trouveIemeBit (long a, int i){
-		long b = a >> i;
-		return (byte)(b&1);
-	}*/
-	
-	/*/**
-	 * place le bit k à l'emplacement i dans a (long)
-	 */
-	/*public static long placeIemeBit (long a, int i, byte k){
-		//if ((k!=1)&&(k!=0)) return a;
-		if (trouveIemeBit(a,i)==k) return a;
-		long b = 1;
-		b <<=i;
-		return a^b;
-		/*if (k==1) return (a+b);
-		else return (a-b);
-	}*/
-	
 	/**
 	 * Retourne la position symétrique
 	 */

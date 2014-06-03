@@ -27,7 +27,7 @@ public class NegaMaxElague {
 		for(int shot : shots){
 			state.playNext(shot);
 			
-			//On récupère l'opposé du coup suivant et on garde le max avec la valeur courante.
+			//On récupère l'opposé du coup suivant et on garde le max avec la valeur courante
 			value = value.max(negaMax(state).opposite());
 			state.undoLast();
 

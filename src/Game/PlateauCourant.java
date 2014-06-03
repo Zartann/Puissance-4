@@ -23,10 +23,7 @@ public interface PlateauCourant {
 	 * 
 	 * @return Résultat du plateau courant -> True si victoire, false si défaite, null si draw ou indéterminé
 	 */
-	/*
-	 * TODO : Pas nécessairement très efficace dans un premier temps. A améliorer par la suite.
-	 * Doit pouvoir être faisable en temps linéaire en le nombre de cases au plus.
-	 */
+	
 	public StateValue result();
 	
 	/**
@@ -91,7 +88,7 @@ public interface PlateauCourant {
 	 * @param adversary
 	 * @return Plateau correspondant aux entiers player et adversary
 	 */
-	public PlateauCourant importFromLong(long player, long adversary); //Pas certain qu'elle serve
+	public PlateauCourant importFromLong(long player, long adversary); //Jamais utilisée
 	
 	/**
 	 * Convertit le plateau en String pour affichage

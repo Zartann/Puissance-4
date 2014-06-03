@@ -289,7 +289,6 @@ public class Main {
 			PrintStream out = new PrintStream(result);
 			System.setOut(out);
 		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
@@ -324,7 +323,6 @@ public class Main {
 					try {
 						Thread.sleep(timeOut);
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					if(test.isAlive()){

@@ -84,7 +84,6 @@ public class IntBoard implements PlateauCourant {
 	
 	@Override
 	public boolean checkValid() {
-		// TODO Auto-generated method stub
 		//Cette méthode nous a semblé inutile après coup
 		return false;
 	}
@@ -149,7 +148,6 @@ public class IntBoard implements PlateauCourant {
 	 * Pour le moment, on suppose que le joueur commence toujours
 	 * Ne pas utiliser avec playCurrent ou playAdverse !!!
 	 */
-	//TODO : Implémenter une méthode à l'initialisation pour savoir à qui c'est le tour
 	boolean whosNext = true;
 	
 	/**
@@ -353,7 +351,7 @@ public class IntBoard implements PlateauCourant {
 	public int nombreCoupsRestants() {
 		int nb = 0;
 		for(int i = 0; i < maxWidth; i++){
-			//On ajoue pour caque colonne le nombre de cases encore vides dans cette colonne à nb
+			//On ajoute pour caque colonne le nombre de cases encore vides dans cette colonne à nb
 			nb += (maxHeight - heights[i]);
 		}
 		return nb;
@@ -418,20 +416,6 @@ public class IntBoard implements PlateauCourant {
 
 		antidiagPlayer = (playerToutSeul & (playerToutSeul >> maxHeight+2) & (playerToutSeul >> 2*maxHeight+4) & (playerToutSeul >> 3*maxHeight+6));
 		antidiagAdv = (advToutSeul & (advToutSeul >> maxHeight+2) & (advToutSeul >> 2*maxHeight+4) & (advToutSeul >> 3*maxHeight+6));
-
-		/*
-		columnPlayer = (columnPlayer | (columnPlayer << 1) | (columnPlayer << 2) | (columnPlayer << 3));
-		columnAdv = (columnAdv | (columnAdv << 1) | (columnAdv << 2) | (columnAdv << 3));
-
-		linePlayer = (linePlayer | (linePlayer << maxHeight+1) | (linePlayer << 2*maxHeight+2) | (linePlayer << 3*maxHeight+3));
-		lineAdv = (lineAdv | (lineAdv << maxHeight+1) | (lineAdv << 2*maxHeight+2) | (lineAdv << 3*maxHeight+3));
-
-		diagPlayer = (diagPlayer | (diagPlayer << maxHeight) | (diagPlayer << 2*maxHeight) | (diagPlayer << 3*maxHeight));
-		diagAdv = (diagAdv | (diagAdv << maxHeight) | (diagAdv << 2*maxHeight) | (diagAdv << 3*maxHeight));
-
-		antidiagPlayer = (antidiagPlayer | (antidiagPlayer << maxHeight+2) | (antidiagPlayer << 2*maxHeight+4) | (antidiagPlayer << 3*maxHeight+6));
-		antidiagAdv = (antidiagAdv | (antidiagAdv << maxHeight+2) | (antidiagAdv << 2*maxHeight+4) | (antidiagAdv << 3*maxHeight+6));*/
-		
 		
 		/*On détermine alors tous les jetons susceptibles de former un alignement, dans chaque direction, pour chaque joueur
 		(extension du résultat précédent), et on compte chaque jeton autant de fois que le nombre d'alignements auxquels
@@ -459,45 +443,6 @@ public class IntBoard implements PlateauCourant {
 			valAdv += Long.bitCount((diagAdv <<= maxHeight) & adversaryBoard);
 			valAdv += Long.bitCount((antidiagAdv <<= maxHeight+2) & adversaryBoard);
 		}
-		/*valPlayer += Long.bitCount(linePlayer & playerBoard);
-		valPlayer += Long.bitCount((linePlayer << maxHeight+1) & playerBoard);
-		valPlayer += Long.bitCount((linePlayer << 2*maxHeight+2) & playerBoard);
-		valPlayer += Long.bitCount((linePlayer << 3*maxHeight+3) & playerBoard);
-		
-		valPlayer += Long.bitCount(columnPlayer & playerBoard);
-		valPlayer += Long.bitCount((columnPlayer << 1) & playerBoard);
-		valPlayer += Long.bitCount((columnPlayer << 2) & playerBoard);
-		valPlayer += Long.bitCount((columnPlayer << 3) & playerBoard);
-		
-		valPlayer += Long.bitCount(diagPlayer & playerBoard);
-		valPlayer += Long.bitCount((diagPlayer << maxHeight) & playerBoard);
-		valPlayer += Long.bitCount((diagPlayer << 2*maxHeight) & playerBoard);
-		valPlayer += Long.bitCount((diagPlayer << 3*maxHeight) & playerBoard);
-		
-		valPlayer += Long.bitCount(antidiagPlayer & playerBoard);
-		valPlayer += Long.bitCount((antidiagPlayer << maxHeight+2) & playerBoard);
-		valPlayer += Long.bitCount((antidiagPlayer << 2*maxHeight+4) & playerBoard);
-		valPlayer += Long.bitCount((antidiagPlayer << 3*maxHeight+6) & playerBoard);
-		
-		valAdv += Long.bitCount(lineAdv & adversaryBoard);
-		valAdv += Long.bitCount((lineAdv << maxHeight+1) & adversaryBoard);
-		valAdv += Long.bitCount((lineAdv << 2*maxHeight+2) & adversaryBoard);
-		valAdv += Long.bitCount((lineAdv << 3*maxHeight+3) & adversaryBoard);
-		
-		valAdv += Long.bitCount(columnAdv & adversaryBoard);
-		valAdv += Long.bitCount((columnAdv << 1) & adversaryBoard);
-		valAdv += Long.bitCount((columnAdv << 2) & adversaryBoard);
-		valAdv += Long.bitCount((columnAdv << 3) & adversaryBoard);
-		
-		valAdv += Long.bitCount(diagAdv & adversaryBoard);
-		valAdv += Long.bitCount((diagAdv << maxHeight) & adversaryBoard);
-		valAdv += Long.bitCount((diagAdv << 2*maxHeight) & adversaryBoard);
-		valAdv += Long.bitCount((diagAdv << 3*maxHeight) & adversaryBoard);
-		
-		valAdv += Long.bitCount(antidiagAdv & adversaryBoard);
-		valAdv += Long.bitCount((antidiagAdv << maxHeight+2) & adversaryBoard);
-		valAdv += Long.bitCount((antidiagAdv << 2*maxHeight+4) & adversaryBoard);
-		valAdv += Long.bitCount((antidiagAdv << 3*maxHeight+6) & adversaryBoard);*/
 		
 		//Ainsi, la valeur continue renvoyée est positive ssi le joueur a plus de configurations potentielles gagnantes que l'adversaire
 		return new ContinueStateValue(valPlayer - valAdv);

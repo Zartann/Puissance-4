@@ -153,6 +153,8 @@ public class PositionGris extends Position{
 		int asym = ((Long) playerPosSym).hashCode();
 		int b = ((Long) advPos).hashCode();
 		int bsym = ((Long) advPosSym).hashCode();
+		//Ci-dessous notre fonction de hash initiale ; nous l'avons remplacée en choisissant 373 car ce nombre est premier et
+		//car sa décomposition en base 2 rend les calculs faciles
 		//int hash = (Math.min(a, asym)*Math.min(b, bsym)) % IteratifHash.tailleTable;
 		int hash = (Math.min(373*a+b,373*asym+bsym)) % IteratifHash.tailleTable;
 		if(hash < 0)
@@ -160,37 +162,7 @@ public class PositionGris extends Position{
 		//On évite les OutOfBoundsException en garantissant ainsi que 0 <= hash < IteratifHash.tailleTable
 		return hash;
 	}
-	
-	/**
-	 * Retourne la position symétrique
-	 */
-//	@Override
-	//public PositionGris symmetricPosition (){
-		
-		/*long player = playerPos, adv = advPos, gr = gris;
-		long playerSym = 0, advSym = 0, grSym = 0;
-		
-		//Entier correspondant à une colonne remplie de 1.
-		long column = (long) 1 << (maxHeight + 1);
-		column--;
-		
-		for(int i = 0; i < maxWidth; i++){
-			playerSym <<= maxHeight+1;
-			advSym <<= maxHeight+1;
-			grSym <<= maxHeight+1;
-			
-			playerSym |= (player & column);
-			advSym |= (adv & column);
-			grSym |= (gr & column);
-			
-			player >>= maxHeight+1;
-			adv >>= maxHeight+1;
-			gr >>= maxHeight+1;
-		}*/
-		
-	//	return new PositionGris(playerPosSym,advPosSym,maxWidth, maxHeight, grisSym, playerPos, advPos, gris);
-	//}
-	
+
 	/**
 	 * Indique si la position actuelle est la symétrique de pos2
 	 * @param pos2
